@@ -1,23 +1,27 @@
-package com.trendiguru;
+package com.trendiguru.struts.actions;
 
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.Publisher;
 
-//TODO - delete, replaced by AdminAction.addPublisher()
-
-/**
- * Offline script that creates a new publisher:
- * 1. Add user to DB with login
- * 2. Creates dashboard
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class AdminAction extends SecureAction {
+	private Publisher publisher;
+	
+	public String addPublisher() {
     	Publisher publisher = new Publisher("DigitalSpy","http://www.digitalspy.com/", "user@digitalspy.com", "mypassword");
     	
     	PublisherManager publisherManager = new PublisherManager();
     	publisherManager.add(publisher,  true, true);
-    }
+    	
+		return EMPTY;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+	
+	
 }

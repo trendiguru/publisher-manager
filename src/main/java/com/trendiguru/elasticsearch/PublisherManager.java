@@ -1,6 +1,9 @@
 package com.trendiguru.elasticsearch;
 
+import java.security.NoSuchAlgorithmException;
+
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.mongodb.MongoManager;
 import com.trendiguru.mongodb.MorphiaManager;
 
@@ -11,23 +14,40 @@ public class PublisherManager {
 	
 	public void add(Publisher publisher, boolean addDataTable, boolean addHistogram) {
 		MorphiaManager morphiaManager = MorphiaManager.getInstance();
-		morphiaManager.addPublisher(publisher);
 		
-		/*
-    	MongoManager mongoManager = MongoManager.getInstance();
-    	mongoManager.addPublisher(publisher);
-    	*/
+		byte[] salt = PasswordManager.generateSalt();
 		
-    	/*
-    	//TODO - check booleans to decide which visuals to add
-    	VisualizationManager manager = new VisualizationManager();
-    	manager.addDataTable(publisher);
-    	manager.addHistoGram(publisher);
-    	
-    	DashboardManager dbManager = new DashboardManager();
-    	
-    	//TODO - add visuals here too
-    	dbManager.addDashBoard(publisher, null);	
-    	*/
+		try {
+			byte[] hashedSaltedPasswordAsBytes = PasswordManager.getHashWithSalt(publisher.getPassword(), "SHA-256", salt);
+			String hashedSaltedPasswordAsString = PasswordManager.bytetoString(hashedSaltedPasswordAsBytes);
+			
+			publisher.setSalt(PasswordManager.bytetoString(salt));
+			publisher.setPassword(hashedSaltedPasswordAsString);
+			
+			morphiaManager.addPublisher(publisher);
+			
+
+			
+			/*
+	    	MongoManager mongoManager = MongoManager.getInstance();
+	    	mongoManager.addPublisher(publisher);
+	    	*/
+			
+	    	/*
+	    	//TODO - check booleans to decide which visuals to add
+	    	VisualizationManager manager = new VisualizationManager();
+	    	manager.addDataTable(publisher);
+	    	manager.addHistoGram(publisher);
+	    	
+	    	DashboardManager dbManager = new DashboardManager();
+	    	
+	    	//TODO - add visuals here too
+	    	dbManager.addDashBoard(publisher, null);	
+	    	*/
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>	
+
+    <!-- <constant name="struts.action.extension" value="" /> -->
+    
+	<package name="default" extends="struts-default">
+		<!-- General stuff goes here	-->
+		<interceptors>
+			
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="paramsPrepareParamsStack" />
+				<!-- <interceptor-ref name="breadcrumbs"/> -->
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />
+		<global-results>
+			<result name="input">/jsp/common/validationErrors.jsp</result>
+			<result name="notificationMessages">/jsp/common/notificationMessages.jsp</result>
+			
+			<result name="empty" type="httpheader">
+			    <param name="status">200</param>
+			</result>
+			
+			<!-- http://stackoverflow.com/questions/7996569/can-we-create-custom-http-status-codes -->
+			<result name="login" type="redirectAction">ShowLogin</result>
+			
+			
+		</global-results>
+	</package>
+	
+	<package name="public" extends="default">
+
+	    <default-action-ref name="ShowLogin" />
+
+        <action name="ShowLogin">
+            <!-- 
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">example</param>
+            </result>
+            -->
+            <result>/jsp/authentication/login.jsp</result>
+        </action>	
+	    
+		<!-- NB global 'input' is used that returns JSON with any errors that are rendered via the jquery javascript -->		
+		<action name="auth-*" class="com.trendiguru.struts.actions.AuthenticationAction" method="{1}">
+		<!--  
+			<result name="loggedOut" type="redirect">
+				<param name="location">/DisplayLogin</param>
+			</result>
+		-->
+			<result name="loggedIn">/jsp/authentication/loggedIn.jsp</result>
+			<result name="loggedOut">/jsp/authentication/authMain.jsp</result>
+			<result name="passwordResetAndSent">/jsp/authentication/passwordResetAndSent.jsp</result>
+			<result name="emailConfirmedWaitingApproval">/jsp/authentication/emailConfirmedWaitingApproval.jsp</result>
+			<!-- <result name="emailConfirmedActive">/jsp/authentication/emailConfirmedActive.jsp</result> -->
+			
+			<!-- used when the client sends content via the PhoneGap FileTransfer API -->
+			<!--
+			<result name="signedUpViaEmail">/jsp/authentication/signUpOk.jsp</result>
+			-->
+			<!-- used when submitting form via ajaxsubmit -->
+			<result name="signedUpViaEmail" type="httpheader">
+				<param name="status">200</param>
+			</result>
+			
+		</action>
+		
+	</package>
+	
+	<package name="private" extends="default">
+	    
+	    <interceptors>
+	      	<interceptor name="authenticationInterceptor" class="com.trendiguru.struts.interceptors.AuthenticationInterceptor"/>
+	      	
+	      	<interceptor-stack name="secureStack">                           
+	         	<interceptor-ref name="authenticationInterceptor"/>
+	         	<interceptor-ref name="myStack"/>                  
+      		</interceptor-stack>                                                    
+   		</interceptors>
+   		
+   		<default-interceptor-ref name="secureStack"/>	    
+	    
+   		<action name="AuthLogOut" class="com.trendiguru.struts.actions.AuthenticationAction" method="logOut">
+   		    <!-- 
+			<result name="success" type="httpheader">
+				<param name="status">200</param>
+			</result>
+			-->   		    
+   		</action>
+				
+		<action name="admin-*" class="com.trendiguru.struts.actions.AdminAction" method="{1}">
+			<result name="dashboard">/jsp/admin/dashboard.jsp</result>
+		</action>
+		<action name="publisher-*" class="com.trendiguru.struts.actions.PublisherAction" method="{1}">
+		    <result name="unblocked">/jsp/appUser/unblocked.jsp</result>
+		    <result name="editedUser">/jsp/appUser/editedUser.jsp</result>
+		    
+			<!-- 
+			<result name="account">/jsp/appUser/accountDetails.jsp</result>
+			<result name="dashboard">/jsp/appUser/dashboard.jsp</result>
+			<result name="customers">/jsp/appUser/customers.jsp</result>
+			
+			<result name="success" type="httpheader">
+				<param name="status">200</param>
+			</result>
+			-->
+		</action>
+
+
+
+
+	</package>
+</struts>
