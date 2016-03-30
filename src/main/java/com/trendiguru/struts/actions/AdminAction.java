@@ -9,7 +9,7 @@ public class AdminAction extends SecureAction {
 	public String addPublisher() {
     	Publisher publisher = new Publisher("DigitalSpy","http://www.digitalspy.com/", "user@digitalspy.com", "mypassword");
     	
-    	PublisherManager publisherManager = new PublisherManager();
+    	PublisherManager publisherManager = PublisherManager.getInstance();
     	publisherManager.add(publisher,  true, true);
     	
 		return EMPTY;

@@ -8,6 +8,7 @@ import com.trendiguru.entities.Admin;
 import com.trendiguru.entities.BaseUser;
 import com.trendiguru.entities.Publisher;
 import com.trendiguru.infra.Constants;
+import com.trendiguru.infra.SessionCache;
 
 
 
@@ -43,8 +44,10 @@ public class AuthenticationAction extends BaseAction {
 	private Admin admin;
 
 	public String logOut() {
-		HttpSession session = request.getSession();
-		session.invalidate();
+		SessionCache.getInstance().removeUser(token);
+		
+		//HttpSession session = request.getSession();
+		//session.invalidate();
 		return EMPTY;
 	}
 	
@@ -63,6 +66,15 @@ public class AuthenticationAction extends BaseAction {
 			//addActionError(getText("auth.errors.user.does.not.exist"));
 			return INPUT;
 		} else {
+			
+			SessionCache.getInstance().addUser(loggedInUser.getEmail() + loggedInUser.getPassword(), loggedInUser);
+			
+			//TODO - use BaseAction.toJson() to convert BaseUser to json and put string in loggedin.jsp
+			//
+			//
+			//
+			
+			
 			token = getSession().getId();
 			session.put(Constants.LOGGED_IN_USER, loggedInUser);
 			

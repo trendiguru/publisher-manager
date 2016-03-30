@@ -22,6 +22,7 @@ public class BaseUser {
 	String password;
 	Date createDate;
 	Date lastLoginDate;
+	String token;
 
 	public ObjectId getId() {
 		return id;
@@ -69,6 +70,14 @@ public class BaseUser {
 
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 }

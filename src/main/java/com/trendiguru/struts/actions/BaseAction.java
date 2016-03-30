@@ -3,21 +3,22 @@ package com.trendiguru.struts.actions;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.trendiguru.entities.BaseUser;
+import com.trendiguru.elasticsearch.PublisherManager;
+import com.trendiguru.entities.Publisher;
 import com.trendiguru.infra.Constants;
 import com.trendiguru.infra.JsonFactory;
 import com.trendiguru.services.AuthenticationServices;
-import com.trendiguru.services.PublisherServices;
 
-public class BaseAction extends ActionSupport implements ServletRequestAware, SessionAware {
+public class BaseAction extends ActionSupport implements ServletRequestAware, ServletResponseAware, SessionAware {
 	
 	private static Logger log = Logger.getLogger(BaseAction.class);
 	
@@ -33,8 +34,10 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 		
 	protected Map<String, Object> session;
 	protected HttpServletRequest request;
+	protected HttpServletResponse response;
 	
-	protected PublisherServices userServices = PublisherServices.getInstance();
+	
+	protected PublisherManager publisherManager = PublisherManager.getInstance();
 	protected AuthenticationServices authenticationServices = AuthenticationServices.getInstance();
 	
 
@@ -49,11 +52,8 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 		return jsonFactory.toJson(object);
 	}
 	
-	//TODO - delete
-	
-	@Deprecated
-	public BaseUser getLoggedInUser() {
-		return (BaseUser)session.get(Constants.LOGGED_IN_USER);
+	public Publisher getLoggedInPublisher() {
+		return (Publisher)session.get(Constants.LOGGED_IN_USER);
 	}
 	
 /*	public SysAdmin getSysAdminUser() {
@@ -75,8 +75,13 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 	
 
 	@Override
-	public void setServletRequest(HttpServletRequest arg0) {
-		this.request = arg0;
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+	
+	@Override
+	public void setServletResponse(HttpServletResponse response){
+	    this.response = response;
 	}
 /*
 	public List<String> getCountries()
@@ -112,14 +117,4 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 //	}
 
 	
-	
-	/**
-     * Decodes the base64 string into byte array
-     *
-     * @param imageDataString - a {@link java.lang.String}
-     * @return byte array
-     */
-    public static byte[] decodeImage(String imageDataString) {
-        return Base64.decodeBase64(imageDataString);
-    }	
 }

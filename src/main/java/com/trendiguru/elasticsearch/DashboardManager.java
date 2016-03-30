@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.trendiguru.entities.Publisher;
 
-public class DashboardManager extends ElasticSearchManager {
+public class DashboardManager extends KibanaManager {
 
 	public DashboardManager() {
 	}
@@ -15,7 +15,7 @@ public class DashboardManager extends ElasticSearchManager {
 	
 	public void addDashBoard(Publisher publisher, List<String> visualsList) {
 		String visualEncodedJSON = jsonForDashboard(publisher, visualsList);
-    	send(publisher, visualEncodedJSON, "Dashboard-for-" + publisher.getName());
+    	add(publisher, visualEncodedJSON, "Dashboard-for-" + publisher.getName());
 	}
 	
 	//TODO - use List

@@ -2,7 +2,7 @@ package com.trendiguru.elasticsearch;
 
 import com.trendiguru.entities.Publisher;
 
-public class VisualizationManager extends ElasticSearchManager {
+public class VisualizationManager extends KibanaManager {
 	
 	public VisualizationManager() {
 	}
@@ -14,12 +14,12 @@ public class VisualizationManager extends ElasticSearchManager {
 	
 	public void addDataTable(Publisher publisher) {
 		String visualEncodedJSON = jsonForDataTable(publisher);
-    	send(publisher, visualEncodedJSON, "Data-Table-for-" + publisher.getName());
+    	add(publisher, visualEncodedJSON, "Data-Table-for-" + publisher.getName());
 	}
 	
 	public void addHistoGram(Publisher publisher) {
 		String visualEncodedJSON = jsonForHistogram(publisher);
-    	send(publisher, visualEncodedJSON, "Histogram-for-" + publisher.getName());
+    	add(publisher, visualEncodedJSON, "Histogram-for-" + publisher.getName());
 	}
 	
 	public String jsonForDataTable(Publisher publisher) {

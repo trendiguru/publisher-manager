@@ -1,6 +1,6 @@
 package com.trendiguru.struts.interceptors;
 
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.trendiguru.entities.BaseUser;
-import com.trendiguru.infra.Constants;
+import com.trendiguru.infra.SessionCache;
 import com.trendiguru.struts.actions.SecureAction;
 import com.trendiguru.struts.actions.UserAware;
 
@@ -43,26 +43,49 @@ public class AuthenticationInterceptor extends AbstractInterceptor implements St
     	
     	ActionContext context = invocation.getInvocationContext();
     	
-    	Map<String, Object> session = context.getSession();
-    	BaseUser user = (BaseUser)session.get(Constants.LOGGED_IN_USER);
+    	//Map<String, Object> session = context.getSession();
+    	//BaseUser user = (BaseUser)session.get(Constants.LOGGED_IN_USER);
+    	HttpServletRequest request2 = (HttpServletRequest) context.get(HTTP_REQUEST);
+    	/*
+    	Enumeration headerNames = request2.getHeaderNames();
+    	while (headerNames.hasMoreElements()) {
+    		String key = (String) headerNames.nextElement();
+    		String value = request2.getHeader(key);
+    		log.warn("http header: " + key + ", value: " + value);
+    	}
+    	*/
+    	String token = request2.getParameter("token");
+	    
+    	String path = request2.getServletPath();
     	
-	    	
-    	if (user == null) {
-    		log.warn("Auth Int: There is no logged in user for the given session ID in memory.  Perhaps the server was re-started since the user last used us.");
-
+    	if (path.indexOf("private/app/kibana") > -1) {
+    		String[] pathArray = path.split("/");
+    		token = pathArray[4];
+    	}
+    	
+    	if (token == null || token.equals("")) {
+    		log.info("Auth Int: no token param in the request!");
     		return Action.LOGIN;
     	} else {
-    		//log.info("user in session is: " + user.getEmail());
-    		Action action = ( Action ) invocation.getAction();
-            if (action instanceof UserAware) {                               
-                ((UserAware)action).setUser(user);                         
-            }
-            log.warn("Auth Int: Injected logged-in user into secure action with email: " + user.getEmail());
-            return invocation.invoke();
-        }
-	}
+    		
+	    	BaseUser user = SessionCache.getInstance().getUser(token);
+	    	
+	    	if (user == null) {
+	    		log.warn("Auth Int: There is no logged in user for the given session ID in memory.  Perhaps the server was re-started since the user last used us.");
+	
+	    		return Action.LOGIN;
+	    	} else {
+    	
+	    		Action action = ( Action ) invocation.getAction();
+	            if (action instanceof UserAware) {                               
+	                ((UserAware)action).setUser(user);                         
+	            }
+	            //log.warn("Auth Int: Injected logged-in user into secure action with email: " + user.getEmail());
+	            return invocation.invoke();
+	    	}
+    	}
     
-    
+    }
 /*
 	public void setUserServices(UserServices userServices) {
 		this.userServices = userServices;

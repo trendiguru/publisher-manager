@@ -2,19 +2,25 @@ var manager = manager || {
 	ver: "0.1"   
 };
 
+manager.auth = {};
 manager.infra = {};
 manager.error = {};
+manager.publisher = {};
+manager.admin = {};
 
-manager.infra.init = function() {
+manager.auth.init = function() {
 	console.log("ready!");
 	$("#login").click(function(e) {
 		
 		$.post(
-			"auth-login", 
+			"auth/login", 
 			$("#loginForm").serializeArray(), 
 			function(response, status, xhr) { 
 				if (manager.infra.requestIsValid(xhr)) { 
 					console.log("now tell me what to do...");
+					//manager.publisher.init();
+					var loggedInPublisher = xhr.responseJSON;
+					window.location.href = "private/publisher/dashboard?token=" + loggedInPublisher.token;
 				}
 			
 			}, "json")
@@ -70,8 +76,8 @@ manager.infra.requestIsValid = function(xhr) {
 				}
 			}
 		}
-		
-        console.error(errorText);
+	
+        alert(errorText);
         
 		//showNativeAlert("Oops!", errorText);
 		
@@ -97,7 +103,3 @@ manager.infra.commonCallback = function(xhr) {
 		}
 	}
 };
-
-$(document).ready(function() {
-	manager.infra.init();
-});

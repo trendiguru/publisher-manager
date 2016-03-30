@@ -3,7 +3,12 @@
 <struts>	
 
     <!-- <constant name="struts.action.extension" value="" /> -->
-    
+ 
+	<constant name="struts.enable.SlashesInActionNames" value="true"/>
+<!--
+	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
+	<constant name="struts.patternMatcher" value="regex" />
+-->   
 	<package name="default" extends="struts-default">
 		<!-- General stuff goes here	-->
 		<interceptors>
@@ -31,7 +36,7 @@
 	
 	<package name="public" extends="default">
 
-	    <default-action-ref name="ShowLogin" />
+	    <!-- <default-action-ref name="ShowLogin" /> -->
 
         <action name="ShowLogin">
             <!-- 
@@ -44,7 +49,7 @@
         </action>	
 	    
 		<!-- NB global 'input' is used that returns JSON with any errors that are rendered via the jquery javascript -->		
-		<action name="auth-*" class="com.trendiguru.struts.actions.AuthenticationAction" method="{1}">
+		<action name="/auth/*" class="com.trendiguru.struts.actions.AuthenticationAction" method="{1}">
 		<!--  
 			<result name="loggedOut" type="redirect">
 				<param name="location">/DisplayLogin</param>
@@ -69,7 +74,7 @@
 		
 	</package>
 	
-	<package name="private" extends="default">
+	<package name="private" extends="default" namespace="/private">
 	    
 	    <interceptors>
 	      	<interceptor name="authenticationInterceptor" class="com.trendiguru.struts.interceptors.AuthenticationInterceptor"/>
@@ -89,13 +94,49 @@
 			</result>
 			-->   		    
    		</action>
-				
+   		
 		<action name="admin-*" class="com.trendiguru.struts.actions.AdminAction" method="{1}">
-			<result name="dashboard">/jsp/admin/dashboard.jsp</result>
+			<result name="dashboard">/jsp/admin/dashboardAdmin.jsp</result>
 		</action>
-		<action name="publisher-*" class="com.trendiguru.struts.actions.PublisherAction" method="{1}">
-		    <result name="unblocked">/jsp/appUser/unblocked.jsp</result>
-		    <result name="editedUser">/jsp/appUser/editedUser.jsp</result>
+		
+		<action name="/elasticsearch/_mget/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		<action name="/elasticsearch/.kibana/index-pattern/_search/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		<action name="/elasticsearch/.kibana/_mapping/*/field/_source/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		<action name="/elasticsearch/logstash-*/_field_stats/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		<action name="/elasticsearch/_msearch/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		
+		<!-- 
+		<action name="publisher-kibanaProxy/kibana" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
+		    
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		-->
+		
+		<action name="/app/kibana/dashboard/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaDashboard">
+		    <param name="dashboardName">{1}</param>
+		    <result name="html">/jsp/publisher/html.jsp</result>
+		</action>
+		
+		<action name="/app/kibana/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaDashboard">
+		    <param name="dashboardName">{1}</param>
+		    <result name="html">/jsp/publisher/html.jsp</result>
+		</action>
+		
+		<action name="/publisher/*" class="com.trendiguru.struts.actions.PublisherAction" method="{1}">
+		    <result name="dashboard">/jsp/publisher/dashboardPublisher.jsp</result>
+		    <result name="html">/jsp/publisher/html.jsp</result>
+		    
+		    
 		    
 			<!-- 
 			<result name="account">/jsp/appUser/accountDetails.jsp</result>
