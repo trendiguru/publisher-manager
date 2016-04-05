@@ -1,6 +1,9 @@
 package com.trendiguru.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
@@ -14,7 +17,16 @@ import org.mongodb.morphia.annotations.Indexes;
 public class Publisher extends BaseUser {
 	String name;
 	String domain;
+	Set<String> graphNameSet = new HashSet<String>();
 	
+	public Set<String> getGraphNameSet() {
+		return graphNameSet;
+	}
+
+	public void setGraphNameSet(Set<String> graphNameSet) {
+		this.graphNameSet = graphNameSet;
+	}
+
 	public Publisher() {
 	}
 	
@@ -46,6 +58,7 @@ public class Publisher extends BaseUser {
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}
+
 	
 	
 }

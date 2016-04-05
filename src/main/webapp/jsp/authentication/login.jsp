@@ -4,6 +4,11 @@
 	<head>
 		<title>Login!</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
+		
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">
+		
 		<script src="js/lib/jquery-2.2.2.min.js"></script>
 		<script src="js/main.js"></script>
 		<script>
@@ -14,6 +19,10 @@
 	</head>
 	
 	<body>
+		<header class="header-inner">
+			<div id="siteTitle">TrendiGuru</div>
+		</header>
+		
 		<h1>Please login</h1>
 		<div>
 			<form id="loginForm">

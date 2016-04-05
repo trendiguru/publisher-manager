@@ -1,0 +1,18 @@
+body {
+	background-color: #201a16;
+}
+.header-inner {
+	padding:20px 0;
+	width:100%;
+	display:table;
+	margin:auto;
+}
+#siteTitle {
+	font-family: "futura-pt";
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
+}

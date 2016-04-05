@@ -36,7 +36,7 @@
 	
 	<package name="public" extends="default">
 
-	    <!-- <default-action-ref name="ShowLogin" /> -->
+	    <default-action-ref name="ShowLogin" />
 
         <action name="ShowLogin">
             <!-- 
@@ -127,6 +127,7 @@
 		    <result name="html">/jsp/publisher/html.jsp</result>
 		</action>
 		
+		<!-- the iframe in dashboardPublisher.jsp calls this -->
 		<action name="/app/kibana/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaDashboard">
 		    <param name="dashboardName">{1}</param>
 		    <result name="html">/jsp/publisher/html.jsp</result>

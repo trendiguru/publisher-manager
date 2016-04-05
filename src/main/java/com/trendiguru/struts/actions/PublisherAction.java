@@ -8,21 +8,40 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trendiguru.elasticsearch.DashboardManager;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.infra.JsonFactory;
 
 
 public class PublisherAction extends SecureAction {
 	private static Logger log = Logger.getLogger(PublisherAction.class);
+	final String GRAPH_TEMPLATE = "{\"_id\":\"**INSERT_PUBLISHER_GRAPH_NAME_HERE**\",\"_type\":\"visualization\"}";
+	final String EXPORT_TEMPLATE = "{\"docs\":[**ADD_GRAPH_TEMPLATE_ARRAY_HERE**]}";
+	
 	String dashboardName;
-	
 	String proxyResponse;
-	
 	String kibanaUrl;
-	
 	String token;
 	
-	
+	public String exportDashboard() {
+		//{"docs":[{"_id":"Histogram-for-Publisher-DigitalSpy","_type":"visualization"},{"_id":"Data-Table-for-Publisher-DigitalSpy","_type":"visualization"}]}
+
+		DashboardManager dashboardManager = new DashboardManager();
+		StringBuilder graphJSONBuilder = new StringBuilder();
+		for (String graphName : getLoggedInPublisher().getGraphNameSet()) {
+			graphJSONBuilder.append(GRAPH_TEMPLATE.replace("**INSERT_PUBLISHER_GRAPH_NAME_HERE**", graphName));
+			graphJSONBuilder.append(",");
+		}
+		
+		String sb = graphJSONBuilder.substring(0, graphJSONBuilder.length()-1);
+		String exportTemplate = EXPORT_TEMPLATE.replace("**ADD_GRAPH_TEMPLATE_ARRAY_HERE**", sb);
+		
+		proxyResponse = dashboardManager.read("elasticsearch/.kibana/_mget", "POST", exportTemplate);
+		return null;
+	}
 	
 	public String dashboard() {
 		/*
@@ -37,7 +56,15 @@ public class PublisherAction extends SecureAction {
 	}
 	
 	
-	//iframe would call this but we need the long querystring in the iframe??
+	/**
+	 * iframe src calls this with the auth token as the last part of the path
+	 * 
+	 * I could not find the event that signalled the iframe has loaded and the date HTML was in the DOM.  So, I edited the commons.bundle.js code to show 
+	 * the html bar that contains the date selector AND hide the HTML that is not needed. I copied the relevant string that contains the HTML in order to 
+	 * keep the original code.  See line 64729
+	 * 
+	 * @return
+	 */
 	public String kibanaDashboard() {
 		String path = request.getServletPath();
 		
@@ -95,6 +122,10 @@ public class PublisherAction extends SecureAction {
 		
 		if (request.getMethod().equals("POST")) {
 			String postBody = getBody(request);
+			
+			if (kibanaPath.indexOf("_mget") > -1) {
+				extractGraphName(postBody);
+			}
 			//TODO - get POST payload and check for JSON _type: "visualization", _id : "Histogram-for-Publisher-<Publisher name>"
 			
 			proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
@@ -102,20 +133,29 @@ public class PublisherAction extends SecureAction {
 			proxyResponse = dashboardManager.read(kibanaPath, "GET", null);
 		}
 		
-		
-		
-		
-		
-		
-		
-		//proxyResponse = dashboardManager.read(kibanaPath, HttpMethod.POST, postBody);
-		
-		
-		//send POST/GET to http://localhost:9000/elasticsearch/________
-		
-		//response.setContentType("application/json");
-		
 		return "proxy";
+	}
+	
+	private void extractGraphName(String postBody) {
+		JsonFactory jsonFactory = JsonFactory.getInstance();
+		ObjectMapper mapper = jsonFactory.getMapper();
+		try {
+			JsonNode rootJson = mapper.readTree(postBody);
+			if (rootJson.get("docs").get(0).get("_type").textValue().equals("visualization")) {
+				String graphName = rootJson.get("docs").get(0).get("_id").textValue();
+				getLoggedInPublisher().getGraphNameSet().add(graphName);
+			} else {
+				log.info(postBody + " does not contain visualization json so ignoring");
+			}
+			
+			
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private String getBody(HttpServletRequest request) {
@@ -131,13 +171,8 @@ public class PublisherAction extends SecureAction {
 		        	buffer.append("\n");
 		        }
 		    }
-		    //buffer = buffer.substring(0, buffer.length()-1);	//remove final line separator
-		    if (request.getServletPath().indexOf("_msearch") > -1) {
-		    	//data = buffer.substring(0, buffer.length() - "\n".length());	//remove final line separator
-		    	data = buffer.toString();
-	        } else {
-	        	data = buffer.toString();
-	        }
+
+		    data = buffer.toString();
 		    return data;
 		} catch (IOException e) {
 			log.fatal(e);

@@ -1,4 +1,5 @@
 manager.publisher.init = function() {
+	
 	//var a = decodeHTMLEntities(escapedKibanaHTML);
 	//$('#kibanaDashboard')[0].contentDocument.write(a);
 	/*
