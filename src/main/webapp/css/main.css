@@ -1,9 +1,9 @@
 body {
-	background-color: #201a16;
+	background-color: rgba(32,26,22,.7);
 }
 .header-inner {
-	padding:20px 0;
-	width:100%;
+	width:95%;
+	padding:20px 0 20px 10px;
 	display:table;
 	margin:auto;
 }
@@ -15,4 +15,40 @@ body {
     font-weight: 500;
     font-style: normal;
     color: #fff;
+    float:left;
+}
+#main {
+	height:700px;
+	width:100%;
+	background-image: url("images/TrendiGuruLogo_10.10.14.jpg?format=1500w");
+	background-position: center 57%;
+	background-repeat:no-repeat;
+	background-size: 1250px 1250px;
+	background-color:#fff;
+}
+
+#loginForm {
+	float:right;
+}
+#loginForm .title, .welcome {
+	font-family: "futura-pt";
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-style: normal;
+    /*line-height: 1em;*/
+    color:#fff;
+}
+#loginForm input {
+	margin: 0 5px;
+}
+#loginForm #email {
+	margin-right:25px;
+}
+
+.welcome {
+	float:right;
+	margin-top:7px;
 }

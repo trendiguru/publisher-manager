@@ -17,6 +17,8 @@ import org.mongodb.morphia.annotations.Indexes;
 public class Publisher extends BaseUser {
 	String name;
 	String domain;
+	
+	//TODO - delete
 	Set<String> graphNameSet = new HashSet<String>();
 	
 	public Set<String> getGraphNameSet() {

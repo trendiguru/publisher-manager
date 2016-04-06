@@ -26,6 +26,7 @@ public class PublisherAction extends SecureAction {
 	String kibanaUrl;
 	String token;
 	
+	/*
 	public String exportDashboard() {
 		//{"docs":[{"_id":"Histogram-for-Publisher-DigitalSpy","_type":"visualization"},{"_id":"Data-Table-for-Publisher-DigitalSpy","_type":"visualization"}]}
 
@@ -42,6 +43,7 @@ public class PublisherAction extends SecureAction {
 		proxyResponse = dashboardManager.read("elasticsearch/.kibana/_mget", "POST", exportTemplate);
 		return null;
 	}
+	*/
 	
 	public String dashboard() {
 		/*
@@ -124,11 +126,21 @@ public class PublisherAction extends SecureAction {
 			String postBody = getBody(request);
 			
 			if (kibanaPath.indexOf("_mget") > -1) {
-				extractGraphName(postBody);
+				String graphName = extractGraphName(postBody);
+				if (graphName == null) {
+					proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
+				} else {
+					boolean allow = authoriseGraphRequest(graphName);
+					if (allow) {
+						proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
+					}
+				}
+			} else {
+				proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
 			}
 			//TODO - get POST payload and check for JSON _type: "visualization", _id : "Histogram-for-Publisher-<Publisher name>"
 			
-			proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
+			//proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
 		} else {
 			proxyResponse = dashboardManager.read(kibanaPath, "GET", null);
 		}
@@ -136,16 +148,34 @@ public class PublisherAction extends SecureAction {
 		return "proxy";
 	}
 	
-	private void extractGraphName(String postBody) {
+	/**
+	 * The json for a graph request contains the graph name eg "Histogram-for-Publisher-DigitalSpy" so I check if the graph contains the Publisher's name
+	 * in order to decide if it should be allowed!
+	 * 
+	 * @param graphName
+	 * @return
+	 */
+	private boolean authoriseGraphRequest(String graphName) {
+		if (graphName.indexOf(getLoggedInPublisher().getName()) > -1) {
+			//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+			return true;
+		} else {
+			log.fatal("BLOCKING graph request by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+			return false;
+		}
+	}
+	
+	private String extractGraphName(String postBody) {
 		JsonFactory jsonFactory = JsonFactory.getInstance();
 		ObjectMapper mapper = jsonFactory.getMapper();
 		try {
 			JsonNode rootJson = mapper.readTree(postBody);
 			if (rootJson.get("docs").get(0).get("_type").textValue().equals("visualization")) {
 				String graphName = rootJson.get("docs").get(0).get("_id").textValue();
-				getLoggedInPublisher().getGraphNameSet().add(graphName);
+				return graphName;
 			} else {
 				log.info(postBody + " does not contain visualization json so ignoring");
+				return null;
 			}
 			
 			
@@ -156,6 +186,7 @@ public class PublisherAction extends SecureAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	private String getBody(HttpServletRequest request) {

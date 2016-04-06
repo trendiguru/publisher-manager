@@ -5,7 +5,6 @@
 		<title>Login!</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
-		
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">
 		
@@ -20,16 +19,16 @@
 	
 	<body>
 		<header class="header-inner">
-			<div id="siteTitle">TrendiGuru</div>
-		</header>
-		
-		<h1>Please login</h1>
-		<div>
+			<div id="siteTitle">TrendiGuru - Publisher Login</div>
 			<form id="loginForm">
-		   		Email: <input type="text" id="email" name="user.email" value="user@digitalspy.com">
-		   		Password: <input type="password" id="password" name="user.password" value="mypassword"/>
+		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="user@digitalspy.com">
+		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="mypassword"/>
 		   		<button type="button" id="login">Login</button>
 	   		</form>
-	   </div>
+		</header>
+		
+		<div id="main">
+		</div>
+	
 	</body>
 </html>

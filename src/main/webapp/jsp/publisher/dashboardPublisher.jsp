@@ -5,6 +5,7 @@
 	<head>
 		<title>Admin dashboard</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">
 			
@@ -22,19 +23,10 @@
 	
 	<body>
 		<header class="header-inner">
-			<div id="siteTitle">TrendiGuru</div>
+			<div id="siteTitle">TrendiGuru - Publisher Analytics</div>
+			<div class="welcome">Welcome ${loggedInPublisher.name}</div>
 		</header>
-	
-	
-	   <h1>Welcome Publisher!</h1>
-	   
-	   <h1>Stats</h1>
-	   <!--
-	   <iframe id="kibanaDashboard" height="600" width="800" src="http://localhost:8080/publisher-manager/private/publisher-kibanaDashboard?token=${user.token}"></iframe>
-	   -->
 	   
 	   <iframe id="kibanaDashboard" style="border:none;" height="600" width="100%" src="http://localhost:8080/publisher-manager/private/app/kibana/${user.token}#/dashboard/Dashboard-for-DigitalSpy?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())&token=${user.token}"></iframe>
-	   
-	   
 	</body>
 </html>
