@@ -72,17 +72,18 @@ public class PublisherAction extends SecureAction {
 		
 		//String token = request.getParameter("token");
 		log.info("token: " + token);
+		Publisher publisher = getLoggedInPublisher();
 		
-		DashboardManager dashboardManager = new DashboardManager();
+		DashboardManager dashboardManager = new DashboardManager(publisher);
 		
 		//TODO - get dashboard for auth-ed user
 		//
 		//
-		Publisher publisher = getLoggedInPublisher();
 		
-		String publisherDashboard = "Dashboard-for-DigitalSpy";
 		
-		proxyResponse = dashboardManager.read("app/kibana#/dashboard/" + publisherDashboard + "?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())", "GET", null);
+		//String publisherDashboard = "Dashboard-for-DigitalSpy";
+		
+		proxyResponse = dashboardManager.read("app/kibana#/dashboard/" + publisher.getEncodedName() + "-dashboard" + "?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())", "GET", null);
 		
 		return "html";
 	}
@@ -120,7 +121,7 @@ public class PublisherAction extends SecureAction {
 			kibanaPath = kibanaPath.substring(0, kibanaPath.length()-1);
 		}
 		
-		DashboardManager dashboardManager = new DashboardManager();
+		DashboardManager dashboardManager = new DashboardManager(publisher);
 		
 		if (request.getMethod().equals("POST")) {
 			String postBody = getBody(request);
@@ -156,7 +157,7 @@ public class PublisherAction extends SecureAction {
 	 * @return
 	 */
 	private boolean authoriseGraphRequest(String graphName) {
-		if (graphName.indexOf(getLoggedInPublisher().getName()) > -1) {
+		if (graphName.indexOf(getLoggedInPublisher().getEncodedName()) > -1) {
 			//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
 			return true;
 		} else {

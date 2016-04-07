@@ -1,7 +1,14 @@
 package com.trendiguru;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.visuals.DevicesVisual;
+import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.Visual;
+import com.trendiguru.entities.visuals.WorldMapVisual;
 
 //TODO - delete, replaced by AdminAction.addPublisher()
 
@@ -15,9 +22,14 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Publisher publisher = new Publisher("DigitalSpy","http://www.digitalspy.com/", "user@digitalspy.com", "mypassword");
+    	Publisher publisher = new Publisher("Fashion Celeb Style","http://fashioncelebstyle.com/", "user@fcs.com", "mypassword");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
-    	publisherManager.add(publisher,  true, true);
+    	Set<Visual> visualSet = new HashSet<Visual>();
+    	visualSet.add(new EventsVisual(publisher));
+    	visualSet.add(new DevicesVisual(publisher));
+    	visualSet.add(new WorldMapVisual(publisher));
+    	
+    	publisherManager.add(publisher,  visualSet);
     }
 }

@@ -18,17 +18,6 @@ public class Publisher extends BaseUser {
 	String name;
 	String domain;
 	
-	//TODO - delete
-	Set<String> graphNameSet = new HashSet<String>();
-	
-	public Set<String> getGraphNameSet() {
-		return graphNameSet;
-	}
-
-	public void setGraphNameSet(Set<String> graphNameSet) {
-		this.graphNameSet = graphNameSet;
-	}
-
 	public Publisher() {
 	}
 	
@@ -59,6 +48,18 @@ public class Publisher extends BaseUser {
 
 	public void setDomain(String domain) {
 		this.domain = domain;
+	}
+	
+	/**
+	 * This is used when creating a visual or dashboard in ElasticSearch.  The name forms the prefix of the ES index name. Eg "digital-spy-" + "dashboard"
+	 * @return
+	 */
+	public String getEncodedName() {
+		return this.name.toLowerCase().replace(" ", "-");
+	}
+	
+	public String getEncodedHTMLName() {
+		return this.name.replace(" ", "%20");
 	}
 
 	

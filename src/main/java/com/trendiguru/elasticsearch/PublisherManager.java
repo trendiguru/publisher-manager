@@ -1,12 +1,14 @@
 package com.trendiguru.elasticsearch;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
 import com.trendiguru.entities.Publisher;
 import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.mongodb.MorphiaManager;
+import com.trendiguru.entities.visuals.Visual;
 
 public class PublisherManager {
 	private static Logger log = Logger.getLogger(PublisherManager.class);
@@ -19,7 +21,7 @@ public class PublisherManager {
 		return INSTANCE;
 	}
 	
-	public void add(Publisher publisher, boolean addDataTable, boolean addHistogram) {
+	public void add(Publisher publisher, Set<Visual> visualsToAddSet) {
 		MorphiaManager morphiaManager = MorphiaManager.getInstance();
 		
 		byte[] salt = PasswordManager.generateSalt();
@@ -34,22 +36,21 @@ public class PublisherManager {
 			morphiaManager.addPublisher(publisher);
 			log.info("added to mongodb publisher: " + publisher.getEmail());
 
-			
 			/*
 	    	MongoManager mongoManager = MongoManager.getInstance();
 	    	mongoManager.addPublisher(publisher);
 	    	*/
 			
-	    	
-	    	//TODO - check booleans to decide which visuals to add
 	    	VisualizationManager manager = new VisualizationManager();
-	    	manager.addDataTable(publisher);
-	    	manager.addHistoGram(publisher);
+	    	for (Visual visual : visualsToAddSet) {
+	    		//String encodedEntityName = publisher.getEncodedName() + "-" + visual.getElasticSearchIdSuffix();
+	    		manager.add(publisher, visual.getEncodedJSON(publisher), visual.getElasticSearchId());
+	    	}
 	    	
-	    	DashboardManager dbManager = new DashboardManager();
+	    	DashboardManager dbManager = new DashboardManager(publisher);
 	    	
 	    	//TODO - add visuals here too
-	    	dbManager.addDashBoard(publisher, null);
+	    	dbManager.addDashBoard(visualsToAddSet);
 	    	log.info("added kibana dashboard for publisher: " + publisher.getEmail());
 	    	
 		} catch (NoSuchAlgorithmException e) {
@@ -57,20 +58,6 @@ public class PublisherManager {
 			e.printStackTrace();
 		}
 		
-	}
-	
-	//TODO - delete?
-	@Deprecated
-	public String getKibanaDashboard(Publisher publisher) {
-		//http://localhost:9000/goto/09dd62a2c2e9fd7f27600d8a29603663
-		
-		//TODO - integrate with various APIs...
-		
-		
-		
-		DashboardManager dashboardManager = new DashboardManager();
-		String kibanaDashboard = dashboardManager.read("app/kibana#/dashboard/Jeremy's-dash?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2Fw,mode:quick,to:now%2Fw))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Client-IPs,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Events-breakdown-per-week,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'Jeremy!'s%20dash',uiState:())", "GET", null);
-		return kibanaDashboard;
 	}
 	
 }
