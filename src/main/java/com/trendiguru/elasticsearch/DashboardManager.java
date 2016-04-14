@@ -49,6 +49,20 @@ public class DashboardManager extends KibanaManager {
     			"}" +
     		"}";
     	*/
+		
+		/*
+		String a = "{" +
+				"\"title\":\"Fashion Celeb Style Dashboard 2\"," +
+				"\"hits\":0," +
+				"\"description\":\"\"," +
+				"\"panelsJSON\":\"[" +
+					"{\\\"id\\\":\\\"fashion-celeb-style-events-breakdown\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":1,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":1,\\\"row\\\":5}," +
+					"{\\\"id\\\":\\\"fashion-celeb-style-world-map\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":2,\\\"size_x\\\":12,\\\"size_y\\\":4,\\\"col\\\":1,\\\"row\\\":1}," +
+					"{\\\"id\\\":\\\"fashion-celeb-style-devices\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":3,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":7,\\\"row\\\":5}," +
+					"{\\\"id\\\":\\\"TimeLion-CTR-FashionCelebStyle-2\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":4,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"col\\\":1,\\\"row\\\":8}" +
+				"]\",\"optionsJSON\":\"{\\\"darkTheme\\\":false}\",\"uiStateJSON\":\"{\\\"P-2\\\":{\\\"spy\\\":{\\\"mode\\\":{\\\"name\\\":null,\\\"fill\\\":false}}}}\",\"version\":1,\"timeRestore\":true,\"timeTo\":\"now\/y\",\"timeFrom\":\"now\/y\",\"kibanaSavedObjectMeta\":{\"searchSourceJSON\":\"{\\\"filter\\\":[{\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}}}]}\"}}"
+		*/
+		
     	String json = "{" +
 			"\"title\":\"" + publisher.getName() + " Dashboard\"," +
 			"\"hits\":0," + 
@@ -57,7 +71,15 @@ public class DashboardManager extends KibanaManager {
 			
 				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-events-breakdown\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":1,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":1,\\\"row\\\":5}," +
 				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-world-map\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":2,\\\"size_x\\\":12,\\\"size_y\\\":4,\\\"col\\\":1,\\\"row\\\":1}," +
-				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-devices\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":3,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":7,\\\"row\\\":5}" +
+				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-devices\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":3,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":7,\\\"row\\\":5}," +
+			
+				
+				//"{\\\"id\\\":\\\"fashion-celeb-style-events-breakdown\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":1,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":1,\\\"row\\\":5}," +
+				//"{\\\"id\\\":\\\"fashion-celeb-style-world-map\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":2,\\\"size_x\\\":12,\\\"size_y\\\":4,\\\"col\\\":1,\\\"row\\\":1}," +
+				//"{\\\"id\\\":\\\"fashion-celeb-style-devices\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":3,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":7,\\\"row\\\":5}," +
+				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-click-thru-rate-our-icon\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":4,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"col\\\":1,\\\"row\\\":8}" +
+
+			
 			
 			"]\"," +
 			"\"optionsJSON\":\"{\\\"darkTheme\\\":false}\"," +

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsVisual;
 import com.trendiguru.entities.visuals.Visual;
@@ -29,6 +30,8 @@ public class App
     	visualSet.add(new EventsVisual(publisher));
     	visualSet.add(new DevicesVisual(publisher));
     	visualSet.add(new WorldMapVisual(publisher));
+    	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
+    	
     	
     	publisherManager.add(publisher,  visualSet);
     }

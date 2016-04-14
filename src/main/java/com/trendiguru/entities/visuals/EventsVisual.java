@@ -2,6 +2,14 @@ package com.trendiguru.entities.visuals;
 
 import com.trendiguru.entities.Publisher;
 
+/**
+ * Histogram
+ * Filtered by: publisher domain
+ * Showing TrendiGuru events
+ * 
+ * @author Jeremy
+ *
+ */
 public class EventsVisual extends Visual {
 
 	public EventsVisual(Publisher publisher) {

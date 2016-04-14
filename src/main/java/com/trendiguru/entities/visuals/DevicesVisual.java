@@ -2,6 +2,14 @@ package com.trendiguru.entities.visuals;
 
 import com.trendiguru.entities.Publisher;
 
+/**
+ * Pie Chart
+ * Filtered by: publisher domain
+ * Showing device OS
+ * 
+ * @author Jeremy
+ *
+ */
 public class DevicesVisual extends Visual {
 
 	public DevicesVisual(Publisher publisher) {

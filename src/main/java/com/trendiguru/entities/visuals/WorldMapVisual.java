@@ -2,6 +2,14 @@ package com.trendiguru.entities.visuals;
 
 import com.trendiguru.entities.Publisher;
 
+/**
+ * Map
+ * Filtered by publisher domain
+ * Showing total events for this domain in the world
+ * 
+ * @author Jeremy
+ *
+ */
 public class WorldMapVisual extends Visual {
 
 	public WorldMapVisual(Publisher publisher) {
