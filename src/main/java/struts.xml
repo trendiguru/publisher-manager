@@ -115,6 +115,10 @@
 		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
 		</action>
 		
+		<action name="app/api/timelion/run" class="com.trendiguru.struts.actions.PublisherAction" method="timeLionProxy">
+		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
+		</action>
+		
 		<!-- 
 		<action name="publisher-kibanaProxy/kibana" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
 		    

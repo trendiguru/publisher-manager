@@ -150,7 +150,73 @@ public class PublisherAction extends SecureAction {
 	}
 	
 	/**
-	 * The json for a graph request contains the graph name eg "Histogram-for-Publisher-DigitalSpy" so I check if the graph contains the Publisher's name
+	 * The Dashboard now has graphs created by TimeLion which is a Kibana plugin and allows calculations on aggregated results.
+	 * Eg click-thru-rates
+	 * 
+	 * This plugin has a different path to the normal Kibana graphs and a different JSON
+	 * 
+	 * @return
+	 */
+	public String timeLionProxy() {
+		String path = request.getServletPath();
+		
+		Publisher publisher = getLoggedInPublisher();
+		String kibanaPath = path.replace("/private/app/", "");
+		
+		DashboardManager dashboardManager = new DashboardManager(publisher);
+		String postBody = getBody(request);
+
+		String queryLabel = extractPublisherNameFromTimeLionQuery(postBody);
+				
+		boolean allow = authoriseTimeLionRequest(queryLabel);
+		if (allow) {
+			proxyResponse = dashboardManager.read(kibanaPath, "POST", postBody);
+		}
+		
+		return "proxy";
+	}
+	
+	/**
+	 * The json for a TimeLion query contains the graph name eg
+	 * [".es('refererDomain:instyle.com AND event:\"Result%20Clicked\"').divide(.es('refererDomain:instyle.com AND event:*')).multiply(100).bars()"]
+	 * 
+	 * So I check it contains the Publisher's name in order to decide if it should be allowed!
+	 * 
+	 * @param graphName
+	 * @return
+	 */
+	private boolean authoriseTimeLionRequest(String query) {
+		if (query.indexOf(getLoggedInPublisher().getDomain()) > -1) {
+			//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+			return true;
+		} else {
+			log.fatal("BLOCKING TimeLion query by publisher " + getLoggedInPublisher().getName() + " for query: " + query);
+			return false;
+		}
+	}
+	
+	private String extractPublisherNameFromTimeLionQuery(String postBody) {
+		JsonFactory jsonFactory = JsonFactory.getInstance();
+		ObjectMapper mapper = jsonFactory.getMapper();
+		try {
+			JsonNode rootJson = mapper.readTree(postBody);
+			//example json: [".es('refererDomain:instyle.com AND event:\"Result%20Clicked\"').divide(.es('refererDomain:instyle.com AND event:*')).multiply(100).bars()"]
+			//'instyle.com' is the publisher
+			String timeLionQuery = rootJson.get("sheet").get(0).textValue();
+			return timeLionQuery;
+
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * The json for a graph request contains the graph name eg "DigitalSpy-histogram-events" so I check if the graph contains the Publisher's name
 	 * in order to decide if it should be allowed!
 	 * 
 	 * @param graphName
@@ -172,6 +238,8 @@ public class PublisherAction extends SecureAction {
 		try {
 			JsonNode rootJson = mapper.readTree(postBody);
 			if (rootJson.get("docs").get(0).get("_type").textValue().equals("visualization")) {
+				//example json: {"docs":[{"_index":".kibana","_type":"visualization","_id":"instyle-click-thru-rate-our-icon"}]}
+				//'instyle' is the publisher
 				String graphName = rootJson.get("docs").get(0).get("_id").textValue();
 				return graphName;
 			} else {

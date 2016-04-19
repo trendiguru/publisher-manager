@@ -44,7 +44,7 @@ public class PublisherManager {
 	    	VisualizationManager manager = new VisualizationManager();
 	    	for (Visual visual : visualsToAddSet) {
 	    		//String encodedEntityName = publisher.getEncodedName() + "-" + visual.getElasticSearchIdSuffix();
-	    		manager.add(publisher, visual.getEncodedJSON(publisher), visual.getElasticSearchId());
+	    		manager.add(publisher, visual.getEncodedJSON(), visual.getElasticSearchId());
 	    	}
 	    	
 	    	DashboardManager dbManager = new DashboardManager(publisher);

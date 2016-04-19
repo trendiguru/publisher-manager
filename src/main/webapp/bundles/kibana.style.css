@@ -3636,6 +3636,87 @@ kbn-settings-indices p.text-center {
   right: 0;
   top: -10px;
 }
+.chart-title {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 11px;
+}
+.chart-canvas {
+  min-width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.suggestions {
+  left: 0;
+  width: 100% !important;
+  background-color: #ffffff;
+  color: #444444;
+  border: 1px solid #ecf0f1;
+  border-top: 2px solid #ecf0f1;
+  border-radius: 0px 0px 4px 4px !important;
+  z-index: 10000;
+  max-height: 378px;
+  overflow-y: auto;
+}
+.suggestions .suggestion {
+  border-bottom: 1px solid #ecf0f1;
+  padding: 5px 20px;
+}
+.suggestions .suggestion-details {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+}
+.suggestions .suggestion-details > table {
+  color: #444444;
+  margin-bottom: 0px;
+}
+.suggestions .suggestion:hover {
+  background-color: #ecf0f1;
+}
+.suggestions .suggestion.active {
+  background-color: #ecf0f1;
+}
+.timelion-vis {
+  min-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.timelion-vis [chart] {
+  min-width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.timelion-vis-editor-expression {
+  position: relative;
+}
+.timelion-vis-editor-expression .suggestions {
+  position: absolute;
+}
 .markdown-vis {
   padding: 1em;
   width: 100%;

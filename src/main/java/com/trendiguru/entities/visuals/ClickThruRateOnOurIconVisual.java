@@ -17,18 +17,20 @@ public class ClickThruRateOnOurIconVisual extends Visual {
 	String publisherDomainWithoutProtocol;
 	
 	public ClickThruRateOnOurIconVisual(Publisher publisher) {
+		this.publisher = publisher;
 		this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-our-icon";
 		this.title = publisher.getName() + " Click Thru Rate On Our Icon";
 		
 		/* TimeLion breaks if the referer has "http://" or "/" inside it! */
-		this.publisherDomainWithoutProtocol = publisher.getDomain().replace("http://", "").replace("/", "");
+		//this.publisherDomainWithoutProtocol = publisher.getDomain().replace("http://", "").replace("/", "");
 	}
 	
 	@Override
-	public String getEncodedJSON(Publisher publisher) {
+	public String getEncodedJSON() {
+		
 		return "{" +
 				"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('referer:"+ this.publisherDomainWithoutProtocol + " AND event:Trendi%20Button%20Clicked').divide(.es('referer:"+ this.publisherDomainWithoutProtocol + " AND event:*')).multiply(100).bars()\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('refererDomain:"+ publisher.getDomain() + " AND event:\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"').divide(.es('refererDomain:"+ publisher.getDomain() + " AND event:*')).multiply(100).bars()\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\"," +
 			"\"description\":\"\"," +
 			"\"version\":1," +

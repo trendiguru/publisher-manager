@@ -82,7 +82,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"kibana","1":"statusPage","3":"marvel","4":"sense"}[chunkId]||chunkId) + ".bundle.js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"kibana","1":"statusPage","3":"marvel","4":"sense","5":"timelion"}[chunkId]||chunkId) + ".bundle.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -37739,11 +37739,13 @@
 	    $browser.$$incOutstandingRequestCount();
 	    url = url || $browser.url();
 		
-		
-		
 		//Jeremy
-		url += "&token=" + authTokenNVPair;
-
+	    if (url.indexOf("?") > -1) {
+	    	url += "&token=" + authTokenNVPair;
+	    } else {
+	    	url += "?token=" + authTokenNVPair;
+	    }
+		
 	    if (lowercase(method) == 'jsonp') {
 	      var callbackId = '_' + (callbacks.counter++).toString(36);
 	      callbacks[callbackId] = function(data) {

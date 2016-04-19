@@ -8,6 +8,7 @@ public abstract class Visual {
 	String elasticSearchId;	// the ES id is made of 2 parts: prefix and suffix eg "fashion-celeb-style" + "world-map"
 	String title;
 	String encodedJSON;
+	Publisher publisher;
 	
 	/**
 	 * {@link http://www.infobyip.com/jsonencoderdecoder.php} to encode the JSON
@@ -15,7 +16,7 @@ public abstract class Visual {
 	 * @param publisher
 	 * @return
 	 */
-	public abstract String getEncodedJSON(Publisher publisher);
+	public abstract String getEncodedJSON();
 
 	public String getElasticSearchId() {
 		return elasticSearchId;
@@ -31,6 +32,10 @@ public abstract class Visual {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getKibanaIncludePatternValue() {
+		return ".*" + publisher.getDomain() + ".*";
 	}
 	
 	

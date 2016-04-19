@@ -13,16 +13,17 @@ import com.trendiguru.entities.Publisher;
 public class WorldMapVisual extends Visual {
 
 	public WorldMapVisual(Publisher publisher) {
+		this.publisher = publisher;
 		this.elasticSearchId = publisher.getEncodedName() + "-world-map";
 		this.title = publisher.getName() + " World Map";
 	}
 	
 	@Override
-	public String getEncodedJSON(Publisher publisher) {
+	public String getEncodedJSON() {
 		
 		return "{" +
 			"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"tile_map\\\",\\\"params\\\":{\\\"mapType\\\":\\\"Scaled Circle Markers\\\",\\\"isDesaturated\\\":true,\\\"addTooltip\\\":true,\\\"heatMaxZoom\\\":16,\\\"heatMinOpacity\\\":0.1,\\\"heatRadius\\\":25,\\\"heatBlur\\\":15,\\\"heatNormalizeData\\\":true,\\\"wms\\\":{\\\"enabled\\\":false,\\\"url\\\":\\\"https:\\/\\/basemap.nationalmap.gov\\/arcgis\\/services\\/USGSTopo\\/MapServer\\/WMSServer\\\",\\\"options\\\":{\\\"version\\\":\\\"1.3.0\\\",\\\"layers\\\":\\\"0\\\",\\\"format\\\":\\\"image\\/png\\\",\\\"transparent\\\":true,\\\"attribution\\\":\\\"Maps provided by USGS\\\",\\\"styles\\\":\\\"\\\"}}},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"2\\\",\\\"type\\\":\\\"geohash_grid\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"geoip.location\\\",\\\"autoPrecision\\\":true,\\\"precision\\\":2}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"split\\\",\\\"params\\\":{\\\"field\\\":\\\"referer.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\"" + publisher.getDomain() + "\\\"},\\\"size\\\":5,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"row\\\":true}}],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"tile_map\\\",\\\"params\\\":{\\\"mapType\\\":\\\"Scaled Circle Markers\\\",\\\"isDesaturated\\\":true,\\\"addTooltip\\\":true,\\\"heatMaxZoom\\\":16,\\\"heatMinOpacity\\\":0.1,\\\"heatRadius\\\":25,\\\"heatBlur\\\":15,\\\"heatNormalizeData\\\":true,\\\"wms\\\":{\\\"enabled\\\":false,\\\"url\\\":\\\"https:\\/\\/basemap.nationalmap.gov\\/arcgis\\/services\\/USGSTopo\\/MapServer\\/WMSServer\\\",\\\"options\\\":{\\\"version\\\":\\\"1.3.0\\\",\\\"layers\\\":\\\"0\\\",\\\"format\\\":\\\"image\\/png\\\",\\\"transparent\\\":true,\\\"attribution\\\":\\\"Maps provided by USGS\\\",\\\"styles\\\":\\\"\\\"}}},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"2\\\",\\\"type\\\":\\\"geohash_grid\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"geoip.location\\\",\\\"autoPrecision\\\":true,\\\"precision\\\":2}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"split\\\",\\\"params\\\":{\\\"field\\\":\\\"refererDomain.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\""+ publisher.getDomain() +"\\\"},\\\"size\\\":5,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"row\\\":true}}],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\"," +
 			"\"description\":\"\"," +
 			"\"version\":1," +
