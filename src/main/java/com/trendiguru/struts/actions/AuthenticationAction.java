@@ -1,6 +1,6 @@
 package com.trendiguru.struts.actions;
 
-import javax.servlet.http.HttpSession;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 

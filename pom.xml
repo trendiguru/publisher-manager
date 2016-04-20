@@ -54,19 +54,28 @@
 		<version>2.3.24</version>
 	</dependency>
     
+    <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+    </dependency>
     
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
-      <scope>provided</scope>
+      <!-- <scope>provided</scope> -->
     </dependency>
+    
+    
+    
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
       <version>2.1</version>
       <scope>provided</scope>
     </dependency>
+    <!-- 
     <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.annotation</artifactId>
@@ -87,6 +96,7 @@
       <artifactId>javax.servlet</artifactId>
       <version>3.0.1</version>
     </dependency>
+    -->
   </dependencies>
   <build>
     <plugins>
@@ -96,8 +106,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
     </plugins>
