@@ -7,6 +7,7 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
 import com.mongodb.MongoClient;
+import com.trendiguru.config.ConfigManager;
 import com.trendiguru.entities.BaseUser;
 import com.trendiguru.entities.Publisher;
 
@@ -21,11 +22,15 @@ public class MorphiaManager {
 	private static MorphiaManager INSTANCE = new MorphiaManager();
 	final Morphia morphia = new Morphia();
 	final Datastore datastore;
+	private ConfigManager configManager;
 	
 	
 	private MorphiaManager() {
+		configManager = ConfigManager.getInstance();
 		morphia.mapPackage("com.trendiguru.entities");
-		datastore = morphia.createDatastore(new MongoClient("localhost"), "mydb");
+		//datastore = morphia.createDatastore(new MongoClient("localhost"), "mydb");
+		datastore = morphia.createDatastore(new MongoClient(configManager.getMongoDomain()), "mydb");
+		
 		datastore.ensureIndexes();
 	}
 	

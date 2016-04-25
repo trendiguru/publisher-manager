@@ -1,0 +1,8 @@
+{
+	"mongo": {
+		"domain":"localhost"
+	},
+	"kibana": {
+		"domain":"localhost:9000"
+	}
+}

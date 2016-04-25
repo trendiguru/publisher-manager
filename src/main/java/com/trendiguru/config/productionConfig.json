@@ -1,0 +1,8 @@
+{
+	"mongo": {
+		"domain":"mongodb1-instance-1"
+	},
+	"kibana": {
+		"domain":"nginx-1:9000"
+	}
+}

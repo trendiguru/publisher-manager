@@ -21,10 +21,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
+import com.trendiguru.config.ConfigManager;
 import com.trendiguru.entities.Publisher;
 
 abstract class KibanaManager {
 	private static Logger log = Logger.getLogger(KibanaManager.class);
+	private ConfigManager configManager = ConfigManager.getInstance();
 	
 	/* return the name of the entity eg Dashboard, Visual */
 	abstract String getESEntityUrl(String encodedEntityName);
@@ -94,15 +96,18 @@ abstract class KibanaManager {
     	
     	HttpUriRequest request = null;
     	if (method.equals("POST")) {
-    		request = new HttpPost("http://localhost:9000/" + uri);
+    		//request = new HttpPost("http://localhost:9000/" + uri);
+    		log.info("http://" + configManager.getKibanaDomain() + "/" + uri);
+    		request = new HttpPost("http://" + configManager.getKibanaDomain() + "/" + uri);
+    		
     		request.setHeader("Accept", "application/json, text/plain, */*");
     		request.setHeader("Content-Type", "application/json;charset=UTF-8");
-    		request.setHeader("Origin", "http://localhost:9000");
+    		//request.setHeader("Origin", "http://localhost:9000");
     		
-    		request.setHeader("referer", "http://localhost:9000/app/kibana");
+    		//request.setHeader("referer", "http://localhost:9000/app/kibana");
     		
         	
-    		System.out.println("url: http://localhost:9000/" + uri);
+    		//System.out.println("url: http://localhost:9000/" + uri);
     		
     		//List <NameValuePair> nvps = new ArrayList <NameValuePair>();
     		//nvps.add(new BasicNameValuePair("username", "vip"));
@@ -116,9 +121,9 @@ abstract class KibanaManager {
 				e.printStackTrace();
 			}
     	} else {
-    		
-    		System.out.println("url: http://localhost:9000/" + uri);
-    		request = new HttpGet("http://localhost:9000/" + uri);
+    		log.info("http://" + configManager.getKibanaDomain() + "/" + uri);
+    		//System.out.println("url: http://localhost:9000/" + uri);
+    		request = new HttpGet("http://" + configManager.getKibanaDomain() + "/" + uri);
     		request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         	
     	}
