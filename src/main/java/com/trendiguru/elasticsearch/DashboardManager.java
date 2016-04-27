@@ -31,7 +31,6 @@ public class DashboardManager extends KibanaManager {
 	 * @return
 	 */
 	public String jsonForDashboard(Set<Visual> visualsToAddSet) {
-		
     	String json = "{" +
 			"\"title\":\"" + publisher.getName() + " Dashboard\"," +
 			"\"hits\":0," + 
@@ -43,8 +42,9 @@ public class DashboardManager extends KibanaManager {
 				"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-devices\\\",\\\"panelIndex\\\":3,\\\"row\\\":5,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"type\\\":\\\"visualization\\\"}," +
 				"{\\\"col\\\":1,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-click-thru-rate-our-icon\\\",\\\"panelIndex\\\":4,\\\"row\\\":8,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +
 				"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-click-thru-rate-item\\\",\\\"panelIndex\\\":5,\\\"row\\\":8,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +
-				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-trending-images\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":6,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"col\\\":1,\\\"row\\\":10}" +
-
+				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-trending-images\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":6,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"col\\\":1,\\\"row\\\":10}," +
+				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-unique-users\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":7,\\\"size_x\\\":6,\\\"size_y\\\":5,\\\"col\\\":7,\\\"row\\\":10}" +
+				
 				/*
 				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-events-breakdown\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":1,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"col\\\":1,\\\"row\\\":5}," +
 				"{\\\"id\\\":\\\""+ publisher.getEncodedName() +"-world-map\\\",\\\"type\\\":\\\"visualization\\\",\\\"panelIndex\\\":2,\\\"size_x\\\":12,\\\"size_y\\\":4,\\\"col\\\":1,\\\"row\\\":1}," +
@@ -59,8 +59,8 @@ public class DashboardManager extends KibanaManager {
 			"\"uiStateJSON\":\"{\\\"P-2\\\":{\\\"spy\\\":{\\\"mode\\\":{\\\"name\\\":null,\\\"fill\\\":false}}}}\"," +
 			"\"version\":1," +
 			"\"timeRestore\":true," +
-			"\"timeTo\":\"now/y\"," +
-			"\"timeFrom\":\"now/y\"," +
+			"\"timeTo\":\"now/M\"," +
+			"\"timeFrom\":\"now/M\"," +
 			"\"kibanaSavedObjectMeta\":{" +
 				"\"searchSourceJSON\":\"{\\\"filter\\\":[{\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}}}]}\"" +
 			"}" +

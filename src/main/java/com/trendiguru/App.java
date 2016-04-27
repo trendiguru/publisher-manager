@@ -10,6 +10,7 @@ import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsVisual;
 import com.trendiguru.entities.visuals.TrendingImagesVisual;
+import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
 
@@ -35,6 +36,7 @@ public class App
     	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
     	visualSet.add(new ClickThruRateOnItemVisual(publisher));
     	visualSet.add(new TrendingImagesVisual(publisher));
+    	visualSet.add(new UniqueUsers(publisher));    	
     	    	
     	publisherManager.add(publisher,  visualSet);
     }

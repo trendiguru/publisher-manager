@@ -30,7 +30,7 @@ public class ClickThruRateOnOurIconVisual extends Visual {
 		
 		return "{" +
 				"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('refererDomain:"+ publisher.getDomain() + " AND event:\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"').divide(.es('refererDomain:"+ publisher.getDomain() + " AND event:*')).multiply(100).bars()\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('publisherDomain:"+ publisher.getDomain() + " AND event:\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"').divide(.es('publisherDomain:"+ publisher.getDomain() + " AND event:*')).multiply(100).bars()\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\"," +
 			"\"description\":\"\"," +
 			"\"version\":1," +
