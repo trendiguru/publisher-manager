@@ -60443,7 +60443,8 @@
 	        if (val === null || val === undefined) return ' - ';
 	        switch (typeof val) {
 	          case 'string':
-	            return val;
+				//Jeremy - the main place to unescape/decode string values!
+	            return unescape(val);
 	          case 'object':
 	            return JSON.stringify(val, null, '  ');
 	          default:

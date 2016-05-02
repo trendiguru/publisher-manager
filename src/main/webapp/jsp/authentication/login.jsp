@@ -21,8 +21,8 @@
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Login</div>
 			<form id="loginForm">
-		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="user@instyle.com">
-		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="mypassword"/>
+		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="tracker@fashionseoul.com">
+		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="luoesnoihsaf"/>
 		   		<button type="button" id="login">Login</button>
 	   		</form>
 		</header>

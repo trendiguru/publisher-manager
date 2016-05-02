@@ -43,6 +43,12 @@ public class AuthenticationAction extends BaseAction {
 	private Publisher publisher;
 	private Admin admin;
 
+	public String signUp() {
+	
+		return EMPTY;
+	}
+	
+	
 	public String logOut() {
 		SessionCache.getInstance().removeUser(token);
 		
