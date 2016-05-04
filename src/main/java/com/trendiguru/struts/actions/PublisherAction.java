@@ -279,7 +279,7 @@ public class PublisherAction extends SecureAction {
 		}
 		return data;
 	}
-
+	
 	public String getProxyResponse() {
 		return proxyResponse;
 	}

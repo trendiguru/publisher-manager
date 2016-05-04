@@ -20,7 +20,14 @@
 	<body>
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Analytics</div>
-			<div class="welcome">Welcome ${loggedInPublisher.name}</div>
+			<div class="welcome">
+				Welcome ${loggedInPublisher.name}
+				<div class="buttons">
+					<button type="button" id="downloadDashboard">Download dashboard</button>
+					<button type="button" id="signOut">Sign out</button>
+				</div>
+			</div>
+			
 		</header>
 	   <%-- 
 	   	<iframe id="kibanaDashboard" style="border:none;" height="600" width="100%" src="http://localhost:8080/publisher-manager/private/app/kibana/${user.token}#/dashboard/${loggedInPublisher.encodedName}-dashboard?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())&token=${user.token}"></iframe>

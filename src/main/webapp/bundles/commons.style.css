@@ -9191,6 +9191,12 @@ abutton.disabled,
 fieldset[disabled] abutton {
   pointer-events: none;
 }
+/* Jeremy - position my downoad link offscreen so the user can't see it */
+.offscreen {
+	position:absolute;
+	top:-1000px;
+	left:-1000px;
+}
 .small {
   font-size: 0.9em !important;
 }

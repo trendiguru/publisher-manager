@@ -26,6 +26,7 @@ manager.auth.init = function() {
 			}, "json")
 			.error(function(qXHR, textStatus, errorThrown) {
 				console.log("error: " + errorThrown);
+				alert("error: " + errorThrown);
 			}
 		);
 		
