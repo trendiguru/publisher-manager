@@ -5384,12 +5384,12 @@
 	'use strict';
 
 	var _ = __webpack_require__(195).runInContext();
+	__webpack_require__(1067)(_);
+	__webpack_require__(1068)(_);
+	__webpack_require__(1069)(_);
+	__webpack_require__(1070)(_);
 	__webpack_require__(1071)(_);
 	__webpack_require__(1072)(_);
-	__webpack_require__(1073)(_);
-	__webpack_require__(1074)(_);
-	__webpack_require__(1075)(_);
-	__webpack_require__(1076)(_);
 	module.exports = _;
 
 
@@ -17828,7 +17828,7 @@
 	'use strict';
 
 	var $ = window.jQuery = window.$ = module.exports = __webpack_require__(209);
-	__webpack_require__(1077)($);
+	__webpack_require__(1073)($);
 
 
 /***/ },
@@ -27088,7 +27088,7 @@
 
 	__webpack_require__(214);
 
-	__webpack_require__(1078).get('kibana', ['monospaced.elastic']);
+	__webpack_require__(1074).get('kibana', ['monospaced.elastic']);
 
 
 /***/ },
@@ -60367,11 +60367,7 @@
 /* 1063 */,
 /* 1064 */,
 /* 1065 */,
-/* 1066 */,
-/* 1067 */,
-/* 1068 */,
-/* 1069 */,
-/* 1070 */
+/* 1066 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60382,11 +60378,11 @@
 	var $ = __webpack_require__(208);
 	var angular = __webpack_require__(212);
 
-	__webpack_require__(1079);
-	__webpack_require__(1104);
-	__webpack_require__(1105);
+	__webpack_require__(1075);
+	__webpack_require__(1100);
+	__webpack_require__(1101);
 
-	var metadata = __webpack_require__(1089);
+	var metadata = __webpack_require__(1085);
 
 	var chrome = {};
 	var internals = _.defaults(_.cloneDeep(metadata), {
@@ -60401,18 +60397,18 @@
 	});
 
 	$('<link>').attr({
-	  href: __webpack_require__(1106),
+	  href: __webpack_require__(1102),
 	  rel: 'shortcut icon'
 	}).appendTo('head');
 
-	__webpack_require__(1107)(chrome, internals);
-	__webpack_require__(1108)(chrome, internals);
-	__webpack_require__(1109)(chrome, internals);
-	__webpack_require__(1110)(chrome, internals);
+	__webpack_require__(1103)(chrome, internals);
+	__webpack_require__(1104)(chrome, internals);
+	__webpack_require__(1105)(chrome, internals);
+	__webpack_require__(1106)(chrome, internals);
+	__webpack_require__(1128)(chrome, internals);
+	__webpack_require__(1129)(chrome, internals);
 	__webpack_require__(1132)(chrome, internals);
 	__webpack_require__(1133)(chrome, internals);
-	__webpack_require__(1136)(chrome, internals);
-	__webpack_require__(1137)(chrome, internals);
 
 	chrome.bootstrap = function () {
 	  chrome.setupAngular();
@@ -60422,7 +60418,7 @@
 	module.exports = chrome;
 
 /***/ },
-/* 1071 */
+/* 1067 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -60489,7 +60485,7 @@
 
 
 /***/ },
-/* 1072 */
+/* 1068 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -60517,7 +60513,7 @@
 
 
 /***/ },
-/* 1073 */
+/* 1069 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -60563,7 +60559,7 @@
 
 
 /***/ },
-/* 1074 */
+/* 1070 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -60698,7 +60694,7 @@
 
 
 /***/ },
-/* 1075 */
+/* 1071 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -60772,7 +60768,7 @@
 
 
 /***/ },
-/* 1076 */
+/* 1072 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -60834,7 +60830,7 @@
 
 
 /***/ },
-/* 1077 */
+/* 1073 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60901,7 +60897,7 @@
 	};
 
 /***/ },
-/* 1078 */
+/* 1074 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -60975,39 +60971,39 @@
 
 
 /***/ },
-/* 1079 */
+/* 1075 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
-	__webpack_require__(1080);
-	__webpack_require__(1078);
+	__webpack_require__(1076);
+	__webpack_require__(1074);
 	__webpack_require__(194);
 	__webpack_require__(212);
 	__webpack_require__(243);
-	__webpack_require__(1086);
-	__webpack_require__(1087);
-	__webpack_require__(1097);
+	__webpack_require__(1082);
+	__webpack_require__(1083);
+	__webpack_require__(1093);
+	__webpack_require__(1094);
 	__webpack_require__(1098);
-	__webpack_require__(1102);
-	__webpack_require__(1103);
+	__webpack_require__(1099);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
-	  __webpack_require__(1080).addSetupWork(function (timefilter) {
+	  __webpack_require__(1076).addSetupWork(function (timefilter) {
 	    return timefilter.init();
 	  });
 
-	  __webpack_require__(1078).get('kibana').service('timefilter', function (Private, globalState, $rootScope, config) {
+	  __webpack_require__(1074).get('kibana').service('timefilter', function (Private, globalState, $rootScope, config) {
 
 	    var _ = __webpack_require__(194);
 	    var angular = __webpack_require__(212);
 	    var moment = __webpack_require__(243);
-	    var dateMath = __webpack_require__(1086);
-	    var Events = Private(__webpack_require__(1087));
-	    var diff = Private(__webpack_require__(1097));
+	    var dateMath = __webpack_require__(1082);
+	    var Events = Private(__webpack_require__(1083));
+	    var diff = Private(__webpack_require__(1093));
 
-	    __webpack_require__(1098);
+	    __webpack_require__(1094);
 
 	    function convertISO8601(stringTime) {
 	      var obj = moment(stringTime, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
@@ -61019,8 +61015,8 @@
 	      Timefilter.Super.call(this);
 
 	      var self = this;
-	      var diffTime = Private(__webpack_require__(1102))(self);
-	      var diffInterval = Private(__webpack_require__(1103))(self);
+	      var diffTime = Private(__webpack_require__(1098))(self);
+	      var diffInterval = Private(__webpack_require__(1099))(self);
 
 	      self.enabled = false;
 
@@ -61092,33 +61088,33 @@
 
 
 /***/ },
-/* 1080 */
+/* 1076 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = __webpack_require__(218)['default'];
 
-	var RouteManager = __webpack_require__(1081);
+	var RouteManager = __webpack_require__(1077);
 	var defaultRouteManager = new RouteManager();
 
 	module.exports = _extends({}, defaultRouteManager, {
 	  enable: function enable() {
 	    __webpack_require__(242);
-	    __webpack_require__(1078).get('kibana', ['ngRoute']).config(defaultRouteManager.config);
+	    __webpack_require__(1074).get('kibana', ['ngRoute']).config(defaultRouteManager.config);
 	  }
 	});
 
 /***/ },
-/* 1081 */
+/* 1077 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _ = __webpack_require__(194);
 
-	var wrapRouteWithPrep = __webpack_require__(1082);
-	var RouteSetupManager = __webpack_require__(1085);
+	var wrapRouteWithPrep = __webpack_require__(1078);
+	var RouteSetupManager = __webpack_require__(1081);
 
 	function RouteManager() {
 	  var _this = this;
@@ -61191,14 +61187,14 @@
 	module.exports = RouteManager;
 
 /***/ },
-/* 1082 */
+/* 1078 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(212);
 	__webpack_require__(194);
-	__webpack_require__(1083);
-	__webpack_require__(1084);
+	__webpack_require__(1079);
+	__webpack_require__(1080);
 
 	'use strict';
 
@@ -61206,8 +61202,8 @@
 	  var angular = __webpack_require__(212);
 	  var _ = __webpack_require__(194);
 
-	  var WorkQueue = __webpack_require__(1083);
-	  var errors = __webpack_require__(1084);
+	  var WorkQueue = __webpack_require__(1079);
+	  var errors = __webpack_require__(1080);
 
 	  function wrapRouteWithPrep(route, setup) {
 	    if (!route.resolve && route.redirectTo) return;
@@ -61243,7 +61239,7 @@
 
 
 /***/ },
-/* 1083 */
+/* 1079 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -61306,7 +61302,7 @@
 
 
 /***/ },
-/* 1084 */
+/* 1080 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -61550,7 +61546,7 @@
 
 
 /***/ },
-/* 1085 */
+/* 1081 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61665,7 +61661,7 @@
 	})();
 
 /***/ },
-/* 1086 */
+/* 1082 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -61789,22 +61785,22 @@
 
 
 /***/ },
-/* 1087 */
+/* 1083 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1088);
-	__webpack_require__(1094);
+	__webpack_require__(1084);
+	__webpack_require__(1090);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  var Notifier = __webpack_require__(1088);
+	  var Notifier = __webpack_require__(1084);
 
 	  return function EventsProvider(Private, Promise) {
-	    var SimpleEmitter = __webpack_require__(1094);
+	    var SimpleEmitter = __webpack_require__(1090);
 	    var notify = new Notifier({ location: 'EventEmitter' });
 
 	    _['class'](Events).inherits(SimpleEmitter);
@@ -61908,16 +61904,16 @@
 
 
 /***/ },
-/* 1088 */
+/* 1084 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
 	__webpack_require__(208);
+	__webpack_require__(1085);
+	__webpack_require__(1086);
+	__webpack_require__(1088);
 	__webpack_require__(1089);
-	__webpack_require__(1090);
-	__webpack_require__(1092);
-	__webpack_require__(1093);
 
 	'use strict';
 
@@ -61925,8 +61921,8 @@
 	  var _ = __webpack_require__(194);
 	  var $ = __webpack_require__(208);
 
-	  var metadata = __webpack_require__(1089);
-	  var formatMsg = __webpack_require__(1090);
+	  var metadata = __webpack_require__(1085);
+	  var formatMsg = __webpack_require__(1086);
 
 	  var notifs = [];
 	  var setTO = setTimeout;
@@ -61935,7 +61931,7 @@
 	  var buildNum = metadata.buildNum;
 	  var consoleGroups = 'group' in window.console && 'groupCollapsed' in window.console && 'groupEnd' in window.console;
 
-	  var fatalSplashScreen = __webpack_require__(1092);
+	  var fatalSplashScreen = __webpack_require__(1088);
 
 	  var log = _.bindKey(console, 'log');
 
@@ -61947,7 +61943,7 @@
 	    return function (vars) {
 	      return (compiled || (compiled = _.template(tmpl)))(vars);
 	    };
-	  })(__webpack_require__(1093));
+	  })(__webpack_require__(1089));
 
 	  function now() {
 	    if (window.performance && window.performance.now) {
@@ -62150,7 +62146,7 @@
 	      content: formatMsg(err, this.from),
 	      icon: 'warning',
 	      title: 'Error',
-	      lifetime: Infinity,
+	      lifetime: 300000,
 	      actions: ['report', 'accept'],
 	      stack: formatStack(err)
 	    }, cb);
@@ -62288,7 +62284,7 @@
 
 
 /***/ },
-/* 1089 */
+/* 1085 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -62329,19 +62325,19 @@
 
 
 /***/ },
-/* 1090 */
+/* 1086 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1091);
+	__webpack_require__(1087);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 	  var has = _.has;
-	  var formatESMsg = __webpack_require__(1091);
+	  var formatESMsg = __webpack_require__(1087);
 
 	  /**
 	   * Formats the error message from an error object, extended elasticsearch
@@ -62384,7 +62380,7 @@
 
 
 /***/ },
-/* 1091 */
+/* 1087 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -62413,30 +62409,30 @@
 
 
 /***/ },
-/* 1092 */
+/* 1088 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"fatal-splash-screen-header\" class=\"container\">\n  <center>\n    <h1>Oops!</h1>\n    <p>\n      Looks like something went wrong. Refreshing may do the trick.\n    </p>\n\n    <p>\n      <button class=\"btn btn-success\" onclick=\"window.history.back();\">\n        Go back\n      </button>\n      or\n      <a\n        onclick=\"localStorage.clear(); sessionStorage.clear(); window.location.hash = ''; window.location.reload();\"\n        href=\"#\" >\n        clear your session\n      </a>\n    </p>\n  </center>\n  <div id=\"fatal-splash-screen\">\n  </div>\n</div>"
 
 /***/ },
-/* 1093 */
+/* 1089 */
 /***/ function(module, exports) {
 
 	module.exports = "<!--\n!!!!\n  Since fatal error could prevent angular from starting\n  this template is just a simple lodash template\n!!!!\n-->\n<h1><i class=\"fa fa-warning-triangle\"></i></h1>\n<div class=\"panel panel-danger\">\n  <div class=\"panel-heading\">\n    <h1 class=\"panel-title\">\n      <i class=\"fa fa-warning\"></i> Fatal Error\n    </h1>\n  </div>\n  <div class=\"panel-body fatal-body\"><%- msg %></div>\n  <% if (info) { %>\n    <div class=\"panel-footer\"><pre><%- info %></pre></div>\n  <% } %>\n  <% if (stack) { %>\n    <div class=\"panel-footer\"><pre><%- stack %></pre></div>\n  <% } %>\n</div>"
 
 /***/ },
-/* 1094 */
+/* 1090 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1095);
+	__webpack_require__(1091);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  var BaseObject = __webpack_require__(1095);
+	  var BaseObject = __webpack_require__(1091);
 
 	  /**
 	   * Simple event emitter class used in the vislib. Calls
@@ -62557,19 +62553,19 @@
 
 
 /***/ },
-/* 1095 */
+/* 1091 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1096);
+	__webpack_require__(1092);
 	__webpack_require__(212);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  var rison = __webpack_require__(1096);
+	  var rison = __webpack_require__(1092);
 	  var angular = __webpack_require__(212);
 
 	  function BaseObject(attributes) {
@@ -62610,7 +62606,7 @@
 
 
 /***/ },
-/* 1096 */
+/* 1092 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* eslint-disable */
@@ -63090,7 +63086,7 @@
 
 
 /***/ },
-/* 1097 */
+/* 1093 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -63124,29 +63120,29 @@
 
 
 /***/ },
-/* 1098 */
+/* 1094 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
 	__webpack_require__(212);
-	__webpack_require__(1099);
+	__webpack_require__(1095);
+	__webpack_require__(1092);
+	__webpack_require__(1074);
 	__webpack_require__(1096);
-	__webpack_require__(1078);
-	__webpack_require__(1100);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 	  var angular = __webpack_require__(212);
-	  var qs = __webpack_require__(1099);
-	  var rison = __webpack_require__(1096);
+	  var qs = __webpack_require__(1095);
+	  var rison = __webpack_require__(1092);
 
-	  var module = __webpack_require__(1078).get('kibana/global_state');
+	  var module = __webpack_require__(1074).get('kibana/global_state');
 
 	  module.service('globalState', function (Private, $rootScope, $location) {
-	    var State = Private(__webpack_require__(1100));
+	    var State = Private(__webpack_require__(1096));
 
 	    _['class'](GlobalState).inherits(State);
 	    function GlobalState(defaults) {
@@ -63166,7 +63162,7 @@
 
 
 /***/ },
-/* 1099 */
+/* 1095 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -63304,27 +63300,27 @@
 
 
 /***/ },
-/* 1100 */
+/* 1096 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1096);
-	__webpack_require__(1101);
-	__webpack_require__(1099);
-	__webpack_require__(1087);
+	__webpack_require__(1092);
+	__webpack_require__(1097);
+	__webpack_require__(1095);
+	__webpack_require__(1083);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  var rison = __webpack_require__(1096);
+	  var rison = __webpack_require__(1092);
 
-	  var applyDiff = __webpack_require__(1101);
-	  var qs = __webpack_require__(1099);
+	  var applyDiff = __webpack_require__(1097);
+	  var qs = __webpack_require__(1095);
 
 	  return function StateProvider(Notifier, Private, $rootScope, $location) {
-	    var Events = Private(__webpack_require__(1087));
+	    var Events = Private(__webpack_require__(1083));
 
 	    _['class'](State).inherits(Events);
 	    function State(urlParam, defaults) {
@@ -63341,7 +63337,7 @@
 	        self.fetch();
 	      }),
 
-	      // begining of full route update, new app will be initialized before
+	      // beginning of full route update, new app will be initialized before
 	      // $routeChangeSuccess or $routeChangeError
 	      $rootScope.$on('$routeChangeStart', function () {
 	        if (self._persistAcrossApps) {
@@ -63453,8 +63449,8 @@
 	     * @returns {void}
 	     */
 	    State.prototype.destroy = function () {
-	      this.off(); // removes all listners
-	      this._cleanUpListeners(); // Removes the $routeUpdate listner
+	      this.off(); // removes all listeners
+	      this._cleanUpListeners(); // Removes the $routeUpdate listener
 	    };
 
 	    State.prototype.setDefaults = function (defaults) {
@@ -63467,7 +63463,7 @@
 
 
 /***/ },
-/* 1101 */
+/* 1097 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -63530,19 +63526,19 @@
 
 
 /***/ },
-/* 1102 */
+/* 1098 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1097);
+	__webpack_require__(1093);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 	  return function diffTimeProvider(Private) {
-	    var diff = Private(__webpack_require__(1097));
+	    var diff = Private(__webpack_require__(1093));
 
 	    return function (self) {
 	      var oldTime = _.clone(self.time);
@@ -63559,19 +63555,19 @@
 
 
 /***/ },
-/* 1103 */
+/* 1099 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1097);
+	__webpack_require__(1093);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 	  return function diffTimeProvider(Private) {
-	    var diff = Private(__webpack_require__(1097));
+	    var diff = Private(__webpack_require__(1093));
 
 	    return function (self) {
 	      var oldRefreshInterval = _.clone(self.refreshInterval);
@@ -63592,12 +63588,12 @@
 
 
 /***/ },
-/* 1104 */
+/* 1100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1078);
+	__webpack_require__(1074);
 
 	'use strict';
 
@@ -63695,7 +63691,7 @@
 	    return fn.name || fn.toString().split('\n').shift();
 	  }
 
-	  __webpack_require__(1078).get('kibana').provider('Private', function () {
+	  __webpack_require__(1074).get('kibana').provider('Private', function () {
 	    var provider = this;
 
 	    // one cache/swaps per Provider
@@ -63789,19 +63785,19 @@
 
 
 /***/ },
-/* 1105 */
+/* 1101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1078);
+	__webpack_require__(1074);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 
-	  var module = __webpack_require__(1078).get('kibana');
+	  var module = __webpack_require__(1074).get('kibana');
 
 	  // Provides a tiny subset of the excelent API from
 	  // bluebird, reimplemented using the $q service
@@ -63871,7 +63867,7 @@
 	    });
 	    Promise['try'] = function (fn, args, ctx) {
 	      if (typeof fn !== 'function') {
-	        return Promise.reject('fn must be a function');
+	        return Promise.reject(new TypeError('fn must be a function'));
 	      }
 
 	      var value;
@@ -63978,13 +63974,13 @@
 
 
 /***/ },
-/* 1106 */
+/* 1102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "src/ui/public/images/elk.ico"
 
 /***/ },
-/* 1107 */
+/* 1103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64050,7 +64046,7 @@
 	};
 
 /***/ },
-/* 1108 */
+/* 1104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64102,7 +64098,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1109 */
+/* 1105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64137,7 +64133,7 @@
 	    var isUrl = url && isString(url);
 	    if (!isUrl) return url;
 
-	    var parsed = (0, _url.parse)(url);
+	    var parsed = (0, _url.parse)(url, true);
 	    if (!parsed.host && parsed.pathname) {
 	      if (parsed.pathname[0] === '/') {
 	        parsed.pathname = chrome.getBasePath() + parsed.pathname;
@@ -64201,7 +64197,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1110 */
+/* 1106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64211,7 +64207,7 @@
 	module.exports = function (chrome, internals) {
 
 	  chrome.setupAngular = function () {
-	    var modules = __webpack_require__(1078);
+	    var modules = __webpack_require__(1074);
 	    var kibana = modules.get('kibana');
 
 	    _.forOwn(chrome.getInjected(), function (val, name) {
@@ -64226,14 +64222,14 @@
 		  return a.href;
 	    })()).config(chrome.$setupXsrfRequestInterceptor);
 
-	    __webpack_require__(1111)(chrome, internals);
+	    __webpack_require__(1107)(chrome, internals);
 
 	    modules.link(kibana);
 	  };
 	};
 
 /***/ },
-/* 1111 */
+/* 1107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64244,15 +64240,15 @@
 	  value: true
 	});
 
+	__webpack_require__(1108);
+
 	__webpack_require__(1112);
 
-	__webpack_require__(1116);
-
-	var _kbn_chrome = __webpack_require__(1120);
+	var _kbn_chrome = __webpack_require__(1116);
 
 	var _kbn_chrome2 = _interopRequireDefault(_kbn_chrome);
 
-	var _append_nav_controls = __webpack_require__(1126);
+	var _append_nav_controls = __webpack_require__(1122);
 
 	var _append_nav_controls2 = _interopRequireDefault(_append_nav_controls);
 
@@ -64264,27 +64260,27 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1112 */
+/* 1108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1113);
-	__webpack_require__(1114);
+	__webpack_require__(1109);
+	__webpack_require__(1110);
 	__webpack_require__(212);
-	__webpack_require__(1078);
-	__webpack_require__(1115);
+	__webpack_require__(1074);
+	__webpack_require__(1111);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  __webpack_require__(1113);
-	  var ConfigTemplate = __webpack_require__(1114);
+	  __webpack_require__(1109);
+	  var ConfigTemplate = __webpack_require__(1110);
 	  var angular = __webpack_require__(212);
-	  var module = __webpack_require__(1078).get('kibana');
+	  var module = __webpack_require__(1074).get('kibana');
 
-	  __webpack_require__(1115);
+	  __webpack_require__(1111);
 
 	  /**
 	   * config directive
@@ -64351,19 +64347,19 @@
 
 
 /***/ },
-/* 1113 */
+/* 1109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1078);
+	__webpack_require__(1074);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 
-	  __webpack_require__(1078).get('kibana').config(function ($provide) {
+	  __webpack_require__(1074).get('kibana').config(function ($provide) {
 
 	    $provide.decorator('$rootScope', function ($delegate) {
 	      /**
@@ -64479,7 +64475,7 @@
 
 
 /***/ },
-/* 1114 */
+/* 1110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -64525,16 +64521,16 @@
 
 
 /***/ },
-/* 1115 */
+/* 1111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
-	__webpack_require__(1078);
+	__webpack_require__(1074);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
-	  var module = __webpack_require__(1078).get('kibana');
+	  var module = __webpack_require__(1074).get('kibana');
 
 	  module.directive('inputFocus', function ($timeout) {
 	    return {
@@ -64551,7 +64547,7 @@
 
 
 /***/ },
-/* 1116 */
+/* 1112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64559,13 +64555,13 @@
 	var parse = __webpack_require__(275).parse;
 	var bindKey = __webpack_require__(194).bindKey;
 
-	__webpack_require__(1117);
-	var DomLocationProvider = __webpack_require__(1118);
+	__webpack_require__(1113);
+	var DomLocationProvider = __webpack_require__(1114);
 
-	__webpack_require__(1078).get('kibana').directive('appSwitcher', function () {
+	__webpack_require__(1074).get('kibana').directive('appSwitcher', function () {
 	  return {
 	    restrict: 'E',
-	    template: __webpack_require__(1119),
+	    template: __webpack_require__(1115),
 	    controllerAs: 'switcher',
 	    controller: function controller($scope, Private) {
 	      var domLocation = Private(DomLocationProvider);
@@ -64606,13 +64602,13 @@
 	});
 
 /***/ },
-/* 1117 */
+/* 1113 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 1118 */
+/* 1114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -64640,13 +64636,13 @@
 	};
 
 /***/ },
-/* 1119 */
+/* 1115 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"app-links\">\n  <div\n    class=\"app-link\"\n    ng-repeat=\"link in switcher.getNavLinks() | orderBy:'title'\"\n    ng-class=\"{ active: link.active }\">\n\n    <a\n      ng-click=\"switcher.ensureNavigation($event, link)\"\n      ng-href=\"{{ link.active ? link.url : (link.lastSubUrl || link.url) }}\"\n      data-test-subj=\"appLink\">\n\n      <div ng-if=\"link.icon\" ng-style=\"{ 'background-image': 'url(../' + link.icon + ')' }\" class=\"app-icon\"></div>\n      <div ng-if=\"!link.icon\" class=\"app-icon app-icon-missing\">{{ link.title[0] }}</div>\n\n      <div class=\"app-title\">{{ link.title }}</div>\n    </a>\n  </div>\n</div>\n"
 
 /***/ },
-/* 1120 */
+/* 1116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64661,11 +64657,11 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _uiModules = __webpack_require__(1078);
+	var _uiModules = __webpack_require__(1074);
 
 	var _uiModules2 = _interopRequireDefault(_uiModules);
 
-	var _uiConfigTemplate = __webpack_require__(1114);
+	var _uiConfigTemplate = __webpack_require__(1110);
 
 	var _uiConfigTemplate2 = _interopRequireDefault(_uiConfigTemplate);
 
@@ -64674,7 +64670,7 @@
 	  _uiModules2['default'].get('kibana').directive('kbnChrome', function ($rootScope) {
 	    return {
 	      template: function template($el) {
-	        var $content = (0, _jquery2['default'])(__webpack_require__(1121));
+	        var $content = (0, _jquery2['default'])(__webpack_require__(1117));
 	        var $app = $content.find('.application');
 
 	        if (internals.rootController) {
@@ -64710,7 +64706,7 @@
 
 	        // and some local values
 	        chrome.httpActive = $http.pendingRequests;
-	        $scope.notifList = __webpack_require__(1122)._notifs;
+	        $scope.notifList = __webpack_require__(1118)._notifs;
 	        $scope.appSwitcherTemplate = new _uiConfigTemplate2['default']({
 	          switcher: '<app-switcher></app-switcher>'
 	        });
@@ -64724,37 +64720,40 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1121 */
+/* 1117 */
 /***/ function(module, exports) {
 
-	//Jeremy
+	//45
 	//module.exports = "<kbn-notifications list=\"notifList\"></kbn-notifications>\n<div class=\"content\" chrome-context >\n  <nav\n    ng-style=\"::{ background: chrome.getNavBackground() }\"\n    ng-class=\"{ show: chrome.getVisible() }\"\n    class=\"hide navbar navbar-inverse navbar-static-top\">\n\n    <!-- Mobile navbar -->\n    <div class=\"navbar-header\">\n      <button ng-click=\"showCollapsed = !showCollapsed\" type=\"button\" class=\"navbar-toggle\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <span class=\"visible-xs\">\n        <span ng-if=\"chrome.getBrand('title')\" class=\"navbar-brand\">{{ chrome.getBrand('title') }}</span>\n        <span ng-if=\"chrome.getActiveTabTitle()\" class=\"navbar-brand\">{{ chrome.getActiveTabTitle() }}</span>\n        <span ng-show=\"chrome.httpActive.length\" class=\"spinner\"></span>\n      </span>\n    </div>\n    <!-- /Mobile navbar -->\n\n    <!-- Full navbar -->\n    <div collapse=\"!showCollapsed\" class=\"navbar-collapse\" kbn-chrome-append-nav-controls>\n      <ul class=\"nav navbar-nav\" role=\"navigation\">\n        <li\n          ng-if=\"chrome.getBrand('logo')\"\n          ng-style=\"{ 'background': chrome.getBrand('logo') }\"\n          aria-label=\"{{ chrome.getAppTitle() }} Logo\"\n          class=\"logo hidden-sm\"\n          ></li>\n\n        <li\n          ng-if=\"chrome.getBrand('smallLogo')\"\n          ng-style=\"{ 'background': chrome.getBrand('smallLogo') }\"\n          aria-label=\"{{ chrome.getAppTitle() }} Logo\"\n          class=\"logo-small visible-sm hidden-xs\"\n          ></li>\n\n        <li ng-if=\"chrome.getBrand('title')\" class=\"navbar-brand\">{{ chrome.getBrand('title') }}</li>\n\n        <li ng-repeat=\"tab in chrome.getTabs()\" ng-class=\"{ active: tab.active }\">\n          <a ng-href=\"{{ tab.href() }}\" ng-style=\"{ 'border-bottom-color': tab.activeIndicatorColor }\">\n            {{ tab.title }}\n          </a>\n        </li>\n\n        <li class=\"to-body\" ng-class=\"{ active: appSwitcherTemplate.is('switcher') }\" ng-if=\"chrome.getShowAppsLink()\">\n          <a ng-click=\"appSwitcherTemplate.toggle('switcher')\">\n            <i class=\"fa fa-th\" alt=\"Show app switcher\"></i>\n          </a>\n        </li>\n      </ul>\n    </div>\n    <!-- /Full navbar -->\n  </nav>\n\n  <!-- TODO: These config dropdowns shouldn't be hard coded -->\n  <config\n    config-template=\"appSwitcherTemplate\"\n    config-object=\"chrome\"\n    config-close=\"appSwitcherTemplate.close\">\n  </config>\n\n  <config\n    ng-show=\"timefilter.enabled\"\n    config-template=\"pickerTemplate\"\n    config-object=\"timefilter\"\n    config-close=\"pickerTemplate.close\">\n  </config>\n\n  <div class=\"application\" ng-class=\"'tab-' + chrome.getActiveTabId('-none-') + ' ' + chrome.getApplicationClasses()\" ng-view></div>\n</div>\n"
+
+	//441 - merged
 	module.exports = "<kbn-notifications list=\"notifList\"></kbn-notifications>\n<div class=\"content\" chrome-context >\n  <nav\n    ng-style=\"::{ background: chrome.getNavBackground() }\"\n    ng-class=\"{ show: chrome.getVisible() }\"\n    class=\"navbar navbar-inverse navbar-static-top\">\n\n    <!-- Mobile navbar -->\n    <div class=\"navbar-header\">\n      <button ng-click=\"showCollapsed = !showCollapsed\" type=\"button\" class=\"navbar-toggle\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <span class=\"visible-xs\">\n        <span ng-if=\"chrome.getBrand('title')\" class=\"navbar-brand\">{{ chrome.getBrand('title') }}</span>\n        <span ng-if=\"chrome.getActiveTabTitle()\" class=\"navbar-brand\">{{ chrome.getActiveTabTitle() }}</span>\n        <span ng-show=\"chrome.httpActive.length\" class=\"spinner\"></span>\n      </span>\n    </div>\n    <!-- /Mobile navbar -->\n\n    <!-- Full navbar -->\n    <div collapse=\"!showCollapsed\" class=\"navbar-collapse\" kbn-chrome-append-nav-controls>\n      <ul class=\"hide nav navbar-nav\" role=\"navigation\">\n        <li\n          ng-if=\"chrome.getBrand('logo')\"\n          ng-style=\"{ 'background': chrome.getBrand('logo') }\"\n          aria-label=\"{{ chrome.getAppTitle() }} Logo\"\n          class=\"logo hidden-sm\"\n          ></li>\n\n        <li\n          ng-if=\"chrome.getBrand('smallLogo')\"\n          ng-style=\"{ 'background': chrome.getBrand('smallLogo') }\"\n          aria-label=\"{{ chrome.getAppTitle() }} Logo\"\n          class=\"logo-small visible-sm hidden-xs\"\n          ></li>\n\n        <li ng-if=\"chrome.getBrand('title')\" class=\"navbar-brand\">{{ chrome.getBrand('title') }}</li>\n\n        <li ng-repeat=\"tab in chrome.getTabs()\" ng-class=\"{ active: tab.active }\">\n          <a ng-href=\"{{ tab.href() }}\" ng-style=\"{ 'border-bottom-color': tab.activeIndicatorColor }\">\n            {{ tab.title }}\n          </a>\n        </li>\n\n        <li class=\"to-body\" ng-class=\"{ active: appSwitcherTemplate.is('switcher') }\" ng-if=\"chrome.getShowAppsLink()\">\n          <a ng-click=\"appSwitcherTemplate.toggle('switcher')\">\n            <i class=\"fa fa-th\" alt=\"Show app switcher\"></i>\n          </a>\n        </li>\n      </ul>\n    </div>\n    <!-- /Full navbar -->\n  </nav>\n\n  <!-- TODO: These config dropdowns shouldn't be hard coded -->\n  <config\n    config-template=\"appSwitcherTemplate\"\n    config-object=\"chrome\"\n    config-close=\"appSwitcherTemplate.close\">\n  </config>\n\n  <config\n    ng-show=\"timefilter.enabled\"\n    config-template=\"pickerTemplate\"\n    config-object=\"timefilter\"\n    config-close=\"pickerTemplate.close\">\n  </config>\n\n  <div class=\"application\" ng-class=\"'tab-' + chrome.getActiveTabId('-none-') + ' ' + chrome.getApplicationClasses()\" ng-view></div>\n</div>\n"
 
+	
 /***/ },
-/* 1122 */
+/* 1118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
 	__webpack_require__(208);
-	__webpack_require__(1078);
-	__webpack_require__(1123);
-	__webpack_require__(1088);
-	__webpack_require__(1124);
+	__webpack_require__(1074);
+	__webpack_require__(1119);
+	__webpack_require__(1084);
+	__webpack_require__(1120);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
 	  var $ = __webpack_require__(208);
-	  var modules = __webpack_require__(1078);
+	  var modules = __webpack_require__(1074);
 	  var module = modules.get('kibana/notify');
-	  var errors = __webpack_require__(1123);
-	  var Notifier = __webpack_require__(1088);
+	  var errors = __webpack_require__(1119);
+	  var Notifier = __webpack_require__(1084);
 	  var rootNotifier = new Notifier();
 
-	  __webpack_require__(1124);
+	  __webpack_require__(1120);
 
 	  module.factory('createNotifier', function () {
 	    return function (opts) {
@@ -64792,7 +64791,7 @@
 
 
 /***/ },
-/* 1123 */
+/* 1119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
@@ -64832,18 +64831,18 @@
 
 
 /***/ },
-/* 1124 */
+/* 1120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
-	__webpack_require__(1078);
+	__webpack_require__(1074);
 	__webpack_require__(194);
-	__webpack_require__(1125);
+	__webpack_require__(1121);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
-	  var notify = __webpack_require__(1078).get('kibana/notify');
+	  var notify = __webpack_require__(1074).get('kibana/notify');
 	  var _ = __webpack_require__(194);
 
 	  notify.directive('kbnNotifications', function () {
@@ -64853,20 +64852,20 @@
 	        list: '=list'
 	      },
 	      replace: true,
-	      template: __webpack_require__(1125)
+	      template: __webpack_require__(1121)
 	    };
 	  });
 	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 
 /***/ },
-/* 1125 */
+/* 1121 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toaster-container\">\n  <ul class=\"toaster\">\n    <li ng-repeat=\"notif in list\" kbn-toast notif=\"notif\">\n      <div class=\"toast alert\" ng-class=\"'alert-' + notif.type\">\n\n        <span ng-show=\"notif.count > 1\" class=\"badge\">{{ notif.count }}</span>\n\n        <i class=\"fa\" ng-class=\"'fa-' + notif.icon\" tooltip=\"{{notif.title}}\"></i>\n        <kbn-truncated orig=\"{{notif.content}}\" length=\"250\" class=\"toast-message\" /></kbn-truncated>\n\n        <div class=\"btn-group pull-right toast-controls\">\n          <button\n            type=\"button\"\n            ng-if=\"notif.stack && !notif.showStack\"\n            class=\"btn\"\n            ng-class=\"'btn-' + notif.type\"\n            ng-click=\"notif.showStack = true\"\n            >More Info</button>\n          <button\n            type=\"button\"\n            ng-if=\"notif.accept\"\n            class=\"btn\"\n            ng-class=\"'btn-' + notif.type\"\n            ng-click=\"notif.accept()\"\n            >OK</button>\n          <button\n            type=\"button\"\n            ng-if=\"notif.address\"\n            class=\"btn\"\n            ng-class=\"'btn-' + notif.type\"\n            ng-click=\"notif.address()\"\n            >Fix it</button>\n        </div>\n      </div>\n\n      <div ng-if=\"notif.stack && notif.showStack\" class=\"toast-stack alert\" ng-class=\"'alert-' + notif.type\">\n        <pre ng-repeat=\"stack in notif.stacks\" ng-bind=\"stack\"></pre>\n      </div>\n\n    </li>\n  </ul>\n</div>\n"
 
 /***/ },
-/* 1126 */
+/* 1122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64883,15 +64882,15 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _uiRegistryChrome_nav_controls = __webpack_require__(1127);
+	var _uiRegistryChrome_nav_controls = __webpack_require__(1123);
 
 	var _uiRegistryChrome_nav_controls2 = _interopRequireDefault(_uiRegistryChrome_nav_controls);
 
-	var _uiModules = __webpack_require__(1078);
+	var _uiModules = __webpack_require__(1074);
 
 	var _uiModules2 = _interopRequireDefault(_uiModules);
 
-	var _active_http_spinnerHtml = __webpack_require__(1131);
+	var _active_http_spinnerHtml = __webpack_require__(1127);
 
 	var _active_http_spinnerHtml2 = _interopRequireDefault(_active_http_spinnerHtml);
 
@@ -64924,16 +64923,16 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1127 */
+/* 1123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
-	__webpack_require__(1128);
+	__webpack_require__(1124);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
-	  return __webpack_require__(1128)({
+	  return __webpack_require__(1124)({
 	    name: 'chromeNavControls',
 	    order: ['order']
 	  });
@@ -64941,18 +64940,18 @@
 
 
 /***/ },
-/* 1128 */
+/* 1124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(194);
-	__webpack_require__(1129);
+	__webpack_require__(1125);
 
 	'use strict';
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 	  var _ = __webpack_require__(194);
-	  var IndexedArray = __webpack_require__(1129);
+	  var IndexedArray = __webpack_require__(1125);
 	  var notPropsOptNames = IndexedArray.OPT_NAMES.concat('constructor');
 
 	  /**
@@ -65043,13 +65042,13 @@
 
 
 /***/ },
-/* 1129 */
+/* 1125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*** auto-preload-rjscommon-deps-loader ***/
 	__webpack_require__(239);
 	__webpack_require__(194);
-	__webpack_require__(1130);
+	__webpack_require__(1126);
 
 	'use strict';
 
@@ -65059,7 +65058,7 @@
 
 	  var _ = __webpack_require__(194);
 
-	  var inflector = __webpack_require__(1130);
+	  var inflector = __webpack_require__(1126);
 	  var pathGetter = _(_.get).rearg(1, 0).ary(2);
 	  var inflectIndex = inflector('by');
 	  var inflectOrder = inflector('in', 'Order');
@@ -65213,7 +65212,7 @@
 
 
 /***/ },
-/* 1130 */
+/* 1126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -65264,13 +65263,13 @@
 
 
 /***/ },
-/* 1131 */
+/* 1127 */
 /***/ function(module, exports) {
 
 	module.exports = "<ul class=\"nav navbar-nav navbar-right navbar-timepicker\" >\n  <li ng-show=\"chrome.httpActive.length\" class=\"navbar-text hidden-xs\">\n    <div class=\"spinner\"></div>\n  </li>\n</ul>\n"
 
 /***/ },
-/* 1132 */
+/* 1128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65311,13 +65310,13 @@
 	};
 
 /***/ },
-/* 1133 */
+/* 1129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _ = __webpack_require__(194);
-	var TabCollection = __webpack_require__(1134);
+	var TabCollection = __webpack_require__(1130);
 
 	module.exports = function (chrome, internals) {
 
@@ -65415,7 +65414,7 @@
 	};
 
 /***/ },
-/* 1134 */
+/* 1130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65431,7 +65430,7 @@
 	var wrap = _require.wrap;
 	var pick = _require.pick;
 
-	var Tab = __webpack_require__(1135);
+	var Tab = __webpack_require__(1131);
 
 	var _require2 = __webpack_require__(275);
 
@@ -65491,7 +65490,7 @@
 	module.exports = TabCollection;
 
 /***/ },
-/* 1135 */
+/* 1131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65602,7 +65601,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 1136 */
+/* 1132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65667,7 +65666,7 @@
 	};
 
 /***/ },
-/* 1137 */
+/* 1133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65775,6 +65774,10 @@
 	};
 
 /***/ },
+/* 1134 */,
+/* 1135 */,
+/* 1136 */,
+/* 1137 */,
 /* 1138 */,
 /* 1139 */,
 /* 1140 */,
@@ -66230,10 +66233,30 @@
 /* 1590 */,
 /* 1591 */,
 /* 1592 */,
-/* 1593 */,
-/* 1594 */,
-/* 1595 */,
-/* 1596 */,
+/* 1593 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 1594 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 1595 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 1596 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
 /* 1597 */
 /***/ function(module, exports) {
 
@@ -66313,30 +66336,6 @@
 
 /***/ },
 /* 1610 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 1611 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 1612 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 1613 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 1614 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

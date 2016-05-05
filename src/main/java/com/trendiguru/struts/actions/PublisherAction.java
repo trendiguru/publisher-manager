@@ -243,7 +243,7 @@ public class PublisherAction extends SecureAction {
 				String graphName = rootJson.get("docs").get(0).get("_id").textValue();
 				return graphName;
 			} else {
-				log.info(postBody + " does not contain visualization json so ignoring");
+				log.info(postBody + " does not contain visualization json so not checking for authorisation permission");
 				return null;
 			}
 			

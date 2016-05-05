@@ -102,6 +102,7 @@ abstract class KibanaManager {
     		
     		request.setHeader("Accept", "application/json, text/plain, */*");
     		request.setHeader("Content-Type", "application/json;charset=UTF-8");
+    		request.setHeader("kbn-version", "4.5.0");
     		//request.setHeader("Origin", "http://localhost:9000");
     		
     		//request.setHeader("referer", "http://localhost:9000/app/kibana");
@@ -136,8 +137,8 @@ abstract class KibanaManager {
     	
     	//request.setHeader("Content-Type", "application/json;charset=UTF-8");
     	request.setHeader("Connection", "keep-alive");
-    	request.setHeader("kbn-version", "4.4.1");
-    	request.setHeader("user-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
+    	//request.setHeader("kbn-version", "4.5");
+    	request.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36");
     	
     	CloseableHttpResponse response1 =null;
     	String resultBody = null;

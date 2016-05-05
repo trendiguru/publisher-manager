@@ -9914,6 +9914,12 @@ fieldset {
   overflow-x: auto;
   overflow-y: hidden;
 }
+.list-group .list-group-item.active,
+.list-group .list-group-item.active:hover,
+.list-group .list-group-item.active:focus {
+  background-color: #ecf0f1;
+  cursor: default;
+}
 .bs-callout-primary {
   display: block;
   margin: 20px 0;
