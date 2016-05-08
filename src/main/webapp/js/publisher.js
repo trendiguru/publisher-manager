@@ -4,6 +4,8 @@ manager.publisher.visualElement = 0;
 
 manager.publisher.init = function() {
 	
+	manager.publisher.token = window.location.search.split("token=")[1];
+	
 	manager.publisher.initIFrameListener();
 	
 	$("#downloadDashboard").click(function(e) {
@@ -14,7 +16,20 @@ manager.publisher.init = function() {
 	});
 	
 	$("#signOut").click(function(e) {
-		
+		$.get(
+			"/publisher-manager/auth/signOut?token=" + manager.publisher.token, 
+			//$("#loginForm").serializeArray(), 
+			function(response, status, xhr) { 
+				if (manager.infra.requestIsValid(xhr)) { 
+					console.log("now tell me what to do...");
+					window.location.href = "/publisher-manager";
+				}
+			
+			})
+			.error(function(qXHR, textStatus, errorThrown) {
+				console.log("error: " + errorThrown);
+			}
+		);
 	});
 	
 	//var a = decodeHTMLEntities(escapedKibanaHTML);

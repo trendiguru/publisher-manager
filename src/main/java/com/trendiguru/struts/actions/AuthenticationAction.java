@@ -49,15 +49,10 @@ public class AuthenticationAction extends BaseAction {
 	}
 	
 	
-	public String logOut() {
+	public String signOut() {
 		SessionCache.getInstance().removeUser(token);
-		
-		//HttpSession session = request.getSession();
-		//session.invalidate();
 		return EMPTY;
 	}
-	
-
 	
 	/**
 	 * Call this when logging in via email. Has Struts validation on email/passwd
