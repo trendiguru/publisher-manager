@@ -5,6 +5,8 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.IndexOptions;
+import org.mongodb.morphia.annotations.Indexed;
 
 /**
  * Not set to abstract since it's used when logging in and can determine what the user type is and return the appropriate subclass.
@@ -18,7 +20,10 @@ public class BaseUser {
 	ObjectId id;
 	
 	String salt;
+	
+	@Indexed(options = @IndexOptions(unique = true))
 	String email;
+	 
 	String password;
 	Date createDate;
 	Date lastLoginDate;

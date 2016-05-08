@@ -54,7 +54,7 @@ abstract class KibanaManager {
     	post.setHeader("Connection", "keep-alive");
     	
     	//TODO - response header, not request
-    	post.setHeader("kbn-version", "4.4.1");	
+    	post.setHeader("kbn-version", "4.5.0");	
     	
     	try {
 			

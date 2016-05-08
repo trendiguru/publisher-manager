@@ -20,10 +20,13 @@ public class UniqueUsers extends Visual {
 	@Override
 	public String getEncodedJSON() {
 		
+		//String s = "{\"title\":\"Fashion Seoul Unique Users 2\",\"visState\":\"{\\\"title\\\":\\\"Fashion Seoul Unique Users\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60,\\\"handleNoResults\\\":true},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"cardinality\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"userId.raw\\\",\\\"json\\\":\\\"{\\\\\\\"precision_threshold\\\\\\\": 1000}\\\",\\\"customLabel\\\":\\\"Unique Users\\\"}}],\\\"listeners\\\":{}}\",\"uiStateJSON\":\"{}\",\"description\":\"\",\"version\":1,\"kibanaSavedObjectMeta\":{\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"fashionseoul.com\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"}}";
+		
+		
 		//Get a single, aggregated number for the given date period
 		return "{" +
 			"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"cardinality\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"userId.raw\\\",\\\"json\\\":\\\"{\\\\\\\"precision_threshold\\\\\\\": 1000}\\\"}}],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"cardinality\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"userId.raw\\\",\\\"json\\\":\\\"{\\\\\\\"precision_threshold\\\\\\\": 1000}\\\",\\\"customLabel\\\":\\\"Unique Users\\\"}}],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\"," +
 			"\"description\":\"\",\"version\":1," +
 			"\"kibanaSavedObjectMeta\":{" +

@@ -53,6 +53,7 @@ public class MorphiaManager {
 			} else if (publisherList.isEmpty()) {
 				return null;
 			} else {
+				log.fatal("There is > 1 user with the email: " + email + " in the DB!");
 				return null;
 			}
 		} catch (Throwable t) {
