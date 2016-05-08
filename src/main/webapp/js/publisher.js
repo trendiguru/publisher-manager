@@ -76,12 +76,18 @@ manager.publisher.getVisualData = function() {
 	if ( $("#kibanaDashboard").contents().find("visualize-spy .visualize-spy-container .pagination-container").length > 0 ) {
 		$("#kibanaDashboard").contents().find("visualize-spy .visualize-spy-container .pagination-container .agg-table-controls a.small[ng-click='aggTable.getVisualData()']").eq(0)[0].click();
 		//setTimeout(function() {
+		
+		//close the chevron section
 		$("#kibanaDashboard").contents().find("visualize-spy .visualize-show-spy").eq(manager.publisher.visualElement).trigger("click");
 			
 		//}, 100);
 	} else {
 		if (manager.publisher.visualElement < manager.publisher.numVisualsToDownload) {
 			console.log("Bypassing visual element: " + manager.publisher.visualElement);
+
+			//close the empty chevron section
+			$("#kibanaDashboard").contents().find("visualize-spy .visualize-show-spy").eq(manager.publisher.visualElement).trigger("click");
+			
 			manager.publisher.visualElement++;
 			manager.publisher.getVisualData(manager.publisher.visualElement);
 		}
