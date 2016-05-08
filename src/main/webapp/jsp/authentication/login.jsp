@@ -13,6 +13,7 @@
 		<script>
 			$(document).ready(function() {
 				manager.auth.init();
+				$("#email").focus();
 			});
 		</script>
 	</head>
@@ -21,8 +22,8 @@
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Login</div>
 			<form id="loginForm">
-		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="tracker@fashionseoul.com">
-		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="luoesnoihsaf"/>
+		   		<span class="title">Email</span><input type="text" id="email" name="user.email" >
+		   		<span class="title">Password</span><input type="password" id="password" name="user.password" />
 		   		<button type="button" id="login">Login</button>
 	   		</form>
 		</header>
