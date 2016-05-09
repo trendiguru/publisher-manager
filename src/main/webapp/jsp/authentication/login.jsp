@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Login!</title>
+		<title>Login</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
@@ -22,8 +22,8 @@
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Login</div>
 			<form id="loginForm">
-		   		<span class="title">Email</span><input type="text" id="email" name="user.email" >
-		   		<span class="title">Password</span><input type="password" id="password" name="user.password" />
+		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="tracker@fashionseoul.com">
+		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="luoesnoihsaf"/>
 		   		<button type="button" id="login">Login</button>
 	   		</form>
 		</header>

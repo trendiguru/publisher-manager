@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import com.mongodb.DuplicateKeyException;
 import com.mongodb.MongoClient;
 import com.trendiguru.config.ConfigManager;
 import com.trendiguru.entities.BaseUser;
@@ -38,8 +39,13 @@ public class MorphiaManager {
 		return INSTANCE;
 	}
 	
-	public void addPublisher(Publisher publisher) {
+	public void addPublisher(Publisher publisher) throws DuplicateKeyException {
+		//try {
+		datastore.ensureIndexes();
 		datastore.save(publisher);
+		//} catch (DuplicateKeyException de) {
+			
+		//}
 	}
 	
 	public BaseUser findBaseUser(String email) {

@@ -27,7 +27,8 @@ public class App
     public static void main( String[] args )
     {
     	//Publisher publisher = new Publisher("Fashion Seoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf");
-    	Publisher publisher = new Publisher("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
+    	//Publisher publisher = new Publisher("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
+    	Publisher publisher = new Publisher("Jeremy Test", "robshelter.blogspot.co.il", "jscolton@gmail.com", "123456");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();

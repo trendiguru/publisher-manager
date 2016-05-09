@@ -5,10 +5,11 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.mongodb.DuplicateKeyException;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.mongodb.MorphiaManager;
-import com.trendiguru.entities.visuals.Visual;
 
 public class PublisherManager {
 	private static Logger log = Logger.getLogger(PublisherManager.class);
@@ -21,7 +22,7 @@ public class PublisherManager {
 		return INSTANCE;
 	}
 	
-	public void add(Publisher publisher, Set<Visual> visualsToAddSet) {
+	public void add(Publisher publisher, Set<Visual> visualsToAddSet) throws DuplicateKeyException {
 		MorphiaManager morphiaManager = MorphiaManager.getInstance();
 		
 		byte[] salt = PasswordManager.generateSalt();
@@ -35,11 +36,7 @@ public class PublisherManager {
 			
 			morphiaManager.addPublisher(publisher);
 			log.info("added to mongodb publisher: " + publisher.getEmail());
-
-			/*
-	    	MongoManager mongoManager = MongoManager.getInstance();
-	    	mongoManager.addPublisher(publisher);
-	    	*/
+			
 			
 	    	VisualizationManager manager = new VisualizationManager();
 	    	for (Visual visual : visualsToAddSet) {
@@ -51,6 +48,7 @@ public class PublisherManager {
 	    	
 	    	//TODO - add visuals here too
 	    	dbManager.addDashBoard(visualsToAddSet);
+	    	
 	    	log.info("added kibana dashboard for publisher: " + publisher.getEmail());
 	    	
 		} catch (NoSuchAlgorithmException e) {

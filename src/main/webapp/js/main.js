@@ -10,8 +10,16 @@ manager.admin = {};
 
 manager.auth.init = function() {
 	console.log("ready!");
+	
+	$(document).ajaxStart(function() {
+		manager.infra.showLoader();
+	});
+	
+	$(document).ajaxStop(function() {
+		manager.infra.hideLoader();
+	});
+	
 	$("#login").click(function(e) {
-		
 		$.post(
 			"auth/login", 
 			$("#loginForm").serializeArray(), 
@@ -31,6 +39,95 @@ manager.auth.init = function() {
 		);
 		
 	});
+	
+	$("#signUp").click(function(e) {
+		
+		var formValid = false;
+		
+		console.log("validating form...");
+		//manager.infra.validate($('#signUpForm').toJSO());
+		var formValid = manager.infra.validate();
+		
+		console.log(formValid);
+		
+		if (formValid) {
+			console.log("submitting form...");
+			$("#errorBox").text("").hide();
+			
+			$.post(
+				"auth/signUp", 
+				$("#signUpForm").serializeArray(), 
+				function(response, status, xhr) { 
+					if (manager.infra.requestIsValid(xhr)) { 
+						console.log("now tell me what to do...");
+						alert("Sign Up Success - You will be redirected to our Publisher Login page...");
+						window.location.href = "/publisher-manager";
+						//manager.publisher.init();
+						//var loggedInPublisher = xhr.responseJSON;
+						//window.location.href = "private/publisher/dashboard?token=" + loggedInPublisher.token;
+					}
+				
+				//}, "json")
+				})
+				.error(function(qXHR, textStatus, errorThrown) {
+					console.log("error: " + errorThrown);
+					alert("error: " + errorThrown);
+				}
+			);
+		}
+	});
+};
+
+manager.infra.validate = function() {
+	$("#signUpForm input").removeClass("invalid");
+	
+	var nullField = null;
+	
+	//null check
+	$("#signUpForm input[type=text], #signUpForm input[type=password]").each(function() {
+		console.log(this.value);
+		if (this.value == null || this.value == "") {
+			nullField = this;
+			return false;
+		}
+    });
+	
+	if (nullField == null) {
+		//passwords are equal?
+		var password = $("#signUpForm input[name='publisher.password']");
+		var repeatPassword = $("#signUpForm input[name='publisher.repeatPassword']");
+		
+		if (password.val() == repeatPassword.val()) {
+			//domain is a domain?
+			var domain = $("#signUpForm input[name='publisher.domain']");
+			if (domain.val().indexOf(".") > -1) {
+				
+				//submit form
+				return true;
+			} else {
+				manager.infra.showErrorBox("Domain must be valid!");
+				return false;
+			}
+		} else {
+			manager.infra.showErrorBox("Passwords must match!");
+			password.addClass("invalid");
+			password.focus();
+			repeatPassword.addClass("invalid");
+			return false;
+		}
+	} else {
+		manager.infra.showErrorBox("Please fill all empty fields!");
+		$(nullField).addClass("invalid");
+		$(nullField).focus();
+		return false;
+		
+	}
+	//console.log(formJson);
+};
+
+manager.infra.showErrorBox = function(message) {
+	$("#errorBox").text(message).show();
+	
 };
 
 manager.infra.requestIsValid = function(xhr) {
@@ -57,6 +154,10 @@ manager.infra.requestIsValid = function(xhr) {
 					value = value.replace("[", "");
 					value = value.replace("]", "");
 					errorText += value;
+					
+					$("#signUpForm input[name='" + key + "']").addClass("invalid").focus();
+					
+					
 				}
 				
 				if (j < (jsonObject.fieldErrors.length) ) {
@@ -78,7 +179,8 @@ manager.infra.requestIsValid = function(xhr) {
 			}
 		}
 	
-        alert(errorText);
+        //alert(errorText);
+        manager.infra.showErrorBox(errorText);
         
 		//showNativeAlert("Oops!", errorText);
 		
@@ -104,3 +206,40 @@ manager.infra.commonCallback = function(xhr) {
 		}
 	}
 };
+
+manager.infra.showLoader = function() {
+	if ($("#loader").length == 0) {
+		$("body").append("<div id='loader'></div>");
+	} else {
+		$("#loader").show();
+	}
+	
+	$("#loader").css("height", window.innerHeight + "px");
+};
+
+manager.infra.hideLoader = function() {
+	$("#loader").hide();
+};
+
+/*
+$.fn.toJSO = function () {
+    var obj = {},
+        $kids = $(this).find('[name]');
+    if (!$kids.length) {
+        return $(this).val();
+    }
+    $kids.each(function () {
+        var $el = $(this),
+            name = $el.attr('name');
+        if ($el.siblings("[name='" + name + "']").length) {
+            if (!/radio|checkbox/i.test($el.attr('type')) || $el.prop('checked')) {
+                obj[name] = obj[name] || [];
+                obj[name].push($el.toJSO());
+            }
+        } else {
+            obj[name] = $el.toJSO();
+        }
+    });
+    return obj;
+};
+*/

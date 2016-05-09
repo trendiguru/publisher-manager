@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 body {
 	background-color: rgba(32,26,22,.7);
 }
@@ -27,10 +31,10 @@ body {
 	background-color:#fff;
 }
 
-#loginForm {
+#loginForm, #signUpForm {
 	float:right;
 }
-#loginForm .title, .welcome {
+#loginForm .title, .welcome, #signUpForm .title, #errorBox {
 	font-family: "futura-pt";
     font-size: 13px;
     text-transform: uppercase;
@@ -53,6 +57,52 @@ body {
 	margin-top:7px;
 }
 
+/* table layout */
 .welcome .buttons {
 	margin-top:5px;
+}
+
+.container {
+  display: table;
+}
+.row {
+  display: table-row;
+}
+.column {
+  display: table-cell;
+  width: 326px;
+  padding: 2px 0;
+  line-height:21px;
+}
+.colspan2 {
+	display:table-caption;
+	text-align:center;
+	color: red;
+    background-color: white;
+    margin: 0 0 3px 0;
+}
+.column:nth-child(even) {
+	padding: 0 0 0 15px;
+}
+
+#signUpForm input, #signUpForm button {
+	float:right;
+}
+input.invalid {
+	border: 1px solid red;
+}
+#errorBox {
+	color:red;
+	height: 20px;
+    line-height: 21px;
+}
+#loader {
+	position:absolute;
+	top:0;
+	left:0;
+	background-color: rgba(0, 0, 0, 0.1);
+	background-image: url(images/ajax-loader.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width:100%;
 }

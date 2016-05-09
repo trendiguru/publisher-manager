@@ -1,12 +1,23 @@
 package com.trendiguru.struts.actions;
 
-import java.util.Properties;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.mongodb.DuplicateKeyException;
+import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.Admin;
 import com.trendiguru.entities.BaseUser;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
+import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
+import com.trendiguru.entities.visuals.DevicesVisual;
+import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.TrendingImagesVisual;
+import com.trendiguru.entities.visuals.UniqueUsers;
+import com.trendiguru.entities.visuals.Visual;
+import com.trendiguru.entities.visuals.WorldMapVisual;
 import com.trendiguru.infra.Constants;
 import com.trendiguru.infra.SessionCache;
 
@@ -45,7 +56,29 @@ public class AuthenticationAction extends BaseAction {
 
 	public String signUp() {
 	
-		return EMPTY;
+		/* non null validation done on client */
+		//Publisher publisher = new Publisher(publisher.getName(), publisher.getDomain(), publisher.getEmail(), publisher.getPassword());
+    	
+    	PublisherManager publisherManager = PublisherManager.getInstance();
+    	Set<Visual> visualSet = new HashSet<Visual>();
+    	visualSet.add(new EventsVisual(publisher));
+    	visualSet.add(new DevicesVisual(publisher));
+    	visualSet.add(new WorldMapVisual(publisher));
+    	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
+    	visualSet.add(new ClickThruRateOnItemVisual(publisher));
+    	visualSet.add(new TrendingImagesVisual(publisher));
+    	visualSet.add(new UniqueUsers(publisher));    	
+    	    	
+    	try {
+    		publisherManager.add(publisher,  visualSet);
+    		return EMPTY;
+    	} catch (DuplicateKeyException de) {
+    		//addActionError("email: " + publisher.getEmail() + " already exists!");
+    		addFieldError("publisher.email", "The email: " + publisher.getEmail() + " already exists!");
+			//addActionError(getText("auth.errors.user.does.not.exist"));
+			return INPUT;
+    	}
+		
 	}
 	
 	

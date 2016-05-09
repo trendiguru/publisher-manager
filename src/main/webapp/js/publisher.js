@@ -32,6 +32,10 @@ manager.publisher.init = function() {
 		);
 	});
 	
+	$(window).resize(function() {
+		 manager.publisher.resizeIframe($("#kibanaDashboard"));
+	});
+	
 	//var a = decodeHTMLEntities(escapedKibanaHTML);
 	//$('#kibanaDashboard')[0].contentDocument.write(a);
 	/*
@@ -186,6 +190,15 @@ function decodeHTMLEntities(text) {
     return text;
 }
 */
+
+manager.publisher.resizeIframe = function(iframe) {
+	var viewportHeight = window.innerHeight;
+	var initialIFrameheight = viewportHeight - 90;
+	
+    //obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	//obj.style.height = initialIFrameheight + 'px';
+	iframe.css("height", initialIFrameheight + "px");
+};
 
 $(document).ready(function() {
 	manager.publisher.init();

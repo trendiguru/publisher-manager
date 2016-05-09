@@ -46,7 +46,18 @@
             </result>
             -->
             <result>/jsp/authentication/login.jsp</result>
-        </action>	
+        </action>
+        
+        <action name="ShowSignUp">
+            <!-- 
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">example</param>
+            </result>
+            -->
+            <result>/jsp/authentication/signUp.jsp</result>
+        </action>
+        	
 	    
 		<!-- NB global 'input' is used that returns JSON with any errors that are rendered via the jquery javascript -->		
 		<action name="/auth/*" class="com.trendiguru.struts.actions.AuthenticationAction" method="{1}">
