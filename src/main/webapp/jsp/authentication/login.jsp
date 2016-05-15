@@ -22,8 +22,20 @@
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Login</div>
 			<form id="loginForm">
-		   		<span class="title">Email</span><input type="text" id="email" name="user.email" value="tracker@fashionseoul.com">
-		   		<span class="title">Password</span><input type="password" id="password" name="user.password" value="luoesnoihsaf"/>
+			
+				<div class="container">
+					<div class="colspan2" id="errorBox" style="display:none;">
+						Errors!
+					</div>
+				
+				   	<div class="row">
+				       	<div class="column title">Email<input type="text" id="email" name="user.email" value="tracker@fashionseoul.com"/></div>
+				       	<div class="column title">Password<input type="password" id="password" name="user.password" value="luoesnoihsaf"/></div>
+				   	</div>
+				   	
+				</div>
+			
+		   		
 		   		<button type="button" id="login">Login</button>
 	   		</form>
 		</header>

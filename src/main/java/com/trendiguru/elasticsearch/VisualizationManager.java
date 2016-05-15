@@ -7,7 +7,7 @@ public class VisualizationManager extends KibanaManager {
 	}
 	
 	public String getESEntityUrl(String visualId) {
-		return "http://localhost:9000/elasticsearch/.kibana/visualization/" + visualId + "?op_type=create";
+		return "/elasticsearch/.kibana/visualization/" + visualId + "?op_type=create";
 	}
 	
 }

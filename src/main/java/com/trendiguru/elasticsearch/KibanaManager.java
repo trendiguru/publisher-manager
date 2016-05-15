@@ -45,7 +45,7 @@ abstract class KibanaManager {
     	//String url = "http://localhost:9000/elasticsearch/_mget?timeout=0&ignore_unavailable=true&preference=1458207222316";
 
     	HttpClient client = HttpClientBuilder.create().build();
-    	HttpPost post = new HttpPost(getESEntityUrl(encodedEntityName));
+    	HttpPost post = new HttpPost("http://" + configManager.getKibanaDomain() + getESEntityUrl(encodedEntityName));
 
     	// add header
     	post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");
@@ -79,13 +79,13 @@ abstract class KibanaManager {
 	    		log.info("document_already_exists_exception !!");
 	    	}
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		}
     }
@@ -118,7 +118,7 @@ abstract class KibanaManager {
 				System.out.println(postBody);
 				System.out.println("post size: " + postBody.length());
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
+				log.fatal(e);
 				e.printStackTrace();
 			}
     	} else {
@@ -158,29 +158,30 @@ abstract class KibanaManager {
         		    HttpEntity entity1 = response1.getEntity();
         		    EntityUtils.consume(entity1);
     		    } else {
-    		    	
+    		    	log.fatal(response1);
     		    	System.out.println(response1);
     		    }
     		    
+    		    log.info("------------------------------------");
     		    System.out.println("------------------------------------");
     		    
     		    //EntityUtils.consume(entity1);
     		
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			log.fatal(e);
 			e.printStackTrace();
 		}
     	finally {
 		    try {
 				response1.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				log.fatal(e);
 				e.printStackTrace();
 			}
 		}

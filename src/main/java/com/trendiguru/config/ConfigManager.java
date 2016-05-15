@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.trendiguru.infra.JsonFactory;
-import com.trendiguru.mongodb.MorphiaManager;
 
 public class ConfigManager {
 	private static Logger log = Logger.getLogger(ConfigManager.class);
@@ -55,6 +55,20 @@ public class ConfigManager {
 	public String getKibanaDomain() {
 		JsonNode n =  configJson.get("kibana").get("domain");
 		return validateParam(n);
+	}
+
+	public String getEnv() {
+		return env;
+	}
+	
+	public boolean isLocal() {
+		return env.equals("local") ? true : false;
+	}
+
+	public ArrayNode getEmails() {
+		ArrayNode n = (ArrayNode)configJson.get("emails");
+		//ArrayNode slaidsNode = (ArrayNode)
+		return n;
 	}
 	
 	private String validateParam(JsonNode value) {

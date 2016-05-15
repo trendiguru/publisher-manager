@@ -34,7 +34,7 @@ body {
 #loginForm, #signUpForm {
 	float:right;
 }
-#loginForm .title, .welcome, #signUpForm .title, #errorBox {
+form .title, .welcome, form .title, #errorBox {
 	font-family: "futura-pt";
     font-size: 13px;
     text-transform: uppercase;
@@ -44,12 +44,6 @@ body {
     font-style: normal;
     /*line-height: 1em;*/
     color:#fff;
-}
-#loginForm input {
-	margin: 0 5px;
-}
-#loginForm #email {
-	margin-right:25px;
 }
 
 .welcome {
@@ -85,8 +79,9 @@ body {
 	padding: 0 0 0 15px;
 }
 
-#signUpForm input, #signUpForm button {
+form input, form button {
 	float:right;
+	margin: 2px 0 0 0;
 }
 input.invalid {
 	border: 1px solid red;

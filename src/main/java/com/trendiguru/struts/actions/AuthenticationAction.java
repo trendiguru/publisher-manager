@@ -19,6 +19,7 @@ import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
 import com.trendiguru.infra.Constants;
+import com.trendiguru.infra.EmailManager;
 import com.trendiguru.infra.SessionCache;
 
 
@@ -74,7 +75,12 @@ public class AuthenticationAction extends BaseAction {
     		return EMPTY;
     	} catch (DuplicateKeyException de) {
     		//addActionError("email: " + publisher.getEmail() + " already exists!");
-    		addFieldError("publisher.email", "The email: " + publisher.getEmail() + " already exists!");
+    		if (de.getErrorMessage().contains("domain")) {
+    			addFieldError("publisher.domain", "The domain: " + publisher.getDomain() + " has already been registered!!");
+    		} else {
+    			addFieldError("publisher.email", "The email: " + publisher.getEmail() + " has already been registered!");
+    		}
+    		
 			//addActionError(getText("auth.errors.user.does.not.exist"));
 			return INPUT;
     	}
@@ -96,7 +102,8 @@ public class AuthenticationAction extends BaseAction {
 		
 		BaseUser loggedInUser = authenticationServices.login(user.getEmail(), user.getPassword());
 		if (loggedInUser == null) {
-			addActionError("user " + user.getEmail() + " does not exist");
+			//don't say email or password doesn't exist!
+			addActionError("Problem logging in as '" + user.getEmail() + "' !");
 			//addActionError(getText("auth.errors.user.does.not.exist"));
 			return INPUT;
 		} else {

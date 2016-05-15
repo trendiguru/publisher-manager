@@ -19,7 +19,19 @@ manager.auth.init = function() {
 		manager.infra.hideLoader();
 	});
 	
+	/* 'enter' submits the form */
+	$('input').on("keypress", function(e) {
+	     var code = (e.keyCode ? e.keyCode : e.which);
+	     if (code == 13) {
+	        e.preventDefault();
+	        e.stopPropagation();
+	        $(this).closest('form').find("button").trigger("click");
+	     }
+	});
+	
 	$("#login").click(function(e) {
+		$("#errorBox").text("").hide();
+		
 		$.post(
 			"auth/login", 
 			$("#loginForm").serializeArray(), 
@@ -44,11 +56,11 @@ manager.auth.init = function() {
 		
 		var formValid = false;
 		
-		console.log("validating form...");
+		//console.log("validating form...");
 		//manager.infra.validate($('#signUpForm').toJSO());
 		var formValid = manager.infra.validate();
 		
-		console.log(formValid);
+		//console.log(formValid);
 		
 		if (formValid) {
 			console.log("submitting form...");
@@ -85,7 +97,7 @@ manager.infra.validate = function() {
 	
 	//null check
 	$("#signUpForm input[type=text], #signUpForm input[type=password]").each(function() {
-		console.log(this.value);
+		//console.log(this.value);
 		if (this.value == null || this.value == "") {
 			nullField = this;
 			return false;

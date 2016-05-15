@@ -29,15 +29,15 @@
 					</div>
 				
 				   	<div class="row">
-				       	<div class="column title">Publisher Name<input type="text" id="publisherName" name="publisher.name" value=""/></div>
-				       	<div class="column title">Password<input type="password" name="publisher.password" value=""/></div>
+				       	<div class="column title">Publisher Name<input type="text" id="publisherName" name="publisher.name" value="Bob"/></div>
+				       	<div class="column title">Password<input type="password" name="publisher.password" value="123"/></div>
 				   	</div>
 				   	<div class="row">
-				       	<div class="column title">Domain http://<input type="text" name="publisher.domain" value=""/></div>
-				       	<div class="column title">Repeat Password<input type="password" name="publisher.repeatPassword" value=""/></div>
+				       	<div class="column title">Domain http://<input type="text" name="publisher.domain" value="fashionseoul.com"/></div>
+				       	<div class="column title">Repeat Password<input type="password" name="publisher.repeatPassword" value="123"/></div>
 				   	</div>
 					<div class="row">
-						<div class="column title">Email<input type="text" name="publisher.email" value=""/></div>
+						<div class="column title">Email<input type="text" name="publisher.email" value="a@a.com"/></div>
 				   	</div>
 				</div>
 				

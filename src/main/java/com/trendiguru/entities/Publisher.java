@@ -8,14 +8,21 @@ import java.util.Set;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.IndexOptions;
+import org.mongodb.morphia.annotations.Indexed;
 import org.mongodb.morphia.annotations.Indexes;
 
 @Entity("users")
+/*
 @Indexes(
     @Index(value = "domain", fields = @Field("domain"))
 )
+*/
 public class Publisher extends BaseUser {
 	String name;
+	
+	//TODO - make unique so User B cannot create an account with access to Domain A !
+	@Indexed(options = @IndexOptions(unique = true))
 	String domain;
 	
 	public Publisher() {

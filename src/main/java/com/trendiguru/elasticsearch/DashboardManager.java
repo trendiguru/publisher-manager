@@ -15,7 +15,7 @@ public class DashboardManager extends KibanaManager {
 	}
 	
 	public String getESEntityUrl(String visualId) {
-		return "http://localhost:9000/elasticsearch/.kibana/dashboard/" + visualId + "?op_type=create";
+		return "/elasticsearch/.kibana/dashboard/" + visualId + "?op_type=create";
 	}
 	
 	public void addDashBoard(Set<Visual> visualsToAddSet) {
