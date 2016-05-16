@@ -46,7 +46,7 @@ manager.auth.init = function() {
 			}, "json")
 			.error(function(qXHR, textStatus, errorThrown) {
 				console.log("error: " + errorThrown);
-				alert("error: " + errorThrown);
+				manager.infra.showErrorBox(errorThrown);
 			}
 		);
 		
@@ -90,6 +90,20 @@ manager.auth.init = function() {
 	});
 };
 
+manager.infra.captchaCompletedOk = function() {
+	var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        //document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    if(v.length != 0)
+    {
+        //document.getElementById('captcha').innerHTML="Captcha completed";
+        return true; 
+    }
+};
+
 manager.infra.validate = function() {
 	$("#signUpForm input").removeClass("invalid");
 	
@@ -104,6 +118,9 @@ manager.infra.validate = function() {
 		}
     });
 	
+	var captchaCompletedOk = manager.infra.captchaCompletedOk();
+	
+	
 	if (nullField == null) {
 		//passwords are equal?
 		var password = $("#signUpForm input[name='publisher.password']");
@@ -114,10 +131,20 @@ manager.infra.validate = function() {
 			var domain = $("#signUpForm input[name='publisher.domain']");
 			if (domain.val().indexOf(".") > -1) {
 				
-				//submit form
-				return true;
+				//check captcha form
+				var captchaCompletedOk = manager.infra.captchaCompletedOk();
+				if (captchaCompletedOk) {
+					//submit form
+					return true;
+				} else{
+					manager.infra.showErrorBox("You can't leave Captcha Code empty");
+					//$("#rcaptcha").addClass("invalid");
+				}
+				
 			} else {
 				manager.infra.showErrorBox("Domain must be valid!");
+				domain.addClass("invalid");
+				domain.focus();
 				return false;
 			}
 		} else {

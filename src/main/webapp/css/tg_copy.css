@@ -1,0 +1,101 @@
+.container {
+	/*
+	width: 250px;
+	margin: 0 auto;
+	*/
+	width: 629px;
+    float: right;
+}
+
+#loginForm .container {
+	width:418px;
+}
+
+#rcaptcha {
+	transform: scale(0.7);
+    transform-origin: 321px -177px;
+}
+
+
+
+/* **************** below is an edited copy from the site.css from trendi guru website ************ */
+.newsletter-form-field-element {
+	
+    width: 100%;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.12);
+    font-family: Europa;
+    font-size: 15px;
+    line-height: normal;
+    outline: none;
+    -webkit-transition: background .3s ease-out,border .3s ease-out;
+    -moz-transition: background .3s ease-out,border .3s ease-out;
+    -ms-transition: background .3s ease-out,border .3s ease-out;
+    -o-transition: background .3s ease-out,border .3s ease-out;
+    transition: background .3s ease-out,border .3s ease-out;
+    
+    /*display: inline-block;*/
+    /*padding: 6px 3px;*/	
+    width: 173px;
+}
+
+.newsletter-block * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.newsletter-style-dark .newsletter-block .newsletter-form-wrapper, .newsletter-style-dark .newsletter-block .newsletter-form-header-title, .newsletter-style-dark .newsletter-block .newsletter-form-header-description p, .newsletter-style-dark .newsletter-block .newsletter-form-footnote p, .newsletter-style-dark .newsletter-block .form-submission-text p {
+    color: #272727;
+}
+
+.newsletter-block .newsletter-form-wrapper {
+    width: 100%;
+    padding: 34px 34px;
+    background: rgba(0,0,0,0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+}
+
+.newsletter-block .newsletter-form-body {
+    padding: 0 0 12px 0;
+}
+
+.newsletter-block * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.newsletter-block .newsletter-form {
+    text-align: center;
+}
+
+
+.newsletter-form-button {
+	float: right;
+	padding: 1em 2.25em;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #fff !important;
+    font-family: Europa;
+    font-size: 15px;
+    line-height: normal;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+        padding: 1em 1.5em;
+        margin:4px 0 0 0;
+}
+.newsletter-block * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}

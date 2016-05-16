@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/tg_copy.css">
+		
 		
 		<script src="js/lib/jquery-2.2.2.min.js"></script>
 		<script src="js/main.js"></script>
@@ -24,19 +26,22 @@
 			<form id="loginForm">
 			
 				<div class="container">
-					<div class="colspan2" id="errorBox" style="display:none;">
+					<div id="errorBox" style="display:none;">
 						Errors!
 					</div>
 				
-				   	<div class="row">
-				       	<div class="column title">Email<input type="text" id="email" name="user.email" value="tracker@fashionseoul.com"/></div>
-				       	<div class="column title">Password<input type="password" id="password" name="user.password" value="luoesnoihsaf"/></div>
-				   	</div>
+				
+					<div class="left"><input id="email" name="user.email" class="newsletter-form-field-element field-element" name="email" x-autocompletetype="email" type="text" spellcheck="false" placeholder="Email Address"></div>
+					<div class="right"><input id="password" name="user.password" class="newsletter-form-field-element field-element" name="email" type="password" spellcheck="false" placeholder="Password"></div>
+					
+					<a class="signUpLink" href="signUpForm">Publisher Sign Up</a>
+				   	<button type="button" id="login" class="newsletter-form-button">Login</button>
+				   	
 				   	
 				</div>
 			
 		   		
-		   		<button type="button" id="login">Login</button>
+		   		
 	   		</form>
 		</header>
 		

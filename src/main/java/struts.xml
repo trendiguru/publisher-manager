@@ -48,7 +48,7 @@
             <result>/jsp/authentication/login.jsp</result>
         </action>
         
-        <action name="ShowSignUp">
+        <action name="signUpForm">
             <!-- 
             <result type="redirectAction">
                 <param name="actionName">HelloWorld</param>

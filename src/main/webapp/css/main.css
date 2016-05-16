@@ -3,7 +3,7 @@
 }
 
 body {
-	background-color: rgba(32,26,22,.7);
+	background-color: #201a16;
 }
 .header-inner {
 	width:95%;
@@ -31,24 +31,9 @@ body {
 	background-color:#fff;
 }
 
-#loginForm, #signUpForm {
-	float:right;
-}
-form .title, .welcome, form .title, #errorBox {
-	font-family: "futura-pt";
-    font-size: 13px;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 2px;
-    font-weight: 500;
-    font-style: normal;
-    /*line-height: 1em;*/
-    color:#fff;
-}
-
 .welcome {
 	float:right;
-	margin-top:7px;
+	color: #fff;
 }
 
 /* table layout */
@@ -56,40 +41,17 @@ form .title, .welcome, form .title, #errorBox {
 	margin-top:5px;
 }
 
-.container {
-  display: table;
-}
-.row {
-  display: table-row;
-}
-.column {
-  display: table-cell;
-  width: 326px;
-  padding: 2px 0;
-  line-height:21px;
-}
-.colspan2 {
-	display:table-caption;
-	text-align:center;
-	color: red;
-    background-color: white;
-    margin: 0 0 3px 0;
-}
-.column:nth-child(even) {
-	padding: 0 0 0 15px;
-}
-
-form input, form button {
-	float:right;
-	margin: 2px 0 0 0;
-}
-input.invalid {
+.invalid {
 	border: 1px solid red;
 }
 #errorBox {
 	color:red;
 	height: 20px;
-    line-height: 21px;
+    line-height: 19px;
+    background-color:#fff;
+    margin: 0 0 2px 0;
+    text-align: center;
+    font-family: "futura-pt";
 }
 #loader {
 	position:absolute;
@@ -100,4 +62,35 @@ input.invalid {
 	background-repeat: no-repeat;
 	background-position: center center;
 	width:100%;
+}
+.row {
+	clear:both;
+	overflow:hidden;
+	margin-top: 4px;
+	height:53px;
+}
+form .left {
+	float:left;	
+	
+}
+form .center {
+	float:left;
+	margin: 0 4px 0 4px;
+}
+form .right {
+	float:right;
+	/*margin: 0 2px 0 0;*/
+}
+
+.signUpLink {
+	font-family: "futura-pt";
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 55px;
+    color: #fff;
+}
 }

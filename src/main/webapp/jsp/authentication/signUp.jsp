@@ -2,12 +2,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Sign Up</title>
+		<title>Publisher Sign Up</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
+		
+		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/tg_copy.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">
 		
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<script src="js/lib/jquery-2.2.2.min.js"></script>
 		<script src="js/main.js"></script>
 		<script>
@@ -24,29 +27,42 @@
 			<form id="signUpForm">
 			
 				<div class="container">
-					<div class="colspan2" id="errorBox" style="display:none;">
+					<div id="errorBox" style="display:none;">
 						Errors!
 					</div>
 				
-				   	<div class="row">
-				       	<div class="column title">Publisher Name<input type="text" id="publisherName" name="publisher.name" value="Bob"/></div>
-				       	<div class="column title">Password<input type="password" name="publisher.password" value="123"/></div>
-				   	</div>
-				   	<div class="row">
-				       	<div class="column title">Domain http://<input type="text" name="publisher.domain" value="fashionseoul.com"/></div>
-				       	<div class="column title">Repeat Password<input type="password" name="publisher.repeatPassword" value="123"/></div>
-				   	</div>
 					<div class="row">
-						<div class="column title">Email<input type="text" name="publisher.email" value="a@a.com"/></div>
-				   	</div>
-				</div>
+						<div class="left"><input name="publisher.name" id="publisherName" class="newsletter-form-field-element field-element" name="email" type="text" spellcheck="false" placeholder="Publisher Name"></div>
+						<div class="center"><input name="publisher.domain" id="domain" class="newsletter-form-field-element field-element" name="email" type="text" spellcheck="false" placeholder="Domain"></div>
+						<div class="right"><input name="publisher.email" id="email" class="newsletter-form-field-element field-element" name="email" x-autocompletetype="email" type="text" spellcheck="false" placeholder="Email Address"></div>
+						
+					</div>
+					
+					<div class="row">
+						<div class="left"><input name="publisher.password" id="password" class="newsletter-form-field-element field-element" name="email" type="password" spellcheck="false" placeholder="Password"></div>
+					
+						<div class="center"><input name="publisher.repeatPassword" id="repeatPassword" class="newsletter-form-field-element field-element" name="email" type="password" spellcheck="false" placeholder="Repeat Password"></div>	
+						<div class="g-recaptcha right" id="rcaptcha" data-sitekey="6Lff9B8TAAAAACzOP2tVxQQ7sAZ_Cqfr2PvTXhN9"></div>
+					
+					</div>
+					
+					
+					<div class="row">
+					 
+						<button type="button" id="signUp" class="newsletter-form-button sqs-system-button sqs-editable-button-layout sqs-editable-button-style sqs-editable-button-shape">Sign Up</button>
+		   		
+		   			</div>
 				
-				<button type="button" id="signUp">Sign Up</button>
+				   	
+				</div>
+			
+		   		
+		   		
 	   		</form>
 		</header>
 		
 		<div id="main">
 		</div>
-	
+		
 	</body>
 </html>
