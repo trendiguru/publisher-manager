@@ -54,7 +54,7 @@ public class Publisher extends BaseUser {
 	}
 
 	public void setDomain(String domain) {
-		this.domain = domain;
+		this.domain = domain.replace("www.", "");
 	}
 	
 	/**

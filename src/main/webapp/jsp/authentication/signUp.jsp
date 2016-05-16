@@ -33,7 +33,7 @@
 				
 					<div class="row">
 						<div class="left"><input name="publisher.name" id="publisherName" class="newsletter-form-field-element field-element" name="email" type="text" spellcheck="false" placeholder="Publisher Name"></div>
-						<div class="center"><input name="publisher.domain" id="domain" class="newsletter-form-field-element field-element" name="email" type="text" spellcheck="false" placeholder="Domain"></div>
+						<div class="center"><input name="publisher.domain" id="domain" class="newsletter-form-field-element field-element" name="email" type="text" spellcheck="false" placeholder="Domain (without 'www.')"></div>
 						<div class="right"><input name="publisher.email" id="email" class="newsletter-form-field-element field-element" name="email" x-autocompletetype="email" type="text" spellcheck="false" placeholder="Email Address"></div>
 						
 					</div>

@@ -131,14 +131,23 @@ manager.infra.validate = function() {
 			var domain = $("#signUpForm input[name='publisher.domain']");
 			if (domain.val().indexOf(".") > -1) {
 				
-				//check captcha form
-				var captchaCompletedOk = manager.infra.captchaCompletedOk();
-				if (captchaCompletedOk) {
-					//submit form
-					return true;
-				} else{
-					manager.infra.showErrorBox("You can't leave Captcha Code empty");
-					//$("#rcaptcha").addClass("invalid");
+				if (domain.val().indexOf("http") > -1) {
+					//protocol is not required
+					manager.infra.showErrorBox("Domain must exclude any protocol eg 'http://' ");
+					domain.addClass("invalid");
+					domain.focus();
+					return false;
+				} else {
+				
+					//check captcha form
+					var captchaCompletedOk = manager.infra.captchaCompletedOk();
+					if (captchaCompletedOk) {
+						//submit form
+						return true;
+					} else{
+						manager.infra.showErrorBox("You can't leave Captcha Code empty");
+						//$("#rcaptcha").addClass("invalid");
+					}
 				}
 				
 			} else {

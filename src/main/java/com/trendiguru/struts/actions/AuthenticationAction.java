@@ -76,9 +76,9 @@ public class AuthenticationAction extends BaseAction {
     	} catch (DuplicateKeyException de) {
     		//addActionError("email: " + publisher.getEmail() + " already exists!");
     		if (de.getErrorMessage().contains("domain")) {
-    			addFieldError("publisher.domain", "The domain: " + publisher.getDomain() + " has already been registered!!");
+    			addFieldError("publisher.domain", "The domain '" + publisher.getDomain() + "' has already been registered!!");
     		} else {
-    			addFieldError("publisher.email", "The email: " + publisher.getEmail() + " has already been registered!");
+    			addFieldError("publisher.email", "The email '" + publisher.getEmail() + "' has already been registered!");
     		}
     		
 			//addActionError(getText("auth.errors.user.does.not.exist"));
