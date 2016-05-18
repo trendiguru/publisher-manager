@@ -58,11 +58,15 @@ public class Publisher extends BaseUser {
 	}
 	
 	/**
+	 * No longer toLowerCase() so can manually add extra visuals via Kibana which generates the ES id via the title of the visual eg "Robs Shelter Top 20 Images",
+	 * which becomes /Robs-Shelter-Top-20-Images
+	 * 
 	 * This is used when creating a visual or dashboard in ElasticSearch.  The name forms the prefix of the ES index name. Eg "digital-spy-" + "dashboard"
 	 * @return
 	 */
 	public String getEncodedName() {
-		return this.name.toLowerCase().replace(" ", "-");
+		//return this.name.toLowerCase().replace(" ", "-");
+		return this.name.replace(" ", "-");
 	}
 	
 	public String getEncodedHTMLName() {

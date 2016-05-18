@@ -18,8 +18,11 @@ public class ClickThruRateOnOurIconVisual extends Visual {
 	
 	public ClickThruRateOnOurIconVisual(Publisher publisher) {
 		this.publisher = publisher;
-		this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-our-icon";
+		//this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-our-icon";
 		this.title = publisher.getName() + " Click Thru Rate On Our Icon";
+		
+		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
+		this.elasticSearchId = this.title.replace(" ", "-");
 		
 		/* TimeLion breaks if the referer has "http://" or "/" inside it! */
 		//this.publisherDomainWithoutProtocol = publisher.getDomain().replace("http://", "").replace("/", "");

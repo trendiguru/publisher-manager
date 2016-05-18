@@ -14,12 +14,17 @@ public class EventsVisual extends Visual {
 
 	public EventsVisual(Publisher publisher) {
 		this.publisher = publisher;
-		this.elasticSearchId = publisher.getEncodedName() + "-events-breakdown";
+		//this.elasticSearchId = publisher.getEncodedName() + "-events-breakdown";
 		this.title = publisher.getName() + " Events Breakdown";
+		
+		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
+		this.elasticSearchId = this.title.replace(" ", "-");
 	}
 	
 	@Override
 	public String getEncodedJSON() {
+		
+		
 		/*
 		String s = "{" +
 			"\"title\":\"Fashion Seoul Events Breakdown 2\"," +

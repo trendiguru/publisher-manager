@@ -13,8 +13,11 @@ public class UniqueUsers extends Visual {
 
 	public UniqueUsers(Publisher publisher) {
 		this.publisher = publisher;
-		this.elasticSearchId = publisher.getEncodedName() + "-unique-users";
+		//this.elasticSearchId = publisher.getEncodedName() + "-unique-users";
 		this.title = publisher.getName() + " Unique Users";
+		
+		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
+		this.elasticSearchId = this.title.replace(" ", "-");
 	}
 	
 	@Override

@@ -13,8 +13,11 @@ public class EventsByRefererVisual extends Visual {
 
 	public EventsByRefererVisual(Publisher publisher) {
 		this.publisher = publisher;
-		this.elasticSearchId = publisher.getEncodedName() + "-events-by-referer";
+		//this.elasticSearchId = publisher.getEncodedName() + "-events-by-referer";
 		this.title = publisher.getName() + " Events By Referer";
+		
+		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
+		this.elasticSearchId = this.title.replace(" ", "-");
 	}
 	
 	@Override

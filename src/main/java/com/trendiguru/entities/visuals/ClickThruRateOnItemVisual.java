@@ -16,8 +16,11 @@ public class ClickThruRateOnItemVisual extends Visual {
 
 	public ClickThruRateOnItemVisual(Publisher publisher) {
 		this.publisher = publisher;
-		this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-item";
+		//this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-item";
 		this.title = publisher.getName() + " Click Thru Rate On Items";
+		
+		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
+		this.elasticSearchId = this.title.replace(" ", "-");
 	}
 	
 	@Override
