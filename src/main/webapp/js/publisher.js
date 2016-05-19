@@ -9,6 +9,8 @@ manager.publisher.init = function() {
 	manager.publisher.initIFrameListener();
 	
 	$("#downloadDashboard").click(function(e) {
+		manager.infra.showLoader();
+		
 		manager.publisher.visualDataArray = [];
 		manager.publisher.visualElement = 0;
 		manager.publisher.numVisualsToDownload = $("#kibanaDashboard").contents().find("visualize-spy .visualize-show-spy").length;
@@ -136,6 +138,9 @@ manager.publisher.buildAggregatedCSV = function(visualData) {
 		var object_url = URL.createObjectURL(blob);
 		save_link.href = object_url;
 		save_link.download = "Trendiguru_Analytics.csv";
+		
+		manager.infra.hideLoader();
+		
 		setTimeout(function() {
 			var event = new MouseEvent("click");
 			save_link.dispatchEvent(event);

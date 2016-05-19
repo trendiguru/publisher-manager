@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.visuals.AverageTimeOnSite;
 import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
@@ -27,10 +28,10 @@ public class App
 {
     public static void main( String[] args )
     {
-    	//Publisher publisher = new Publisher("Fashion Seoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf");
+    	//Publisher publisher = new Publisher("FashionSeoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf");
     	//Publisher publisher = new Publisher("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
-    	//Publisher publisher = new Publisher("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456");
-    	Publisher publisher = new Publisher("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
+    	Publisher publisher = new Publisher("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456");
+    	//Publisher publisher = new Publisher("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -42,7 +43,7 @@ public class App
     	visualSet.add(new TrendingImagesVisual(publisher));
     	visualSet.add(new UniqueUsers(publisher));
     	visualSet.add(new TrendingCategories(publisher));
-    	
+    	visualSet.add(new AverageTimeOnSite(publisher));
     	    	
     	publisherManager.add(publisher,  visualSet);
     }
