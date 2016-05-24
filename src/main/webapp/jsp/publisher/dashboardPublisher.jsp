@@ -5,6 +5,7 @@
 	<head>
 		<title>Admin dashboard</title>
 		<meta charset="utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="/publisher-manager/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/main.css">

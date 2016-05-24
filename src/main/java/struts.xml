@@ -68,6 +68,8 @@
 		-->
 			<result name="loggedIn">/jsp/authentication/loggedIn.jsp</result>
 			<result name="loggedOut">/jsp/authentication/authMain.jsp</result>
+			<result name="pid">/jsp/authentication/pid.jsp</result>
+			
 		
 		</action>
 		

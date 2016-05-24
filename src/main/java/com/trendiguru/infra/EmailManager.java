@@ -24,7 +24,7 @@ public class EmailManager {
 
 	private static Logger log = Logger.getLogger(EmailManager.class); 
 
-	public static void newPublisherSignUp(Publisher publisher) {
+	public static void newSignUpNotifyTrendiGuru(Publisher publisher) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Publisher Name: " + publisher.getName()).append(System.getProperty("line.separator"));
 		sb.append("Publisher Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
@@ -38,6 +38,16 @@ public class EmailManager {
 		}
 		
 		//send("jscolton@gmail.com", "Jeremy Colton", "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
+	}
+	
+	public static void newSignUpNotifyPublisher(Publisher publisher) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Login address: http://publisher.trendi.guru").append(System.getProperty("line.separator"));
+		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));
+		sb.append("Password: " + publisher.getRepeatPassword()).append(System.getProperty("line.separator"));
+		sb.append("Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
+		
+		send(publisher.getEmail(), publisher.getName(), "Trendi Guru SignUp - Dashboard Login Info for '" + publisher.getName() + "'", sb.toString());
 	}
 	
 	public static void send(String toEmail, String toName, String subject, String msgBody) {
@@ -59,7 +69,7 @@ public class EmailManager {
 			session = Session.getInstance(props,
 					  new javax.mail.Authenticator() {
 						protected PasswordAuthentication getPasswordAuthentication() {
-							return new PasswordAuthentication("YYYYYY@trendiguru.com", "XXXXXXX");
+							return new PasswordAuthentication("jay@trendiguru.com", "XXXXXXX");
 						}
 					  });
 			

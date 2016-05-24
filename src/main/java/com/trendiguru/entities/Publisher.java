@@ -24,6 +24,7 @@ public class Publisher extends BaseUser {
 	//TODO - make unique so User B cannot create an account with access to Domain A !
 	@Indexed(options = @IndexOptions(unique = true))
 	String domain;
+	String pid;	//data-pid value in web form
 	
 	public Publisher() {
 	}
@@ -47,6 +48,14 @@ public class Publisher extends BaseUser {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 
 	public String getDomain() {

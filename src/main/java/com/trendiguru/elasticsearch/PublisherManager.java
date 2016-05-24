@@ -35,11 +35,10 @@ public class PublisherManager {
 				
 				publisher.setSalt(PasswordManager.bytetoString(salt));
 				publisher.setPassword(hashedSaltedPasswordAsString);
-				
-				
+								
 				//1. add user to Mongo
 				morphiaManager.addPublisher(publisher);
-				log.info("1. Added to mongodb publisher: " + publisher.getEmail());
+				log.info("1. Added to mongodb, publisher: " + publisher.getEmail());
 				
 				
 		    	VisualizationManager manager = new VisualizationManager();
@@ -59,13 +58,17 @@ public class PublisherManager {
 		    	log.info("3. Added dashboard for publisher: " + publisher.getName() + " and domain: " + publisher.getDomain());
 		    	
 		    	//4. email biz people
-		    	EmailManager.newPublisherSignUp(publisher);
+		    	EmailManager.newSignUpNotifyTrendiGuru(publisher);
 		    	
+		    	//5. email publisher of their login info
+		    	EmailManager.newSignUpNotifyPublisher(publisher);
+		    			    	
 		    	//log.info("added kibana dashboard for publisher: " + publisher.getEmail());
 		    	
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				log.fatal(e);
 			}
 		//} catch (Throwable t) {
 		//	log.fatal(t.getStackTrace(), t);

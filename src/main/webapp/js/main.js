@@ -66,26 +66,35 @@ manager.auth.init = function() {
 			console.log("submitting form...");
 			$("#errorBox").text("").hide();
 			
+			
+			
 			$.post(
 				"auth/signUp", 
 				$("#signUpForm").serializeArray(), 
 				function(response, status, xhr) { 
 					if (manager.infra.requestIsValid(xhr)) { 
 						console.log("now tell me what to do...");
-						alert("Sign Up Success - You will be redirected to our Publisher Login page...");
-						window.location.href = "/publisher-manager";
-						//manager.publisher.init();
-						//var loggedInPublisher = xhr.responseJSON;
-						//window.location.href = "private/publisher/dashboard?token=" + loggedInPublisher.token;
+						//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
+						
+						
+						$("#signUpForm").hide();
+						$("#congratulations").show();
+						
+						$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
+						
+						
+						//window.location.href = "/publisher-manager";
+					
 					}
 				
-				//}, "json")
-				})
+				}, "json")
+				//})
 				.error(function(qXHR, textStatus, errorThrown) {
 					console.log("error: " + errorThrown);
 					alert("error: " + errorThrown);
 				}
 			);
+			
 		}
 	});
 };

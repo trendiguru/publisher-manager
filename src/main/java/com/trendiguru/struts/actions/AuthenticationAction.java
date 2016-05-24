@@ -1,5 +1,6 @@
 package com.trendiguru.struts.actions;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
 import com.trendiguru.infra.Constants;
 import com.trendiguru.infra.EmailManager;
+import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.infra.SessionCache;
 
 
@@ -60,6 +62,17 @@ public class AuthenticationAction extends BaseAction {
 		/* non null validation done on client */
 		//Publisher publisher = new Publisher(publisher.getName(), publisher.getDomain(), publisher.getEmail(), publisher.getPassword());
     	
+		byte[] salt = PasswordManager.generateSalt();
+		
+		try {
+			byte[] hashedSaltedDomainAsBytes = PasswordManager.getHashWithSalt(publisher.getDomain(), "SHA-256", salt);
+			String hashedSaltedDomainAsString = PasswordManager.bytetoString(hashedSaltedDomainAsBytes);
+			publisher.setPid(hashedSaltedDomainAsString);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			log.fatal(e);
+		}
+		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
     	visualSet.add(new EventsVisual(publisher));
@@ -72,7 +85,7 @@ public class AuthenticationAction extends BaseAction {
     	    	
     	try {
     		publisherManager.add(publisher,  visualSet);
-    		return EMPTY;
+    		return "pid";
     	} catch (DuplicateKeyException de) {
     		//addActionError("email: " + publisher.getEmail() + " already exists!");
     		if (de.getErrorMessage().contains("domain")) {
@@ -83,7 +96,7 @@ public class AuthenticationAction extends BaseAction {
     		
 			//addActionError(getText("auth.errors.user.does.not.exist"));
 			return INPUT;
-    	}
+    	} 
 		
 	}
 	

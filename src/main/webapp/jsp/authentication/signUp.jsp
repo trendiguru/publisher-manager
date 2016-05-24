@@ -4,6 +4,7 @@
 	<head>
 		<title>Publisher Sign Up</title>
 		<meta charset="utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="/publisher-manager/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/fonts.css">
 		<link rel="stylesheet" type="text/css" href="/publisher-manager/css/meyer_reset.css">
 		
@@ -24,6 +25,13 @@
 	<body>
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Sign Up</div>
+			
+			<div id="congratulations" style="display:none;">
+				<div class="title">Congratulations.  Please paste the code below into the &lt;head&gt; section of your site</div>
+				<div><textarea readonly id="integrate"></textarea></div>
+				<div><a href="/publisher-manager">Click here to login to your dashboard</a></div>
+			</div>
+						
 			<form id="signUpForm">
 			
 				<div class="container">
@@ -46,6 +54,9 @@
 					
 					</div>
 					
+					<div class="row hint">
+						Your login info will be emailed to you after a successful sign-up
+					</div>
 					
 					<div class="row">
 					 

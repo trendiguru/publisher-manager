@@ -1,10 +1,25 @@
-.container {
+.container, #congratulations {
 	/*
 	width: 250px;
 	margin: 0 auto;
 	*/
 	width: 629px;
     float: right;
+}
+#congratulations .title, #congratulations a, #signUpForm .row.hint {
+	color: #fff;
+	font-family: Europa;
+    font-size: 15px;
+    margin: 0 0 5px 0;
+}
+#signUpForm .row.hint {
+	height:20px;
+	margin: 5px 0 0 0;	
+}
+#integrate {
+	width: 100%;
+    height: 50px;
+    resize: none;
 }
 
 #loginForm .container {
