@@ -46,6 +46,8 @@ public class EmailManager {
 		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));
 		sb.append("Password: " + publisher.getRepeatPassword()).append(System.getProperty("line.separator"));
 		sb.append("Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
+		sb.append("Integration code (place in <head> of your site): <script type='text/javascript' id='fzz-script' data-pid='" + publisher.getPid() + "' src='https://fzz.storage.googleapis.com/fzz.min.js' async='' defer=''></script>");
+			
 		
 		send(publisher.getEmail(), publisher.getName(), "Trendi Guru SignUp - Dashboard Login Info for '" + publisher.getName() + "'", sb.toString());
 	}
@@ -69,7 +71,7 @@ public class EmailManager {
 			session = Session.getInstance(props,
 					  new javax.mail.Authenticator() {
 						protected PasswordAuthentication getPasswordAuthentication() {
-							return new PasswordAuthentication("jay@trendiguru.com", "XXXXXXX");
+							return new PasswordAuthentication("jay@trendiguru.com", "XXXXXX");
 						}
 					  });
 			
