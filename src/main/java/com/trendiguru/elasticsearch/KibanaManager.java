@@ -22,7 +22,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import com.trendiguru.config.ConfigManager;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 abstract class KibanaManager {
 	private static Logger log = Logger.getLogger(KibanaManager.class);
@@ -38,7 +38,7 @@ abstract class KibanaManager {
 	 * @param encodedPostPayLoad - the JSON payload encoded
 	 * @param encodedEntityName - eg Dashboard-DigitalSpy
 	 **/
-	public void add(Publisher publisher, String encodedPostPayLoad, String encodedEntityName) {
+	public void add(User publisher, String encodedPostPayLoad, String encodedEntityName) {
     	//String url = "http://localhost:9000/elasticsearch/.kibana/visualization/" + visualName + "?op_type=create";
     	
     	

@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * Map
@@ -12,7 +12,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class WorldMapVisual extends Visual {
 
-	public WorldMapVisual(Publisher publisher) {
+	public WorldMapVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-world-map";
 		this.title = publisher.getName() + " World Map";

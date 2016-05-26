@@ -95,11 +95,11 @@
 			</result>
 			-->   		    
    		</action>
-   		
+   		<!-- 
 		<action name="admin-*" class="com.trendiguru.struts.actions.AdminAction" method="{1}">
 			<result name="dashboard">/jsp/admin/dashboardAdmin.jsp</result>
 		</action>
-		
+		-->
 		<action name="/elasticsearch/_mget/*" class="com.trendiguru.struts.actions.PublisherAction" method="kibanaProxy">
 		    <result name="proxy">/jsp/publisher/proxy.jsp</result>
 		</action>
@@ -139,7 +139,8 @@
 		</action>
 		
 		<action name="/publisher/*" class="com.trendiguru.struts.actions.PublisherAction" method="{1}">
-		    <result name="dashboard">/jsp/publisher/dashboardPublisher.jsp</result>
+		    <result name="publisherDashboard">/jsp/publisher/dashboardPublisher.jsp</result>
+		    <result name="adminDashboard">/jsp/admin/dashboardAdmin.jsp</result>
 		    <result name="html">/jsp/publisher/html.jsp</result>
 		    
 		    

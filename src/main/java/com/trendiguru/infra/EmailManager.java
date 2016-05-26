@@ -18,13 +18,13 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.trendiguru.config.ConfigManager;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 public class EmailManager {
 
 	private static Logger log = Logger.getLogger(EmailManager.class); 
 
-	public static void newSignUpNotifyTrendiGuru(Publisher publisher) {
+	public static void newSignUpNotifyTrendiGuru(User publisher) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Publisher Name: " + publisher.getName()).append(System.getProperty("line.separator"));
 		sb.append("Publisher Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
@@ -40,7 +40,7 @@ public class EmailManager {
 		//send("jscolton@gmail.com", "Jeremy Colton", "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
 	}
 	
-	public static void newSignUpNotifyPublisher(Publisher publisher) {
+	public static void newSignUpNotifyPublisher(User publisher) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Login address: http://publisher.trendi.guru").append(System.getProperty("line.separator"));
 		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));

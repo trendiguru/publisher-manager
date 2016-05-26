@@ -1,13 +1,13 @@
 package com.trendiguru.struts.actions;
 
 import com.trendiguru.elasticsearch.PublisherManager;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 public class AdminAction extends SecureAction {
-	private Publisher publisher;
+	private User publisher;
 	
 	public String addPublisher() {
-    	Publisher publisher = new Publisher("DigitalSpy","http://www.digitalspy.com/", "user@digitalspy.com", "mypassword");
+    	//User publisher = new User("DigitalSpy","http://www.digitalspy.com/", "user@digitalspy.com", "mypassword");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	
@@ -16,11 +16,11 @@ public class AdminAction extends SecureAction {
 		return EMPTY;
 	}
 
-	public Publisher getPublisher() {
+	public User getPublisher() {
 		return publisher;
 	}
 
-	public void setPublisher(Publisher publisher) {
+	public void setPublisher(User publisher) {
 		this.publisher = publisher;
 	}
 	

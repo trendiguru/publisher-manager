@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * Calculate CTR on our icon in the publisher's page out of all events for the given publisher's site.
@@ -16,7 +16,7 @@ public class ClickThruRateOnOurIconVisual extends Visual {
 
 	String publisherDomainWithoutProtocol;
 	
-	public ClickThruRateOnOurIconVisual(Publisher publisher) {
+	public ClickThruRateOnOurIconVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-our-icon";
 		this.title = publisher.getName() + " Click Thru Rate On Our Icon";

@@ -1,10 +1,10 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 public class TrendingImagesVisual extends Visual {
 
-	public TrendingImagesVisual(Publisher publisher) {
+	public TrendingImagesVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-trending-images";
 		this.title = publisher.getName() + " Top 20 Trending Images";

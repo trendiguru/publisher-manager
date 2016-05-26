@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * unique users
@@ -11,7 +11,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class UniqueUsers extends Visual {
 
-	public UniqueUsers(Publisher publisher) {
+	public UniqueUsers(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-unique-users";
 		this.title = publisher.getName() + " Unique Users";

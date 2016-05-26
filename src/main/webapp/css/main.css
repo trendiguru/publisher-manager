@@ -34,6 +34,13 @@ body {
 .welcome {
 	float:right;
 	color: #fff;
+	font-family: "futura-pt";
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
 }
 
 /* table layout */
@@ -86,7 +93,6 @@ form .right {
 	font-family: "futura-pt";
     font-size: 13px;
     text-transform: uppercase;
-    text-decoration: none;
     letter-spacing: 2px;
     font-weight: 500;
     font-style: normal;

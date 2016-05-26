@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * Pie Chart
@@ -12,7 +12,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class DevicesVisual extends Visual {
 
-	public DevicesVisual(Publisher publisher) {
+	public DevicesVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-devices";
 		this.title = publisher.getName() + " Devices";

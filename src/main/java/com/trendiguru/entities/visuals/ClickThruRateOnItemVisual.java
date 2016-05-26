@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * Calculate CTR on an item/clothing in our iframe/app.
@@ -14,7 +14,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class ClickThruRateOnItemVisual extends Visual {
 
-	public ClickThruRateOnItemVisual(Publisher publisher) {
+	public ClickThruRateOnItemVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-item";
 		this.title = publisher.getName() + " Click Thru Rate On Items";

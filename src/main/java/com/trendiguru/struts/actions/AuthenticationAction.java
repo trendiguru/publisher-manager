@@ -1,6 +1,5 @@
 package com.trendiguru.struts.actions;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,9 +7,8 @@ import org.apache.log4j.Logger;
 
 import com.mongodb.DuplicateKeyException;
 import com.trendiguru.elasticsearch.PublisherManager;
-import com.trendiguru.entities.Admin;
 import com.trendiguru.entities.BaseUser;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
@@ -20,7 +18,6 @@ import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
 import com.trendiguru.infra.Constants;
-import com.trendiguru.infra.EmailManager;
 import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.infra.SessionCache;
 
@@ -54,24 +51,16 @@ public class AuthenticationAction extends BaseAction {
 
 	
 	private BaseUser user;
-	private Publisher publisher;
-	private Admin admin;
+	private User publisher;
+	//private Admin admin;
 
 	public String signUp() {
 	
 		/* non null validation done on client */
 		//Publisher publisher = new Publisher(publisher.getName(), publisher.getDomain(), publisher.getEmail(), publisher.getPassword());
     	
-		byte[] salt = PasswordManager.generateSalt();
-		
-		try {
-			byte[] hashedSaltedDomainAsBytes = PasswordManager.getHashWithSalt(publisher.getDomain(), "SHA-256", salt);
-			String hashedSaltedDomainAsString = PasswordManager.bytetoString(hashedSaltedDomainAsBytes);
-			publisher.setPid(hashedSaltedDomainAsString);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			log.fatal(e);
-		}
+		String randomId = PasswordManager.getRandomPassword(16);
+		publisher.setPid(randomId);
 		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -113,7 +102,7 @@ public class AuthenticationAction extends BaseAction {
 	 */
 	public String login() {
 		
-		BaseUser loggedInUser = authenticationServices.login(user.getEmail(), user.getPassword());
+		User loggedInUser = authenticationServices.login(user.getEmail(), user.getPassword());
 		if (loggedInUser == null) {
 			//don't say email or password doesn't exist!
 			addActionError("Problem logging in as '" + user.getEmail() + "' !");
@@ -132,13 +121,13 @@ public class AuthenticationAction extends BaseAction {
 			token = getSession().getId();
 			session.put(Constants.LOGGED_IN_USER, loggedInUser);
 			
-			if (loggedInUser instanceof Publisher) {
-				publisher = (Publisher)loggedInUser;
+			//if (loggedInUser instanceof User) {
+				publisher = loggedInUser;
 				return LOGGED_IN;
-			} else {
-				admin = (Admin)loggedInUser;
-				return LOGGED_IN;
-			}
+			//} else {
+			//	admin = (Admin)loggedInUser;
+			//	return LOGGED_IN;
+			//}
 			
 		}
 	}
@@ -175,18 +164,18 @@ public class AuthenticationAction extends BaseAction {
 
 
 
-	public Publisher getPublisher() {
+	public User getPublisher() {
 		return publisher;
 	}
 
 
 
-	public void setPublisher(Publisher publisher) {
+	public void setPublisher(User publisher) {
 		this.publisher = publisher;
 	}
 
 
-
+/*
 	public Admin getAdmin() {
 		return admin;
 	}
@@ -197,5 +186,5 @@ public class AuthenticationAction extends BaseAction {
 		this.admin = admin;
 	}
 
- 
+ */
 }

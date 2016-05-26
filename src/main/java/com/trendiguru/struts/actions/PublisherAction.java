@@ -2,6 +2,7 @@ package com.trendiguru.struts.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +13,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trendiguru.elasticsearch.DashboardManager;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.RoleEnum;
+import com.trendiguru.entities.User;
 import com.trendiguru.infra.JsonFactory;
+import com.trendiguru.mongodb.MorphiaManager;
 
 
 public class PublisherAction extends SecureAction {
@@ -25,6 +28,7 @@ public class PublisherAction extends SecureAction {
 	String proxyResponse;
 	String kibanaUrl;
 	String token;
+	List<User> allUsers;
 	
 	/*
 	public String exportDashboard() {
@@ -45,7 +49,20 @@ public class PublisherAction extends SecureAction {
 	}
 	*/
 	
+	/**
+	 * Called by main.js after login
+	 * 
+	 * @return
+	 */
 	public String dashboard() {
+		
+		if (getLoggedInUser().getRole().equals(RoleEnum.Admin)) {
+			allUsers = MorphiaManager.getInstance().findAll();
+			return "adminDashboard";
+		} else {
+			return "publisherDashboard";
+		}
+		
 		/*
 		kibanaDashboard = publisherManager.getKibanaDashboard(getLoggedInPublisher());
 		kibanaDashboard = StringEscapeUtils.escapeHtml3(kibanaDashboard.trim());
@@ -54,7 +71,7 @@ public class PublisherAction extends SecureAction {
 		kibanaDashboard = kibanaDashboard.replaceAll("\\s{2,}", " ");
 		log.info(kibanaDashboard);
 		*/
-		return "dashboard";
+		//return "dashboard";
 	}
 	
 	
@@ -72,7 +89,7 @@ public class PublisherAction extends SecureAction {
 		
 		//String token = request.getParameter("token");
 		log.info("token: " + token);
-		Publisher publisher = getLoggedInPublisher();
+		User publisher = getLoggedInUser();
 		
 		DashboardManager dashboardManager = new DashboardManager(publisher);
 		
@@ -105,7 +122,7 @@ public class PublisherAction extends SecureAction {
 		
 		//String m = request.getMethod();
 		
-		Publisher publisher = getLoggedInPublisher();
+		User publisher = getLoggedInUser();
 		//TODO - if <publisher name> == publisher.name - allow, otherwise block!
 		
 		String kibanaPath = path.replace("/private/", "") + "?";
@@ -160,7 +177,7 @@ public class PublisherAction extends SecureAction {
 	public String timeLionProxy() {
 		String path = request.getServletPath();
 		
-		Publisher publisher = getLoggedInPublisher();
+		User publisher = getLoggedInUser();
 		String kibanaPath = path.replace("/private/app/", "");
 		
 		DashboardManager dashboardManager = new DashboardManager(publisher);
@@ -186,12 +203,17 @@ public class PublisherAction extends SecureAction {
 	 * @return
 	 */
 	private boolean authoriseTimeLionRequest(String query) {
-		if (query.indexOf(getLoggedInPublisher().getDomain()) > -1) {
-			//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+		if (getLoggedInUser().isAdmin()) {
+			log.info("Admin user logged user - allowing ALL TimeLion queries");
 			return true;
 		} else {
-			log.fatal("BLOCKING TimeLion query by publisher " + getLoggedInPublisher().getName() + " for query: " + query);
-			return false;
+			if (query.indexOf(getLoggedInUser().getDomain()) > -1) {
+				//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+				return true;
+			} else {
+				log.fatal("BLOCKING TimeLion query by publisher " + getLoggedInUser().getName() + " for query: " + query);
+				return false;
+			}
 		}
 	}
 	
@@ -223,12 +245,17 @@ public class PublisherAction extends SecureAction {
 	 * @return
 	 */
 	private boolean authoriseGraphRequest(String graphName) {
-		if (graphName.indexOf(getLoggedInPublisher().getEncodedName()) > -1) {
-			//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+		if (getLoggedInUser().isAdmin()) {
+			log.info("Admin user logged user - allowing ALL graph queries");
 			return true;
 		} else {
-			log.fatal("BLOCKING graph request by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
-			return false;
+			if (graphName.indexOf(getLoggedInUser().getEncodedName()) > -1) {
+				//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
+				return true;
+			} else {
+				log.fatal("BLOCKING graph request by publisher " + getLoggedInUser().getName() + " for graph: " + graphName);
+				return false;
+			}
 		}
 	}
 	
@@ -299,6 +326,13 @@ public class PublisherAction extends SecureAction {
 	public void setDashboardName(String dashboardName) {
 		this.dashboardName = dashboardName;
 	}
-	
+
+	public List<User> getAllUsers() {
+		return allUsers;
+	}
+
+	public void setAllUsers(List<User> allUsers) {
+		this.allUsers = allUsers;
+	}
 	
 }

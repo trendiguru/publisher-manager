@@ -1,16 +1,10 @@
 package com.trendiguru.entities;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Field;
-import org.mongodb.morphia.annotations.Index;
 import org.mongodb.morphia.annotations.IndexOptions;
 import org.mongodb.morphia.annotations.Indexed;
-import org.mongodb.morphia.annotations.Indexes;
 
 @Entity("users")
 /*
@@ -18,26 +12,49 @@ import org.mongodb.morphia.annotations.Indexes;
     @Index(value = "domain", fields = @Field("domain"))
 )
 */
-public class Publisher extends BaseUser {
+public class User extends BaseUser {
 	String name;
 	
 	//TODO - make unique so User B cannot create an account with access to Domain A !
 	@Indexed(options = @IndexOptions(unique = true))
 	String domain;
 	String pid;	//data-pid value in web form
+	RoleEnum role;
 	
-	public Publisher() {
+	public User() {
 	}
 	
-	public Publisher(String name, String domain, String email, String password) {
+	/**
+	 * Create Admin user 
+	 * 
+	 * @param name
+	 * @param email
+	 * @param password
+	 */
+	/*
+	public User(String name, String email, String password) {
+		this(name, "", email, password, RoleEnum.Admin);
+	}
+	*/
+	/**
+	 * Create Non admin user
+	 * 
+	 * @param name
+	 * @param domain
+	 * @param email
+	 * @param password
+	 * @param role
+	 */
+	public User(String name, String domain, String email, String password, RoleEnum role) {
 		this.name = name;
 		this.domain = domain;
 		this.email = email;
 		this.password = password;
 		this.createDate = new Date();
+		this.role = role;
 	}
 
-	public Publisher(String name, String domain) {
+	public User(String name, String domain) {
 		this.name = name;
 		this.domain = domain;
 	}
@@ -56,6 +73,14 @@ public class Publisher extends BaseUser {
 
 	public void setPid(String pid) {
 		this.pid = pid;
+	}
+
+	public RoleEnum getRole() {
+		return role;
+	}
+
+	public void setRole(RoleEnum role) {
+		this.role = role;
 	}
 
 	public String getDomain() {
@@ -82,6 +107,8 @@ public class Publisher extends BaseUser {
 		return this.name.replace(" ", "%20");
 	}
 
-	
+	public boolean isAdmin() {
+		return this.role.equals(RoleEnum.Admin);
+	}
 	
 }

@@ -13,7 +13,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.trendiguru.elasticsearch.PublisherManager;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 import com.trendiguru.infra.Constants;
 import com.trendiguru.infra.JsonFactory;
 import com.trendiguru.services.AuthenticationServices;
@@ -52,8 +52,8 @@ public class BaseAction extends ActionSupport implements ServletRequestAware, Se
 		return jsonFactory.toJson(object);
 	}
 	
-	public Publisher getLoggedInPublisher() {
-		return (Publisher)session.get(Constants.LOGGED_IN_USER);
+	public User getLoggedInUser() {
+		return (User)session.get(Constants.LOGGED_IN_USER);
 	}
 	
 /*	public SysAdmin getSysAdminUser() {

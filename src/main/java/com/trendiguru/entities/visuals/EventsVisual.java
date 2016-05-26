@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * Histogram
@@ -12,7 +12,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class EventsVisual extends Visual {
 
-	public EventsVisual(Publisher publisher) {
+	public EventsVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-events-breakdown";
 		this.title = publisher.getName() + " Events Breakdown";

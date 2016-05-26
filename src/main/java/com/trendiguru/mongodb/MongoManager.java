@@ -9,7 +9,7 @@ import org.bson.Document;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 public class MongoManager {
 	private static MongoManager INSTANCE = new MongoManager();
@@ -26,7 +26,7 @@ public class MongoManager {
 		return INSTANCE;
 	}
 
-	public void addPublisher(Publisher publisher) {
+	public void addPublisher(User publisher) {
 		
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH);
 		

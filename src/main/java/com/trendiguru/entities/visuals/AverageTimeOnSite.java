@@ -1,10 +1,10 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 public class AverageTimeOnSite extends Visual {
 
-	public AverageTimeOnSite(Publisher publisher) {
+	public AverageTimeOnSite(User publisher) {
 		this.publisher = publisher;
 		this.title = publisher.getName() + " Average Time on Site";
 		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards

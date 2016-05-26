@@ -2,15 +2,15 @@ package com.trendiguru.elasticsearch;
 
 import java.util.Set;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.VisualEnum;
 
 public class DashboardManager extends KibanaManager {
 
-	Publisher publisher;
+	User publisher;
 	
-	public DashboardManager(Publisher publisher) {
+	public DashboardManager(User publisher) {
 		this.publisher  = publisher;
 	}
 	

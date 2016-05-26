@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 
 public abstract class Visual {
@@ -8,7 +8,7 @@ public abstract class Visual {
 	String elasticSearchId;	// the ES id is made of 2 parts: prefix and suffix eg "fashion-celeb-style" + "world-map"
 	String title;
 	String encodedJSON;
-	Publisher publisher;
+	User publisher;
 	
 	/**
 	 * {@link http://www.infobyip.com/jsonencoderdecoder.php} to encode the JSON

@@ -4,9 +4,8 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.log4j.Logger;
 
-import com.trendiguru.entities.Admin;
 import com.trendiguru.entities.BaseUser;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.mongodb.MorphiaManager;
 
@@ -18,8 +17,8 @@ public class AuthenticationServices {
 		return INSTANCE;
 	}
 	
-	public BaseUser login(String email, String password) {
-		BaseUser foundUser = MorphiaManager.getInstance().findBaseUser(email);
+	public User login(String email, String password) {
+		User foundUser = MorphiaManager.getInstance().findUser(email);
 		
 		if (foundUser == null) {
 			return null;

@@ -10,7 +10,8 @@ import com.mongodb.DuplicateKeyException;
 import com.mongodb.MongoClient;
 import com.trendiguru.config.ConfigManager;
 import com.trendiguru.entities.BaseUser;
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.RoleEnum;
+import com.trendiguru.entities.User;
 
 /**
  * {@link http://mongodb.github.io/morphia/1.1/getting-started/quick-tour/}
@@ -39,7 +40,7 @@ public class MorphiaManager {
 		return INSTANCE;
 	}
 	
-	public void addPublisher(Publisher publisher) throws DuplicateKeyException {
+	public void addPublisher(User publisher) throws DuplicateKeyException {
 		//try {
 		datastore.ensureIndexes();
 		datastore.save(publisher);
@@ -48,9 +49,9 @@ public class MorphiaManager {
 		//}
 	}
 	
-	public BaseUser findBaseUser(String email) {
+	public User findUser(String email) {
 		try {
-			List<BaseUser> publisherList = datastore.createQuery(BaseUser.class)
+			List<User> publisherList = datastore.createQuery(User.class)
 	                .field("email").equal(email)
 	                .asList();
 			
@@ -62,6 +63,16 @@ public class MorphiaManager {
 				log.fatal("There is > 1 user with the email: " + email + " in the DB!");
 				return null;
 			}
+		} catch (Throwable t) {
+			log.fatal(t);
+			return null;
+		}
+	}
+	
+	public List<User> findAll() {
+		try {
+			List<User> publisherList = datastore.createQuery(User.class).field("role").notEqual(RoleEnum.Admin).asList();
+			return publisherList;
 		} catch (Throwable t) {
 			log.fatal(t);
 			return null;

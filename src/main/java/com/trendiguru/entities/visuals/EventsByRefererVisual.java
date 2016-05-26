@@ -1,6 +1,6 @@
 package com.trendiguru.entities.visuals;
 
-import com.trendiguru.entities.Publisher;
+import com.trendiguru.entities.User;
 
 /**
  * DataTable - Each publisher has many pages so events can come from any of these pages.
@@ -11,7 +11,7 @@ import com.trendiguru.entities.Publisher;
  */
 public class EventsByRefererVisual extends Visual {
 
-	public EventsByRefererVisual(Publisher publisher) {
+	public EventsByRefererVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-events-by-referer";
 		this.title = publisher.getName() + " Events By Referer";
