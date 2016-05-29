@@ -89,14 +89,15 @@ form .right {
 	/*margin: 0 2px 0 0;*/
 }
 
-.signUpLink {
+.signUpLink, .tosPrivacyPolicyLink {
 	font-family: "futura-pt";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
     font-style: normal;
-    line-height: 55px;
     color: #fff;
 }
+.signUpLink {
+	line-height: 55px;
 }

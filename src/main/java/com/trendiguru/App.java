@@ -16,6 +16,7 @@ import com.trendiguru.entities.visuals.TrendingImagesVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
+import com.trendiguru.infra.PasswordManager;
 
 //TODO - delete, replaced by AdminAction.addPublisher()
 
@@ -36,6 +37,9 @@ public class App
     	
     	User user = new User("Trendi Guru Admin", "abc", "support@trendiguru2.com", "jacksnack", RoleEnum.Admin);
     	    	
+		String randomId = PasswordManager.getRandomPassword(16);
+		user.setPid(randomId);
+    	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
     	visualSet.add(new EventsVisual(user));

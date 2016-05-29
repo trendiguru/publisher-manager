@@ -107,14 +107,14 @@ public class EmailManager {
 
 		} catch (AddressException e) {
 			log.fatal(e);
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		} catch (MessagingException e) {
 			log.fatal(e);
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			log.fatal(e);
-			throw new RuntimeException(e);
+			//throw new RuntimeException(e);
 			//e.printStackTrace();
 		}	
 		

@@ -58,6 +58,10 @@
 						Your login info will be emailed to you after a successful sign-up
 					</div>
 					
+					<div class="row hint">
+						<a class="tosPrivacyPolicyLink" href="http://www.trendiguru.com/s/ToS-Privacy-Policy.docx">Terms of Service and Privacy Policy</a>
+					</div>
+									
 					<div class="row">
 					 
 						<button type="button" id="signUp" class="newsletter-form-button sqs-system-button sqs-editable-button-layout sqs-editable-button-style sqs-editable-button-shape">Sign Up</button>

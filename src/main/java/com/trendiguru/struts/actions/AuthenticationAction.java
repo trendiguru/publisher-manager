@@ -8,11 +8,14 @@ import org.apache.log4j.Logger;
 import com.mongodb.DuplicateKeyException;
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.BaseUser;
+import com.trendiguru.entities.RoleEnum;
 import com.trendiguru.entities.User;
+import com.trendiguru.entities.visuals.AverageTimeOnSite;
 import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.TrendingCategories;
 import com.trendiguru.entities.visuals.TrendingImagesVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
@@ -61,6 +64,7 @@ public class AuthenticationAction extends BaseAction {
     	
 		String randomId = PasswordManager.getRandomPassword(16);
 		publisher.setPid(randomId);
+		publisher.setRole(RoleEnum.Publisher);
 		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -70,7 +74,9 @@ public class AuthenticationAction extends BaseAction {
     	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
     	visualSet.add(new ClickThruRateOnItemVisual(publisher));
     	visualSet.add(new TrendingImagesVisual(publisher));
-    	visualSet.add(new UniqueUsers(publisher));    	
+    	visualSet.add(new UniqueUsers(publisher));
+    	visualSet.add(new TrendingCategories(publisher));
+    	visualSet.add(new AverageTimeOnSite(publisher));
     	    	
     	try {
     		publisherManager.add(publisher,  visualSet);
