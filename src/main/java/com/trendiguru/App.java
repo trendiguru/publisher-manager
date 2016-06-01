@@ -30,15 +30,16 @@ public class App
 {
     public static void main( String[] args )
     {
-    	//Publisher user = new Publisher("FashionSeoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf");
-    	//Publisher user = new Publisher("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
-    	//Publisher user = new Publisher("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456");
-    	//Publisher user = new Publisher("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
+    	//User user = new User("FashionSeoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher);
+    	//User user = new User("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
+    	//User user = new User("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456", RoleEnum.Publisher);
+    	//User user = new User("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
     	
-    	User user = new User("Trendi Guru Admin", "abc", "support@trendiguru2.com", "jacksnack", RoleEnum.Admin);
+    	//Admin
+    	User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
     	    	
-		String randomId = PasswordManager.getRandomPassword(16);
-		user.setPid(randomId);
+		//String randomId = PasswordManager.getRandomPassword(16);
+		user.setPid("");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();

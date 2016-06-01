@@ -13,6 +13,18 @@ public class AverageTimeOnSite extends Visual {
 	
 	@Override
 	public String getEncodedJSON() {
+		
+		return "{" +
+			"\"title\": \"" + this.title + "\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60,\\\"handleNoResults\\\":true},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"avg\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"duration\\\",\\\"customLabel\\\":\\\"Seconds\\\"}}],\\\"listeners\\\":{}}\"," +
+			"\"uiStateJSON\":\"{}\",\"description\":\"\"," +
+			"\"version\":1," +
+			"\"kibanaSavedObjectMeta\":{" +
+				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"event: \\\\\\\"Page%20Unloaded\\\\\\\" AND PID: \\\\\\\""+ publisher.getPid() +"\\\\\\\"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+			"}" +
+		"}";
+		
+		/*
 		return "{" +
 				"\"title\": \"" + this.title + "\"," +
 			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60,\\\"handleNoResults\\\":true},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"avg\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"duration\\\",\\\"customLabel\\\":\\\"Seconds\\\"}}],\\\"listeners\\\":{}}\"," +
@@ -22,5 +34,6 @@ public class AverageTimeOnSite extends Visual {
 				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"event: \\\\\\\"Page%20Unloaded\\\\\\\" AND publisherDomain: \\\\\\\""+ publisher.getDomain() +"\\\\\\\"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 			"}" +
 		"}";
+		*/
 	}
 }

@@ -23,6 +23,22 @@ public class DevicesVisual extends Visual {
 	
 	@Override
 	public String getEncodedJSON() {
+		
+		return "{" +
+				"\"title\":\"" + this.title + "\"," +
+				"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"pie\\\",\\\"params\\\":{\\\"shareYAxis\\\":true,\\\"addTooltip\\\":true,\\\"addLegend\\\":true,\\\"isDonut\\\":false},\\\"aggs\\\":[" +
+					"{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}}," +
+					"{\\\"id\\\":\\\"5\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"PID.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\""+ publisher.getPid() +"\\\"},\\\"size\\\":5,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"PID\\\"}}," +
+					"{\\\"id\\\":\\\"4\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"publisherDomain.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\"\\\"},\\\"size\\\":1,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Domain\\\"}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"ua_os.raw\\\",\\\"size\\\":15,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"OS\\\"}}" +
+				"],\\\"listeners\\\":{}}\"," +
+				"\"uiStateJSON\":\"{}\"," +
+				"\"description\":\"\",\"version\":1," +
+				"\"kibanaSavedObjectMeta\":{" +
+					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+				"}" +
+			"}";
+		
+		/*
 		return "{" +
 			"\"title\":\"" + this.title + "\"," +
 			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"pie\\\",\\\"params\\\":{\\\"shareYAxis\\\":true,\\\"addTooltip\\\":true,\\\"addLegend\\\":true,\\\"isDonut\\\":false},\\\"aggs\\\":[" +
@@ -38,5 +54,6 @@ public class DevicesVisual extends Visual {
 				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 			"}" +
 		"}";
+		*/
 	}
 }

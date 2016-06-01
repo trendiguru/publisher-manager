@@ -100,7 +100,8 @@ public class PublisherAction extends SecureAction {
 		
 		//String publisherDashboard = "Dashboard-for-DigitalSpy";
 		
-		proxyResponse = dashboardManager.read("app/kibana#/dashboard/" + publisher.getEncodedName() + "-dashboard" + "?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())", "GET", null);
+		//proxyResponse = dashboardManager.read("app/kibana#/dashboard/" + publisher.getEncodedName() + "-dashboard" + "?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2FM,mode:quick,to:now%2FM))&_a=(filters:!(),options:(darkTheme:!f),panels:!((col:1,id:Data-Table-for-Publisher-DigitalSpy,panelIndex:1,row:1,size_x:3,size_y:2,type:visualization),(col:4,id:Histogram-for-Publisher-DigitalSpy,panelIndex:2,row:1,size_x:3,size_y:2,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'DigitalSpy%20Dashboard',uiState:())", "GET", null);
+		proxyResponse = dashboardManager.read("app/kibana#/dashboard/" + publisher.getEncodedName() + "-dashboard" + "?", "GET", null);
 		
 		return "html";
 	}

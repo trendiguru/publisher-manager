@@ -35,12 +35,11 @@ public class PublisherManager {
 				
 				publisher.setSalt(PasswordManager.bytetoString(salt));
 				publisher.setPassword(hashedSaltedPasswordAsString);
-								
+						
 				//1. add user to Mongo
 				morphiaManager.addPublisher(publisher);
 				log.info("1. Added to mongodb, publisher: " + publisher.getEmail());
 				
-				/*
 		    	VisualizationManager manager = new VisualizationManager();
 		    	
 		    	for (Visual visual : visualsToAddSet) {
@@ -64,7 +63,7 @@ public class PublisherManager {
 		    	EmailManager.newSignUpNotifyPublisher(publisher);
 		    			    	
 		    	//log.info("added kibana dashboard for publisher: " + publisher.getEmail());
-		    	*/
+		    	
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
