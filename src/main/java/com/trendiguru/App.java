@@ -11,6 +11,7 @@ import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.RevenueVisual;
 import com.trendiguru.entities.visuals.TrendingCategories;
 import com.trendiguru.entities.visuals.TrendingImagesVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
@@ -31,15 +32,15 @@ public class App
     public static void main( String[] args )
     {
     	//User user = new User("FashionSeoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher);
-    	//User user = new User("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465");
+    	User user = new User("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher);
     	//User user = new User("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456", RoleEnum.Publisher);
     	//User user = new User("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
     	
     	//Admin
-    	User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
+    	//User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
     	    	
-		//String randomId = PasswordManager.getRandomPassword(16);
-		user.setPid("");
+		String randomId = PasswordManager.getRandomPassword(16);
+		user.setPid("robshelter");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -52,6 +53,7 @@ public class App
     	visualSet.add(new UniqueUsers(user));
     	visualSet.add(new TrendingCategories(user));
     	visualSet.add(new AverageTimeOnSite(user));
+    	visualSet.add(new RevenueVisual(user));
     	    	
     	//publisherManager.add(publisher,  visualSet);
     	publisherManager.add(user,  visualSet);

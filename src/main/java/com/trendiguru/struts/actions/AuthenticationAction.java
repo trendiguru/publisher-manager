@@ -15,6 +15,7 @@ import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.RevenueVisual;
 import com.trendiguru.entities.visuals.TrendingCategories;
 import com.trendiguru.entities.visuals.TrendingImagesVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
@@ -77,7 +78,8 @@ public class AuthenticationAction extends BaseAction {
     	visualSet.add(new UniqueUsers(publisher));
     	visualSet.add(new TrendingCategories(publisher));
     	visualSet.add(new AverageTimeOnSite(publisher));
-    	    	
+    	visualSet.add(new RevenueVisual(publisher));
+    	    	    	
     	try {
     		publisherManager.add(publisher,  visualSet);
     		return "pid";
