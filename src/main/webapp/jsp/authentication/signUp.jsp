@@ -59,7 +59,7 @@
 					</div>
 					
 					<div class="row hint">
-						<a class="tosPrivacyPolicyLink" href="http://www.trendiguru.com/s/ToS-Privacy-Policy.docx">Terms of Service and Privacy Policy</a>
+						<input type="checkbox" id="agreeToTAndC" checked> I agree to your <a class="tosPrivacyPolicyLink" href="http://www.trendiguru.com/s/ToS-Privacy-Policy.docx">Terms of Service and Privacy Policy</a>
 					</div>
 									
 					<div class="row">

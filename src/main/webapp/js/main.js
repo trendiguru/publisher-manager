@@ -58,45 +58,46 @@ manager.auth.init = function() {
 		
 		//console.log("validating form...");
 		//manager.infra.validate($('#signUpForm').toJSO());
+		
 		var formValid = manager.infra.validate();
 		
 		//console.log(formValid);
 		
 		if (formValid) {
-			console.log("submitting form...");
-			$("#errorBox").text("").hide();
 			
-			
-			
-			$.post(
-				"auth/signUp", 
-				$("#signUpForm").serializeArray(), 
-				function(response, status, xhr) { 
-					if (manager.infra.requestIsValid(xhr)) { 
-						console.log("now tell me what to do...");
-						//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
-						
-						
-						$("#signUpForm").hide();
-						$("#congratulations").show();
-						
-						$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
-						
-						
-						//window.location.href = "/publisher-manager";
-					
-					}
+			if($("#agreeToTAndC").is(":checked")) {
+				console.log("submitting form...");
+				$("#errorBox").text("").hide();
 				
-				}, "json")
-				//})
-				.error(function(qXHR, textStatus, errorThrown) {
-					console.log("error: " + errorThrown);
-					alert("error: " + errorThrown);
-				}
-			);
+				$.post(
+					"auth/signUp", 
+					$("#signUpForm").serializeArray(), 
+					function(response, status, xhr) { 
+						if (manager.infra.requestIsValid(xhr)) { 
+							console.log("now tell me what to do...");
+							//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
+							
+							$("#signUpForm").hide();
+							$("#congratulations").show();
+							
+							$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
+						}
+					
+					}, "json")
+					//})
+					.error(function(qXHR, textStatus, errorThrown) {
+						console.log("error: " + errorThrown);
+						alert("error: " + errorThrown);
+					}
+				);
+				
+			} else {
+				manager.infra.showErrorBox("Please confirm that you agree to our Terms Of Service and Privacy Policy");
+	        }
 			
 		}
 	});
+	
 };
 
 manager.infra.captchaCompletedOk = function() {

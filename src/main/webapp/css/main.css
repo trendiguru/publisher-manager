@@ -101,3 +101,9 @@ form .right {
 .signUpLink {
 	line-height: 55px;
 }
+
+#agreeToTAndC {
+	margin: 0;
+    position: relative;
+    top: 2px;
+}
