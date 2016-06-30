@@ -139,15 +139,15 @@ manager.infra.validate = function() {
 		if (password.val() == repeatPassword.val()) {
 			//domain is a domain?
 			var domain = $("#signUpForm input[name='publisher.domain']");
-			if (domain.val().indexOf(".") > -1) {
+			//if (domain.val().indexOf(".") > -1) {
 				
-				if (domain.val().indexOf("http") > -1) {
+				/*if (domain.val().indexOf("http") > -1) {
 					//protocol is not required
 					manager.infra.showErrorBox("Domain must exclude any protocol eg 'http://' ");
 					domain.addClass("invalid");
 					domain.focus();
 					return false;
-				} else {
+				} else {*/
 				
 					//check captcha form
 					var captchaCompletedOk = manager.infra.captchaCompletedOk();
@@ -158,14 +158,14 @@ manager.infra.validate = function() {
 						manager.infra.showErrorBox("You can't leave Captcha Code empty");
 						//$("#rcaptcha").addClass("invalid");
 					}
-				}
+				//}
 				
-			} else {
+			/*} else {
 				manager.infra.showErrorBox("Domain must be valid!");
 				domain.addClass("invalid");
 				domain.focus();
 				return false;
-			}
+			}*/
 		} else {
 			manager.infra.showErrorBox("Passwords must match!");
 			password.addClass("invalid");

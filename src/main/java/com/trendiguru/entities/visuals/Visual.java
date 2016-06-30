@@ -33,10 +33,10 @@ public abstract class Visual {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+	/*
 	public String getKibanaIncludePatternValue() {
 		return ".*" + publisher.getDomain() + ".*";
 	}
-	
+	*/
 	
 }

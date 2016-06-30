@@ -32,7 +32,8 @@ public class App
     public static void main( String[] args )
     {
     	//User user = new User("FashionSeoul","fashionseoul.com", "tracker@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher);
-    	User user = new User("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher);
+    	//User user = new User("Rob Shelter","robshelter.blogspot.co.il", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher);
+    	User user = new User("Venus Imaging Education LLC","amaze-magazine.com", "connect@viethrive.com", "Robsdemartino465", RoleEnum.Publisher);
     	//User user = new User("Jeremy Test", "fashioncelebstyle.com", "jscolton@gmail.com", "123456", RoleEnum.Publisher);
     	//User user = new User("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
     	

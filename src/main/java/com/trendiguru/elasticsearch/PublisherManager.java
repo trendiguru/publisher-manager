@@ -48,13 +48,13 @@ public class PublisherManager {
 		    		//2. add Kibana visuals
 		    		manager.add(publisher, visual.getEncodedJSON(), visual.getElasticSearchId());
 		    	}
-		    	log.info("2. Added visuals for publisher: " + publisher.getName() + " and domain: " + publisher.getDomain());
+		    	log.info("2. Added visuals for publisher: " + publisher.getName());
 		    	
 		    	DashboardManager dbManager = new DashboardManager(publisher);
 		    	
 		    	//3. add kibana dashboard that references all the added visuals above
 		    	dbManager.addDashBoard(visualsToAddSet);
-		    	log.info("3. Added dashboard for publisher: " + publisher.getName() + " and domain: " + publisher.getDomain());
+		    	log.info("3. Added dashboard for publisher: " + publisher.getName());
 		    	
 		    	//4. email biz people
 		    	EmailManager.newSignUpNotifyTrendiGuru(publisher);

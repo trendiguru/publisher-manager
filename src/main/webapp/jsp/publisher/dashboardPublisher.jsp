@@ -22,7 +22,7 @@
 		<header class="header-inner">
 			<div id="siteTitle">TrendiGuru - Publisher Analytics</div>
 			<div class="welcome">
-				Welcome ${loggedInUser.name}
+				Welcome ${loggedInUser.contactName}
 				<div class="buttons">
 					<button type="button" id="downloadDashboard">Download dashboard</button>
 					<button type="button" id="signOut">Sign out</button>

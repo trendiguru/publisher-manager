@@ -208,7 +208,7 @@ public class PublisherAction extends SecureAction {
 			log.info("Admin user logged user - allowing ALL TimeLion queries");
 			return true;
 		} else {
-			if (query.indexOf(getLoggedInUser().getDomain()) > -1) {
+			if (query.indexOf(getLoggedInUser().getPid()) > -1) {
 				//log.info("Allowing Graph requset by publisher " + getLoggedInPublisher().getName() + " for graph: " + graphName);
 				return true;
 			} else {

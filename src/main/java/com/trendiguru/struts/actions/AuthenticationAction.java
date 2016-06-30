@@ -85,8 +85,8 @@ public class AuthenticationAction extends BaseAction {
     		return "pid";
     	} catch (DuplicateKeyException de) {
     		//addActionError("email: " + publisher.getEmail() + " already exists!");
-    		if (de.getErrorMessage().contains("domain")) {
-    			addFieldError("publisher.domain", "The domain '" + publisher.getDomain() + "' has already been registered!!");
+    		if (de.getErrorMessage().contains("name")) {
+    			addFieldError("publisher.name", "The company name '" + publisher.getName() + "' has already been registered!!");
     		} else {
     			addFieldError("publisher.email", "The email '" + publisher.getEmail() + "' has already been registered!");
     		}

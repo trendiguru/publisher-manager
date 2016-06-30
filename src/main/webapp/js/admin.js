@@ -9,7 +9,7 @@ manager.admin.init = function() {
 	
 	$("#selectDashboard").change(function () {
 		manager.admin.loadIframe(this.value);
-	    console.log(end);
+	    //console.log(end);
 	});
 };
 
