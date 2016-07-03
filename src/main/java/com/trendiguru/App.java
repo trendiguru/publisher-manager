@@ -41,7 +41,7 @@ public class App
     	//User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
     	    	
 		String randomId = PasswordManager.getRandomPassword(16);
-		user.setPid("robshelter");
+		user.setPid(randomId);
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();

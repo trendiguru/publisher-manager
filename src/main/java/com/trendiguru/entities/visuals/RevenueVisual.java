@@ -27,7 +27,7 @@ public class RevenueVisual extends Visual {
 	public String getEncodedJSON() {
 		return "{" +
 				"\"title\": \"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60,\\\"handleNoResults\\\":true},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"sum\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"dummy_field\\\",\\\"json\\\":\\\"{ \\\\\\\"script\\\\\\\":\\\\\\\"doc['event.raw'].value == 'Result%20Clicked' ? (0.25 * 0.5) : 0\\\\\\\", \\\\\\\"lang\\\\\\\": \\\\\\\"groovy\\\\\\\" }\\\",\\\"customLabel\\\":\\\"Revenue (US $)\\\"}}],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"metric\\\",\\\"params\\\":{\\\"fontSize\\\":60,\\\"handleNoResults\\\":true},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"sum\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{\\\"field\\\":\\\"dummy_field\\\",\\\"json\\\":\\\"{ \\\\\\\"script\\\\\\\":\\\\\\\"doc['event.raw'].value == 'Result%20Clicked' ? (0.25 * 0.5) : 0\\\\\\\", \\\\\\\"lang\\\\\\\": \\\\\\\"groovy\\\\\\\" }\\\",\\\"customLabel\\\":\\\"Approximate (US $)\\\"}}],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\",\"description\":\"\",\"version\":1," +
 			"\"kibanaSavedObjectMeta\":{" +
 				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"PID:"+ publisher.getPid() + "\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +

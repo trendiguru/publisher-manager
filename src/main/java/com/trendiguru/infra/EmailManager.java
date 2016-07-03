@@ -27,14 +27,14 @@ public class EmailManager {
 	public static void newSignUpNotifyTrendiGuru(User publisher) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Publisher Name: " + publisher.getName()).append(System.getProperty("line.separator"));
-		sb.append("Publisher Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
-		sb.append("Publisher Email: " + publisher.getEmail()).append(System.getProperty("line.separator"));
+		sb.append("Publisher Contact Name: " + publisher.getContactName()).append(System.getProperty("line.separator"));
+		sb.append("Publisher Contact Email: " + publisher.getEmail()).append(System.getProperty("line.separator"));
 		
 		ArrayNode emailArrayNode = ConfigManager.getInstance().getEmails();
 		Iterator<JsonNode> emailIterator = emailArrayNode.elements();
 		while (emailIterator.hasNext()) {
 		    JsonNode emailNode = emailIterator.next();
-		    send(emailNode.get("email").textValue(), emailNode.get("name").textValue(), "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
+		    send(emailNode.get("email").textValue(), emailNode.get("name").textValue(), "New Publisher SignUp - " + publisher.getName(), sb.toString());
 		}
 		
 		//send("jscolton@gmail.com", "Jeremy Colton", "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
@@ -45,7 +45,7 @@ public class EmailManager {
 		sb.append("Login address: http://publisher.trendi.guru").append(System.getProperty("line.separator"));
 		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));
 		sb.append("Password: " + publisher.getRepeatPassword()).append(System.getProperty("line.separator"));
-		sb.append("Domain: " + publisher.getDomain()).append(System.getProperty("line.separator"));
+		sb.append("Company Name: " + publisher.getName()).append(System.getProperty("line.separator"));
 		sb.append("Integration code (place in <head> of your site): <script type='text/javascript' id='fzz-script' data-pid='" + publisher.getPid() + "' src='https://fzz.storage.googleapis.com/fzz.min.js' async='' defer=''></script>");
 			
 		
