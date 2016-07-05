@@ -120,5 +120,12 @@
         </configuration>
       </plugin>
     </plugins>
+	<build>
+    <resources>
+        <resource>
+            <directory>src/main/</directory>
+        </resource>
+    </resources>
+ </build>
   </build>
 </project>
