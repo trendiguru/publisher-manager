@@ -122,7 +122,7 @@
     </plugins>
 	<resources>
         <resource>
-            <directory>src/main/java/</directory>
+            <directory>src/main/java</directory>
         </resource>
     </resources>
   </build>
