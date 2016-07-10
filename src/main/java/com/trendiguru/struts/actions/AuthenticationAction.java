@@ -14,7 +14,7 @@ import com.trendiguru.entities.visuals.AverageTimeOnSite;
 import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
 import com.trendiguru.entities.visuals.ClickThruRateOnOurIconVisual;
 import com.trendiguru.entities.visuals.DevicesVisual;
-import com.trendiguru.entities.visuals.EventsVisual;
+import com.trendiguru.entities.visuals.EventsTableVisual;
 import com.trendiguru.entities.visuals.RevenueVisual;
 import com.trendiguru.entities.visuals.TrendingCategories;
 import com.trendiguru.entities.visuals.TrendingImagesVisual;
@@ -69,7 +69,7 @@ public class AuthenticationAction extends BaseAction {
 		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
-    	visualSet.add(new EventsVisual(publisher));
+    	visualSet.add(new EventsTableVisual(publisher));
     	visualSet.add(new DevicesVisual(publisher));
     	visualSet.add(new WorldMapVisual(publisher));
     	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
