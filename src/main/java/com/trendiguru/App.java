@@ -13,7 +13,7 @@ import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsTableVisual;
 import com.trendiguru.entities.visuals.RevenueVisual;
 import com.trendiguru.entities.visuals.TrendingCategories;
-import com.trendiguru.entities.visuals.TrendingImagesVisual;
+import com.trendiguru.entities.visuals.TrendingImagesTableVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
@@ -43,8 +43,8 @@ public class App
     	User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
     	    	
 		String randomId = PasswordManager.getRandomPassword(16);
-		user.setPid(randomId);
-		//user.setPid("123");
+		//user.setPid(randomId);
+		user.setPid("123");
     	
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -53,7 +53,7 @@ public class App
     	visualSet.add(new WorldMapVisual(user));
     	visualSet.add(new ClickThruRateOnOurIconVisual(user));
     	visualSet.add(new ClickThruRateOnItemVisual(user));
-    	visualSet.add(new TrendingImagesVisual(user));
+    	visualSet.add(new TrendingImagesTableVisual(user));
     	visualSet.add(new UniqueUsers(user));
     	visualSet.add(new TrendingCategories(user));
     	visualSet.add(new AverageTimeOnSite(user));

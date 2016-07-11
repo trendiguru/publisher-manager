@@ -40,7 +40,7 @@ public class DashboardManager extends KibanaManager {
 					"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Devices\\\",\\\"panelIndex\\\":3,\\\"row\\\":3,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"type\\\":\\\"visualization\\\"}," +
 					"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Click-Thru-Rate-On-Our-Icon\\\",\\\"panelIndex\\\":4,\\\"row\\\":6,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +
 					"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Click-Thru-Rate-On-Items\\\",\\\"panelIndex\\\":5,\\\"row\\\":8,\\\"size_x\\\":6,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +
-					"{\\\"col\\\":1,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Top-20-Trending-Images\\\",\\\"panelIndex\\\":6,\\\"row\\\":6,\\\"size_x\\\":6,\\\"size_y\\\":4,\\\"type\\\":\\\"visualization\\\"}," +
+					"{\\\"col\\\":1,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Top-20-Trending-Clicked-Images\\\",\\\"panelIndex\\\":6,\\\"row\\\":6,\\\"size_x\\\":6,\\\"size_y\\\":4,\\\"type\\\":\\\"visualization\\\"}," +
 					"{\\\"col\\\":4,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Unique-Users\\\",\\\"panelIndex\\\":7,\\\"row\\\":1,\\\"size_x\\\":3,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +
 					"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Top-20-Trending-Categories\\\",\\\"panelIndex\\\":8,\\\"row\\\":10,\\\"size_x\\\":6,\\\"size_y\\\":3,\\\"type\\\":\\\"visualization\\\"}," +
 					"{\\\"col\\\":7,\\\"id\\\":\\\""+ publisher.getEncodedName() +"-Average-Time-on-Site\\\",\\\"panelIndex\\\":9,\\\"row\\\":1,\\\"size_x\\\":3,\\\"size_y\\\":2,\\\"type\\\":\\\"visualization\\\"}," +

@@ -17,7 +17,7 @@ import com.trendiguru.entities.visuals.DevicesVisual;
 import com.trendiguru.entities.visuals.EventsTableVisual;
 import com.trendiguru.entities.visuals.RevenueVisual;
 import com.trendiguru.entities.visuals.TrendingCategories;
-import com.trendiguru.entities.visuals.TrendingImagesVisual;
+import com.trendiguru.entities.visuals.TrendingImagesTableVisual;
 import com.trendiguru.entities.visuals.UniqueUsers;
 import com.trendiguru.entities.visuals.Visual;
 import com.trendiguru.entities.visuals.WorldMapVisual;
@@ -74,7 +74,7 @@ public class AuthenticationAction extends BaseAction {
     	visualSet.add(new WorldMapVisual(publisher));
     	visualSet.add(new ClickThruRateOnOurIconVisual(publisher));
     	visualSet.add(new ClickThruRateOnItemVisual(publisher));
-    	visualSet.add(new TrendingImagesVisual(publisher));
+    	visualSet.add(new TrendingImagesTableVisual(publisher));
     	visualSet.add(new UniqueUsers(publisher));
     	visualSet.add(new TrendingCategories(publisher));
     	visualSet.add(new AverageTimeOnSite(publisher));
