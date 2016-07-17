@@ -56,6 +56,11 @@ public class ConfigManager {
 		JsonNode n =  configJson.get("kibana").get("domain");
 		return validateParam(n);
 	}
+	
+	public String getSenseDomain() {
+		JsonNode n =  configJson.get("sense").get("domain");
+		return validateParam(n);
+	}
 
 	public String getEnv() {
 		return env;

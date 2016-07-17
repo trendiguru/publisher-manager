@@ -5,6 +5,9 @@
 	"kibana": {
 		"domain":"nginx-1:9000"
 	},
+	"sense" : {
+		"domain": "nginx-1:9200"
+	},
 	"emails": [{
 		"name": "Enqrique",
 		"email": "enrique@trendiguru.com"

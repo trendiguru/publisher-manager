@@ -5,6 +5,9 @@
 	"kibana": {
 		"domain": "localhost:9000"
 	},
+	"sense" : {
+		"domain": "localhost:9200"
+	},
 	"emails": [{
 		"name": "Jay",
 		"email": "jay@trendiguru.com"
