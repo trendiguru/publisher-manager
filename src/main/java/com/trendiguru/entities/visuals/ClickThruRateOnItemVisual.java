@@ -28,7 +28,7 @@ public class ClickThruRateOnItemVisual extends Visual {
 		
 		return "{" +
 				"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('PID:"+ publisher.getPid() + " AND event:\\\\\\\"Result%20Clicked\\\\\\\"').divide(.es('PID:"+ publisher.getPid() + " AND event:*')).multiply(100).bars().label('Rate as %')\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
+			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('PID:"+ publisher.getPid() + " AND event:\\\\\\\"Result%20Clicked\\\\\\\"').divide(.es('PID:"+ publisher.getPid() + " AND event:*')).multiply(100).lines().label('Rate as %').legend('ne')\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +
 			"\"uiStateJSON\":\"{}\"," +
 			"\"description\":\"\"," +
 			"\"version\":1," +
