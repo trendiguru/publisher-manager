@@ -30,7 +30,7 @@ public class EventsVisual extends Visual {
 				"\"uiStateJSON\":\"{}\",\"description\":\"\"," +
 				"\"version\":1," +
 				"\"kibanaSavedObjectMeta\":{" +
-					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 				"}" +
 			"}";
 		
@@ -40,7 +40,7 @@ public class EventsVisual extends Visual {
 			"\"uiStateJSON\":\"{}\",\"description\":\"\"," +
 			"\"version\":1," +
 			"\"kibanaSavedObjectMeta\":{" +
-				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 			"}" +
 		"}";
 		/*

@@ -49,6 +49,7 @@ abstract class KibanaManager {
 
     	// add header
     	post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");
+    	//post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46aG93ZHlkMDBkMzM=");
     	post.setHeader("Accept", "application/json, text/plain, */*");
     	//post.setHeader("Content-Type", "application/json;charset=UTF-8");
     	post.setHeader("Connection", "keep-alive");
@@ -132,6 +133,7 @@ abstract class KibanaManager {
     	
     	// add header
     	request.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");
+    	//request.setHeader("Authorization", "Basic a2liYW5hYWRtaW46aG93ZHlkMDBkZWU=");
     	//request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     	//request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     	

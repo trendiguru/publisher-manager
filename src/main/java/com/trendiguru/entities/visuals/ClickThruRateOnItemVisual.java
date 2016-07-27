@@ -14,6 +14,8 @@ import com.trendiguru.entities.User;
  */
 public class ClickThruRateOnItemVisual extends Visual {
 
+	//TODO - add index
+	
 	public ClickThruRateOnItemVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-click-thru-rate-item";

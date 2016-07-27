@@ -20,7 +20,7 @@ public class AverageTimeOnSite extends Visual {
 			"\"uiStateJSON\":\"{}\",\"description\":\"\"," +
 			"\"version\":1," +
 			"\"kibanaSavedObjectMeta\":{" +
-				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"event: \\\\\\\"Page%20Unloaded\\\\\\\" AND PID: \\\\\\\""+ publisher.getPid() +"\\\\\\\"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"event: \\\\\\\"Page%20Unloaded\\\\\\\" AND PID: \\\\\\\""+ publisher.getPid() +"\\\\\\\"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 			"}" +
 		"}";
 		

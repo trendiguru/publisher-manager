@@ -3,7 +3,7 @@
 		"domain": "localhost"
 	},
 	"kibana": {
-		"domain": "localhost:9000"
+		"domain": "localhost:9001"
 	},
 	"sense" : {
 		"domain": "localhost:9200"

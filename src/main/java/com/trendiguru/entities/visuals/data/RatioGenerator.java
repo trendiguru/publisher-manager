@@ -16,7 +16,11 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.PKIXParameters;
 import java.security.cert.TrustAnchor;
 import java.security.cert.X509Certificate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,11 +29,6 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.TrustManagerFactory;
 
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -54,6 +53,12 @@ import com.trendiguru.mongodb.MorphiaManager;
  * 
  * This tool needs to inject the value each hour for each publisher.
  * 
+ * Domains are discovered for each PID in our Mongo DB.  The 2 ratios are then calculated for each domain:
+ * - CTR on our icon
+ * - CTR on a resulting item
+ * 
+ * A crontab job calls this code every hour, every day.
+ * 
  * @author Jeremy
  *
  */
@@ -62,6 +67,10 @@ public class RatioGenerator {
 	private static Logger log = Logger.getLogger(RatioGenerator.class);
 	private ConfigManager configManager = ConfigManager.getInstance();
 	
+	//TODO - change to production mode
+	//
+	//
+	//
 	public static String MODE = "test";
 	public static String EVENT_CLICK_ON_OUR_BUTTON = "Trendi%20Button%20Clicked";
 	public static String EVENT_CLICK_ON_RESULT_ITEM = "Result%20Clicked";
@@ -70,10 +79,14 @@ public class RatioGenerator {
 	public static String RATIO_EVENT_CLICK_ON_RESULT_ITEM = "Ratio%20Result%20Clicked";
 	
 	public static void main( String[] args ) {
-		new RatioGenerator();
+		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");	//index format for ES
+		Date today = Calendar.getInstance().getTime();
+		String indexDate = df.format(today);
+		log.info("Date: " + indexDate);
+		new RatioGenerator(indexDate);
     }
 	
-	public RatioGenerator() {
+	public RatioGenerator(String indexDate) {
 		
 		try {
 			addLetsEncryptCert();
@@ -86,15 +99,17 @@ public class RatioGenerator {
 		for (User publisher : publisherList) {
 			log.info("PID: " + publisher.getPid() + ", Name: " + publisher.getName());
 			
-			List<String> domainsPerPIDList = getPublisherDomainsPerPID(publisher.getPid(), "2016.07.12");
+			List<String> domainsPerPIDList = getPublisherDomainsPerPID(publisher.getPid(), indexDate);
 			if (domainsPerPIDList.isEmpty()) {
 				log.info("- No events with a domain for this PID in ES!");
 			} else {
 				for (String publisherDomain : domainsPerPIDList) {
 					
 					String ourButtonClickRatio = getRatio(publisherDomain, "2016.07.12", EVENT_CLICK_ON_OUR_BUTTON);
-					
 					injectRatioIntoElasticSearch(ourButtonClickRatio, RATIO_EVENT_CLICK_ON_OUR_BUTTON, publisher.getPid(), publisherDomain);
+					
+					String resultItemButtonClickRatio = getRatio(publisherDomain, "2016.07.12", EVENT_CLICK_ON_RESULT_ITEM);
+					injectRatioIntoElasticSearch(resultItemButtonClickRatio, RATIO_EVENT_CLICK_ON_RESULT_ITEM, publisher.getPid(), publisherDomain);
 					
 				}
 			}
@@ -254,6 +269,7 @@ public class RatioGenerator {
 	 * @param PID
 	 * @return
 	 */
+	/*
 	public String getRatioPerPIDJSON(String clickEvent, String PID) {
 		return "{" +
 	
@@ -275,6 +291,7 @@ public class RatioGenerator {
 		  "}" +
 		"}";
 	}
+	*/
 	
 	public String getRatioPerPublisherDomainJSON(String clickEvent, String publisherDomain) {
 		return "{" +
@@ -383,6 +400,7 @@ public class RatioGenerator {
 		try {
 			url = new URL("https://track.trendi.guru/tr/test?PID=" + PID + "&event=" + ratioEvent + "&ratio=" + ratio + "&publisherDomain=" + publisherDomain + "&rv=" + rv);
 		
+			/* this works with the newly added lets-encrypt cert.  But the Apache HttpClient does not work with it! */
         	URLConnection connection = url.openConnection();
         
             connection.connect();

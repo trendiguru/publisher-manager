@@ -3,10 +3,10 @@
 		"domain":"mongodb1-instance-1"
 	},
 	"kibana": {
-		"domain":"nginx-1:9000"
+		"domain":"nginx-1-clone:9000"
 	},
 	"sense" : {
-		"domain": "nginx-1:9200"
+		"domain": "nginx-1-clone:9200"
 	},
 	"emails": [{
 		"name": "Enqrique",

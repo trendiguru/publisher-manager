@@ -22,7 +22,7 @@ public class TrendingImagesVisual extends Visual {
 			"\"description\":\"\"," +
 			"\"version\":1," +
 			"\"kibanaSavedObjectMeta\":{" +
-				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"analyze_wildcard\\\":true,\\\"query\\\":\\\"*\\\"}},\\\"filter\\\":[]}\"" +
+				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"analyze_wildcard\\\":true,\\\"query\\\":\\\"*\\\"}},\\\"filter\\\":[]}\"" +
 			"}" +
 		"}";
 		/*

@@ -18,6 +18,10 @@ public abstract class Visual {
 	 */
 	public abstract String getEncodedJSON();
 
+	public String getIndexName() {
+		return "logstash-*";
+	}
+	
 	public String getElasticSearchId() {
 		return elasticSearchId;
 	}

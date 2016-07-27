@@ -31,6 +31,8 @@ public class ClickThruRateOnOurIconVisual extends Visual {
 	@Override
 	public String getEncodedJSON() {
 		
+		//add index!
+		
 		return "{" +
 				"\"title\":\"" + this.title + "\"," +
 			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"timelion\\\",\\\"params\\\":{\\\"expression\\\":\\\".es('PID:"+ publisher.getPid() + " AND event:\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"').divide(.es('PID:"+ publisher.getPid() + " AND event:*')).multiply(100).lines().fit('average').label('Rate as %').legend('ne')\\\",\\\"interval\\\":\\\"1d\\\"},\\\"aggs\\\":[],\\\"listeners\\\":{}}\"," +

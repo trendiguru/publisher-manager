@@ -31,7 +31,7 @@ public class WorldMapVisual extends Visual {
 				"\"description\":\"\"," +
 				"\"version\":1," +
 				"\"kibanaSavedObjectMeta\":{" +
-					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"PID:fashionseoul\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"PID:" + publisher.getPid() + "\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 				"}" +
 			"}";
 		/*

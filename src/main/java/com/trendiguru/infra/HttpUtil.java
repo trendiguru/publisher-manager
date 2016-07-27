@@ -47,6 +47,7 @@ public class HttpUtil {
     	
     	// add header
     	request.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");
+    	//request.setHeader("Authorization", "Basic a2liYW5hYWRtaW46aG93ZHlkMDBkZWU=");
     	//request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     	//request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     	
@@ -109,7 +110,8 @@ public class HttpUtil {
 		HttpPost post = new HttpPost(url);
 		
     	// add headers
-    	post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");   	
+    	post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46ZXhhbXBsZXVzZXI=");   
+    	//post.setHeader("Authorization", "Basic a2liYW5hYWRtaW46aG93ZHlkMDBkZWU=");
     	post.setHeader("kbn-version", "4.5.0");	
     	
     	StringBuffer result = null;

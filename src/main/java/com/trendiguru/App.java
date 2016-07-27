@@ -44,6 +44,10 @@ public class App
     	userMap.put("FCZEUP7IjVXV2s23", new User("Jeremy Test", "fashioncelebstyle", "jscolton@gmail.com", "123456", RoleEnum.Publisher));
     	userMap.put("abc", new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin));
     	
+    	//chrome plugin distributor
+    	userMap.put("mz1_ND", new User("Monetizus","Monetizus", "reborn@monetizus.com", "changetheworld", RoleEnum.Publisher));
+    	
+    	
     	//User user = new User("FashionSeoul","Support", "support@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher);
     	//User user = new User("Rob Shelter","Rob", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher);
     	//User user = new User("Venus Imaging Education LLC","connect", "connect@viethrive.com", "Robsdemartino465", RoleEnum.Publisher);
@@ -66,7 +70,7 @@ public class App
     	
 			String randomId = PasswordManager.getRandomPassword(16);
 			//user.setPid(randomId);
-			//user.setPid("5767jA8THOn2J0DD");
+			user.setPid(entry.getKey());
 	    	
 	    	PublisherManager publisherManager = PublisherManager.getInstance();
 	    	Set<Visual> visualSet = new HashSet<Visual>();
