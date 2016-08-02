@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trendiguru.elasticsearch.DashboardManager;
 import com.trendiguru.entities.RoleEnum;
 import com.trendiguru.entities.User;
+import com.trendiguru.entities.dashboard.DashboardFilterData;
 import com.trendiguru.infra.JsonFactory;
 import com.trendiguru.mongodb.MorphiaManager;
 
@@ -29,6 +30,23 @@ public class PublisherAction extends SecureAction {
 	String kibanaUrl;
 	String token;
 	List<User> allUsers;
+	
+	List<String> countryListPerPID;
+	List<String> domainListPerPID;
+	
+	String pidOveride;
+	
+	
+	public String dashboardFilterData() {
+		User publisher = getLoggedInUser();
+		if (publisher.getRole().equals(RoleEnum.Admin)) {
+			publisher.setPid(pidOveride);
+		}
+		domainListPerPID = DashboardFilterData.getInstance().getPublisherDomainsPerPID(publisher.getPid());
+		countryListPerPID = DashboardFilterData.getInstance().getPublisherCountriesPerPID(publisher.getPid());
+		return "dashboardFilterData";		
+	}
+	
 	
 	/*
 	public String exportDashboard() {
@@ -334,6 +352,29 @@ public class PublisherAction extends SecureAction {
 
 	public void setAllUsers(List<User> allUsers) {
 		this.allUsers = allUsers;
+	}
+
+	public String getCountryListPerPID() {
+		StringBuilder output = new StringBuilder("\"All\",");
+		for (String s : this.countryListPerPID) {
+			output.append("\"" + s + "\",");
+		}
+		output.setLength(output.length() - 1);
+		return output.toString();
+	}
+
+	public String getDomainListPerPID() {
+		StringBuilder output = new StringBuilder("\"All\",");
+		for (String s : this.domainListPerPID) {
+			output.append("\"" + s + "\",");
+		}
+		output.setLength(output.length() - 1);
+		return output.toString();
+	}
+
+
+	public void setPidOveride(String pidOveride) {
+		this.pidOveride = pidOveride;
 	}
 	
 }

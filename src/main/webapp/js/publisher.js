@@ -38,6 +38,15 @@ manager.publisher.init = function() {
 		 manager.publisher.resizeIframe($("#kibanaDashboard"));
 	});
 	
+	$("#runFilter").click(function(e) {
+		var luceneFilter = manager.publisher.buildFilter();
+		var iframeDOM = $('#kibanaDashboard').contents();
+		iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form input.form-control").val(luceneFilter);
+		iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form button[type=submit]").click();
+	});
+	
+	
+	manager.publisher.populateFilters();
 	//var a = decodeHTMLEntities(escapedKibanaHTML);
 	//$('#kibanaDashboard')[0].contentDocument.write(a);
 	/*
@@ -55,6 +64,48 @@ manager.publisher.init = function() {
 			}
 		);
 		*/
+};
+
+manager.publisher.populateFilters = function() {
+	console.log("getting filter data...");
+	var pid = "";
+	if (manager.admin) {
+		var publisherName = $("#selectDashboard").val();
+		var encodedPublisherName = publisherName.replace(/ /g, "-");
+		pid = "&pidOveride=" + encodedPublisherName;
+	}
+	
+	$.getJSON(
+		"/publisher-manager/private/publisher/dashboardFilterData?token=" + manager.publisher.token + pid, 
+		//$("#loginForm").serializeArray(), 
+		function(response, status, xhr) { 
+			if (manager.infra.requestIsValid(xhr)) { 
+				console.log(xhr.responseJSON);
+				
+				/* populate countries */
+				var countrySelect = $("#countryFilter");
+				var countryitems;
+				$.each(xhr.responseJSON.countries, function(index, value){
+					countryitems += '<option value=' + value + '>' + value + '</option>';
+				});
+				countrySelect.empty().append(countryitems);
+				
+				
+				/* populate countries */
+				var domainSelect = $("#domainFilter");
+				var domainitems;
+				$.each(xhr.responseJSON.domains, function(index, value){
+					domainitems += '<option value=' + value + '>' + value + '</option>';
+				});
+				domainSelect.empty().append(domainitems);
+				
+			}
+		
+		})
+		.error(function(qXHR, textStatus, errorThrown) {
+			console.log("error: " + errorThrown);
+		}
+	);
 };
 
 manager.publisher.initIFrameListener = function() {
@@ -203,6 +254,43 @@ manager.publisher.resizeIframe = function(iframe) {
     //obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 	//obj.style.height = initialIFrameheight + 'px';
 	iframe.css("height", initialIFrameheight + "px");
+};
+
+/**
+ * build Lucene query eg "geoip.country_name: France AND publisherDomain: fashionseoul.com"
+ */
+manager.publisher.buildFilter = function(e) {
+	//console.info('hi');
+	/* 1. Build lucene query */
+	var countryFilterValue = $("#countryFilter").val();
+	var domainFilterValue = $("#domainFilter").val();
+	//console.info(countryFilterValue + ", " + domainFilterValue);
+	
+	var luceneSearch = "*";
+	var luceneCountryFilter, luceneDomainFilter;
+	
+	if (countryFilterValue != "All") {
+		luceneCountryFilter = "geoip.country_name:" + countryFilterValue;
+	}
+	
+	if (domainFilterValue != "All") {
+		luceneDomainFilter = "publisherDomain:" + domainFilterValue;
+	}
+	
+	if (luceneCountryFilter != null) {
+		luceneSearch = luceneCountryFilter;
+	}
+	
+	if (luceneDomainFilter != null) {
+		if (luceneSearch == "*") {
+			luceneSearch = luceneDomainFilter;
+		} else {
+			luceneSearch += " AND " + luceneDomainFilter;
+		}
+	}
+	
+	console.log(luceneSearch);
+	return luceneSearch;
 };
 
 $(document).ready(function() {

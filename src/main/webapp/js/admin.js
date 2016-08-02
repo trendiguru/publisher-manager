@@ -8,13 +8,17 @@ manager.admin.init = function() {
 	manager.admin.loadIframe("Trendi Guru Admin");
 	
 	$("#selectDashboard").change(function () {
-		manager.admin.loadIframe(this.value);
+		var pubName = $("#" + this.id + " option:selected").text();
+		manager.publisher.populateFilters();
+		manager.admin.loadIframe(pubName);
 	    //console.log(end);
 	});
 };
 
 manager.admin.loadIframe = function(publisherName) {
 	//alert("Loading dashboard for: " + publisherName);
+	
+	//manager.publisher.populateFilters();
 	
 	var encodedPublisherName = publisherName.replace(/ /g, "-");
 	var kibanaIframeSrc = manager.admin.iframeSrc;

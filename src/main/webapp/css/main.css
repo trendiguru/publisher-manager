@@ -44,7 +44,7 @@ body {
 }
 
 /* table layout */
-.welcome .buttons {
+.welcome .buttons, .filters {
 	margin-top:5px;
 }
 

@@ -6,7 +6,7 @@ manager.auth = {};
 manager.infra = {};
 manager.error = {};
 manager.publisher = {};
-manager.admin = {};
+//manager.admin = {};
 
 manager.auth.init = function() {
 	console.log("ready!");

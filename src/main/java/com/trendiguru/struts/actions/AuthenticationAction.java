@@ -70,7 +70,7 @@ public class AuthenticationAction extends BaseAction {
 		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
-    	//visualSet.add(new EventsTableVisual(publisher));
+    	visualSet.add(new EventsTableVisual(publisher));
     	visualSet.add(new EventsMultiLineHistogramVisual(publisher));
     	visualSet.add(new DevicesVisual(publisher));
     	visualSet.add(new WorldMapVisual(publisher));

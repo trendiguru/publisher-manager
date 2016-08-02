@@ -15,7 +15,7 @@ public class EventsTableVisual extends Visual {
 	public EventsTableVisual(User publisher) {
 		this.publisher = publisher;
 		//this.elasticSearchId = publisher.getEncodedName() + "-events-breakdown";
-		this.title = publisher.getName() + " Events Breakdown";
+		this.title = publisher.getName() + " Event Totals";
 		
 		//this is what Kibana does when adding a new visual so I'll mirror this so I can add new visuals to existing dashboards
 		this.elasticSearchId = this.title.replace(" ", "-");
@@ -23,27 +23,17 @@ public class EventsTableVisual extends Visual {
 	
 	@Override
 	public String getEncodedJSON() {
-		/*
-		String s = "{" +
-				"\"title\": \"" + this.title + "\"," +
-				"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"table\\\",\\\"params\\\":{\\\"perPage\\\":10,\\\"showPartialRows\\\":false,\\\"showMeticsAtAllLevels\\\":false},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"2\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"PID.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\"\\\"},\\\"size\\\":100,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"PID\\\"}},{\\\"id\\\":\\\"4\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"publisherDomain.raw\\\",\\\"size\\\":10,\\\"order\\\":\\\"asc\\\",\\\"orderBy\\\":\\\"_term\\\",\\\"customLabel\\\":\\\"Domain\\\"}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"event.raw\\\",\\\"exclude\\\":{\\\"pattern\\\":\\\"\\\\\\\"Page+Hit\\\\\\\"\\\"},\\\"size\\\":20,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Event\\\"}}],\\\"listeners\\\":{}}\"," +
-				"\"uiStateJSON\":\"{\\\"spy\\\":{\\\"mode\\\":{\\\"name\\\":null,\\\"fill\\\":false}}}\",\"description\":\"\"," +
-				"\"version\":1," +
-				"\"kibanaSavedObjectMeta\":{" +
-					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
-				"}" +
-			"}";
-		*/
 		
 		return "{" +
 				"\"title\": \"" + this.title + "\"," +
-				"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"table\\\",\\\"params\\\":{\\\"perPage\\\":10,\\\"showPartialRows\\\":false,\\\"showMeticsAtAllLevels\\\":false},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"2\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"PID.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\"" + publisher.getPid() + "\\\"},\\\"size\\\":100,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"PID\\\"}},{\\\"id\\\":\\\"4\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"publisherDomain.raw\\\",\\\"size\\\":10,\\\"order\\\":\\\"asc\\\",\\\"orderBy\\\":\\\"_term\\\",\\\"customLabel\\\":\\\"Domain\\\"}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"event.raw\\\",\\\"exclude\\\":{\\\"pattern\\\":\\\"\\\\\\\"Page+Hit\\\\\\\"\\\"},\\\"size\\\":20,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Event\\\"}}],\\\"listeners\\\":{}}\"," +
-				"\"uiStateJSON\":\"{\\\"spy\\\":{\\\"mode\\\":{\\\"name\\\":null,\\\"fill\\\":false}}}\",\"description\":\"\"," +
+				"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"table\\\",\\\"params\\\":{\\\"perPage\\\":10,\\\"showMeticsAtAllLevels\\\":false,\\\"showPartialRows\\\":false},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"2\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"publisherDomain.raw\\\",\\\"size\\\":10,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Domain\\\"}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"bucket\\\",\\\"params\\\":{\\\"field\\\":\\\"event.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\"\\\\\\\"Page%20Hit\\\\\\\"|\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"|\\\\\\\"Button%20Seen\\\\\\\"|\\\\\\\"Result%20Clicked\\\\\\\"\\\"},\\\"size\\\":5,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Event\\\"}}],\\\"listeners\\\":{}}\"," +
+				"\"uiStateJSON\":\"{}\",\"description\":\"\"," +
 				"\"version\":1," +
 				"\"kibanaSavedObjectMeta\":{" +
-					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"*\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"analyze_wildcard\\\":true,\\\"query\\\":\\\"PID:" + publisher.getPid() + "\\\"}},\\\"filter\\\":[]}\"" +
 				"}" +
 			"}";
+		
 		/*
 		return "{" +
 			"\"title\": \"" + this.title + "\"," +

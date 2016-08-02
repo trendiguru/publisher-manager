@@ -142,6 +142,7 @@
 		    <result name="publisherDashboard">/jsp/publisher/dashboardPublisher.jsp</result>
 		    <result name="adminDashboard">/jsp/admin/dashboardAdmin.jsp</result>
 		    <result name="html">/jsp/publisher/html.jsp</result>
+		    <result name="dashboardFilterData">/jsp/publisher/dashboardFilterData.jsp</result>
 		    
 		    
 		    
