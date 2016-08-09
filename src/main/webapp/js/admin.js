@@ -9,6 +9,20 @@ manager.admin.init = function() {
 	
 	$("#selectDashboard").change(function () {
 		var pubName = $("#" + this.id + " option:selected").text();
+		
+		//reset any filters
+		$("#dynamicFilters").empty();
+		$("#filterWrapper .addFilter").removeClass("hidden");
+		manager.publisher.filters.added = 0;
+		$.each(manager.publisher.filters.options, function(key, filter) {
+			filter.inUse = false;
+			filter.domId = null;
+		});
+		$("#runFilter").addClass("hidden");
+		$("#errorBox").text("").hide();
+		
+		//event handlers on our buttons are added via the .one() jquery method		
+		
 		manager.publisher.populateFilters();
 		manager.admin.loadIframe(pubName);
 	    //console.log(end);

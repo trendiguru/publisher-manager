@@ -1,7 +1,9 @@
 *:focus {
     outline: none;
 }
-
+.hidden {
+	display:none;
+}
 body {
 	background-color: #201a16;
 }
@@ -106,4 +108,20 @@ form .right {
 	margin: 0;
     position: relative;
     top: 2px;
+}
+
+#filterWrapper .addFilter {
+    margin: 5px 0 5px 0;
+}
+#filterWrapper .removeFilter {
+	cursor: pointer;
+}
+#filterWrapper .filter {
+	margin: 5px 0 5px 0;
+}
+#filterWrapper .filterList {
+	width:100px;
+}
+#filterWrapper .filterValues {
+	width:300px;
 }

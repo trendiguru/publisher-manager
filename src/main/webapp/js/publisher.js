@@ -1,7 +1,16 @@
 manager.publisher.visualDataArray = [];
 manager.publisher.numVisualsToDownload = 0;
 manager.publisher.visualElement = 0;
-
+/*
+manager.publisher.filters = {
+	"country" : {
+		"operators" : ["==", "!="]
+	},
+	"domain" : {
+		"operators" : ["==", "!="]
+	}
+};
+*/
 manager.publisher.init = function() {
 	
 	manager.publisher.token = window.location.search.split("token=")[1];
@@ -39,10 +48,28 @@ manager.publisher.init = function() {
 	});
 	
 	$("#runFilter").click(function(e) {
-		var luceneFilter = manager.publisher.buildFilter();
-		var iframeDOM = $('#kibanaDashboard').contents();
-		iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form input.form-control").val(luceneFilter);
-		iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form button[type=submit]").click();
+		
+		//manager.publisher.buildFilter2();
+		
+		
+		var luceneFilter = manager.publisher.buildFilter2();
+		if (luceneFilter == manager.publisher.filters.lastQueryRun) {
+			console.log("Nothing to run - new query = previous query!");
+			manager.infra.showErrorBox("Please change the filter before running!");
+		} else {
+			$("#errorBox").text("").hide();
+			manager.publisher.filters.lastQueryRun = luceneFilter;
+		
+		
+			if (manager.publisher.filters.added == 0) {
+				$("#runFilter").addClass("hidden");
+			}
+			
+			var iframeDOM = $('#kibanaDashboard').contents();
+			iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form input.form-control").val(luceneFilter);
+			iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form button[type=submit]").click();
+			
+		}
 	});
 	
 	
@@ -83,22 +110,36 @@ manager.publisher.populateFilters = function() {
 				console.log(xhr.responseJSON);
 				
 				/* populate countries */
+				/*
 				var countrySelect = $("#countryFilter");
 				var countryitems;
 				$.each(xhr.responseJSON.countries, function(index, value){
 					countryitems += '<option value=' + value + '>' + value + '</option>';
 				});
 				countrySelect.empty().append(countryitems);
-				
+				*/
 				
 				/* populate countries */
+				/*
 				var domainSelect = $("#domainFilter");
 				var domainitems;
 				$.each(xhr.responseJSON.domains, function(index, value){
 					domainitems += '<option value=' + value + '>' + value + '</option>';
 				});
 				domainSelect.empty().append(domainitems);
+				*/
 				
+				// new dynamic filters to replace the filters above
+				manager.publisher.filters.options.country.values = xhr.responseJSON.countries;
+				manager.publisher.filters.options.domain.values = xhr.responseJSON.domains;
+				
+				$('#filterWrapper').off('click', '.addFilter');
+				$('#filterWrapper').off('click', '.removeFilter');
+				$('#filterWrapper').off('change', '.filterList');
+				
+				manager.publisher.filters.init();
+				
+				//TODO - remove the old static filters
 			}
 		
 		})
@@ -259,9 +300,9 @@ manager.publisher.resizeIframe = function(iframe) {
 /**
  * build Lucene query eg "geoip.country_name: France AND publisherDomain: fashionseoul.com"
  */
+/*
 manager.publisher.buildFilter = function(e) {
 	//console.info('hi');
-	/* 1. Build lucene query */
 	var countryFilterValue = $("#countryFilter").val();
 	var domainFilterValue = $("#domainFilter").val();
 	//console.info(countryFilterValue + ", " + domainFilterValue);
@@ -291,6 +332,181 @@ manager.publisher.buildFilter = function(e) {
 	
 	console.log(luceneSearch);
 	return luceneSearch;
+};
+*/
+
+manager.publisher.buildFilter2 = function() {
+	var luceneSearch = "";
+	
+	var i = 0;
+	$.each(manager.publisher.filters.options, function(key, filter) {
+		i++;
+		if (filter.inUse) {
+			var value = $("#" + filter.domId + " .filterValues").val();
+			
+			if (value != "All") {
+				luceneSearch += filter.lucenceQuery + ":" + value;
+			}
+			
+			
+			if (i < manager.publisher.filters.added && value != "All") {
+				luceneSearch += " AND ";
+			}
+			
+		}
+	});
+	
+	if (luceneSearch.endsWith(" AND ")) {
+		luceneSearch = luceneSearch.substring(0, (luceneSearch.length-5));
+	}
+	
+	if (luceneSearch == "") {
+		luceneSearch = "*";
+	}
+	console.log(luceneSearch);
+	return luceneSearch;
+};
+
+manager.publisher.filters.init = function() {
+	$('#filterWrapper').on('click', '.addFilter', manager.publisher.filters.add);
+	$('#filterWrapper').on('click', '.removeFilter', manager.publisher.filters.remove);
+	$('#filterWrapper').on('change', '.filterList', function(e) {
+		console.log("change values");
+		var updatedOptionsHTML = "";
+		var newFilterKey = $(this).val();
+		
+		$.each(manager.publisher.filters.options[newFilterKey].values, function(index, value){
+			updatedOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+		});
+				
+		$(this).parent().find(".filterValues").empty();
+		$(this).parent().find(".filterValues").append(updatedOptionsHTML);
+	});
+	
+	//manager.publisher.filters.add();
+};
+manager.publisher.filters.remove = function(filter) {
+	//console.log(filter);
+	var $parent = $(this).parent();
+	manager.publisher.filters.added--;
+	$parent.remove();
+	if (manager.publisher.filters.added < Object.keys(manager.publisher.filters.options).length) {
+		$("#filterWrapper .addFilter").removeClass("hidden");
+	}
+	
+	//enable the preceeding filter's dropdown
+	$('#filterWrapper .filterList:not(:last-child)').prop('disabled', false);
+	
+	manager.publisher.filters.options[$parent.attr("data-name")].inUse = false;
+	
+	manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
+	
+	var luceneFilter = manager.publisher.buildFilter2();
+	if (manager.publisher.filters.added == 0) {
+		
+		$("#errorBox").text("").hide();
+		
+		if (manager.publisher.filters.lastQueryRun == luceneFilter) {
+			//$("#runFilter").click();
+			$("#runFilter").addClass("hidden");
+		} else {
+			$("#runFilter").click();
+			$("#runFilter").addClass("hidden");
+		}
+	}
+	
+};
+
+manager.publisher.filters.add = function() {
+		
+	var filterNameOptionsHTML = "";
+	var filterOperatorOptionsHTML = ""; 
+	var filterValueOptionsHTML = "";
+	/*
+	for (var i=0; i<manager.publisher.filters.names.length; i++) {
+		filterNameOptionsHTML += '<option value="' + manager.publisher.filters.names[i] + '">' + manager.publisher.filters.names[i] + '</option>';
+	}
+	
+	for (var i=0; i<manager.publisher.filters.operators.length; i++) {
+		filterOperatorOptionsHTML += '<option value="' + manager.publisher.filters.operators[i] + '">' + manager.publisher.filters.operators[i] + '</option>';
+	}
+	 */
+	var populateOptions = true;
+	var filterName = "";
+	
+	manager.publisher.filters.added++;
+	//var existingNumOfFilters = manager.publisher.filters.added;
+	var filterId = "filter_" + manager.publisher.filters.added;
+	
+	$.each(manager.publisher.filters.options, function(key, filter) {
+		//i++;
+	    //alert(key + ' ' + value);
+		if (!filter.inUse) {
+	
+			filterNameOptionsHTML += '<option value="' + key + '">' + filter.name + '</option>';
+			if (populateOptions) {
+				filterName = key;
+				
+				for (var i=0; i< filter.operators.length; i++) {
+					filterOperatorOptionsHTML += '<option value="' + filter.operators[i] + '">' + filter.operators[i] + '</option>';
+				}
+				
+				$.each(filter.values, function(index, value){
+					filterValueOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+				});
+				
+				populateOptions = false;
+				filter.inUse = true;
+				filter.domId = filterId;
+			}
+			
+			
+		}
+		
+		//TODO - add operators per filter here
+		manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
+	});
+	
+/*
+	$.each(manager.publisher.filters.countries, function(index, value){
+		filterValueOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+	});
+*/
+	
+	
+	//populate handlebar template with select options
+	var source = $("#filter-template").html();
+	var template = Handlebars.compile(source);
+	var context = {id: filterId, name: filterName, filterNameOptions: filterNameOptionsHTML, filterOperatorOptions: filterOperatorOptionsHTML, filterValueOptions: filterValueOptionsHTML};
+	var html = template(context);
+	
+	if (manager.publisher.filters.added > 0) {
+		$("#filterWrapper .filterList").prop('disabled', true);
+	}
+	
+	//add new filter to DOM
+	$("#dynamicFilters").append(html);
+	
+	
+	//disable any previous filters' 1st drop-down to prevent the possibility of the user selecting the same filter > 1 !
+	//
+	//TODO
+	//
+	//
+	
+		
+	//add to array
+	//manager.publisher.filters.added++;
+	//manager.publisher.filters.added[filterId] = "aaaaa";
+	
+	//only allow adding as many filters as exist
+	if ( (manager.publisher.filters.added) == Object.keys(manager.publisher.filters.options).length) {
+		$("#filterWrapper .addFilter").addClass("hidden");
+	}
+	
+	$("#runFilter").removeClass("hidden");
+	
+	return filterId;
 };
 
 $(document).ready(function() {

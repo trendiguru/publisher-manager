@@ -355,7 +355,8 @@ public class PublisherAction extends SecureAction {
 	}
 
 	public String getCountryListPerPID() {
-		StringBuilder output = new StringBuilder("\"All\",");
+		//StringBuilder output = new StringBuilder("\"All\",");
+		StringBuilder output = new StringBuilder("");
 		for (String s : this.countryListPerPID) {
 			output.append("\"" + s + "\",");
 		}
@@ -364,7 +365,8 @@ public class PublisherAction extends SecureAction {
 	}
 
 	public String getDomainListPerPID() {
-		StringBuilder output = new StringBuilder("\"All\",");
+		//StringBuilder output = new StringBuilder("\"All\",");
+		StringBuilder output = new StringBuilder("");
 		for (String s : this.domainListPerPID) {
 			output.append("\"" + s + "\",");
 		}

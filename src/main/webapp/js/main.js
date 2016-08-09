@@ -1,11 +1,44 @@
 var manager = manager || {
-	ver: "0.1"   
+	ver: "0.2",
+	publisher: {
+		filters : {
+			//names: ["Country", "Domain"],
+			options: {
+				country : {
+					name: "Country",
+					operators : ["==", "!="],
+					lucenceQuery: "geoip.country_name",
+					inUse: false,
+					values: null,
+					domId: null
+				},
+				domain : {
+					name: "Domain",
+					operators : ["==", "!="],
+					lucenceQuery: "publisherDomain",
+					inUse: false,
+					values: null,
+					domId: null
+				}
+			},
+			added: 0,
+			lastQueryRun: "*"
+			//operators: ["equal to", "not equal to"],
+			//countries: null,
+			//domains: null
+		}
+	},
+	auth: {},
+	infra: {},
+	error: {}
 };
 
+/*
 manager.auth = {};
 manager.infra = {};
 manager.error = {};
-manager.publisher = {};
+*/
+//manager.publisher = {};
 //manager.admin = {};
 
 manager.auth.init = function() {
