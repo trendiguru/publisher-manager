@@ -49,12 +49,12 @@ manager.publisher.init = function() {
 	
 	$("#runFilter").click(function(e) {
 		
-		//manager.publisher.buildFilter2();
+		//manager.publisher.buildFilter();
 		
 		
-		var luceneFilter = manager.publisher.buildFilter2();
+		var luceneFilter = manager.publisher.buildFilter();
 		if (luceneFilter == manager.publisher.filters.lastQueryRun) {
-			console.log("Nothing to run - new query = previous query!");
+			//console.log("Nothing to run - new query = previous query!");
 			manager.infra.showErrorBox("Please change the filter before running!");
 		} else {
 			$("#errorBox").text("").hide();
@@ -300,42 +300,8 @@ manager.publisher.resizeIframe = function(iframe) {
 /**
  * build Lucene query eg "geoip.country_name: France AND publisherDomain: fashionseoul.com"
  */
-/*
-manager.publisher.buildFilter = function(e) {
-	//console.info('hi');
-	var countryFilterValue = $("#countryFilter").val();
-	var domainFilterValue = $("#domainFilter").val();
-	//console.info(countryFilterValue + ", " + domainFilterValue);
-	
-	var luceneSearch = "*";
-	var luceneCountryFilter, luceneDomainFilter;
-	
-	if (countryFilterValue != "All") {
-		luceneCountryFilter = "geoip.country_name:" + countryFilterValue;
-	}
-	
-	if (domainFilterValue != "All") {
-		luceneDomainFilter = "publisherDomain:" + domainFilterValue;
-	}
-	
-	if (luceneCountryFilter != null) {
-		luceneSearch = luceneCountryFilter;
-	}
-	
-	if (luceneDomainFilter != null) {
-		if (luceneSearch == "*") {
-			luceneSearch = luceneDomainFilter;
-		} else {
-			luceneSearch += " AND " + luceneDomainFilter;
-		}
-	}
-	
-	console.log(luceneSearch);
-	return luceneSearch;
-};
-*/
 
-manager.publisher.buildFilter2 = function() {
+manager.publisher.buildFilter = function() {
 	var luceneSearch = "";
 	
 	var i = 0;
@@ -370,18 +336,7 @@ manager.publisher.buildFilter2 = function() {
 manager.publisher.filters.init = function() {
 	$('#filterWrapper').on('click', '.addFilter', manager.publisher.filters.add);
 	$('#filterWrapper').on('click', '.removeFilter', manager.publisher.filters.remove);
-	$('#filterWrapper').on('change', '.filterList', function(e) {
-		console.log("change values");
-		var updatedOptionsHTML = "";
-		var newFilterKey = $(this).val();
-		
-		$.each(manager.publisher.filters.options[newFilterKey].values, function(index, value){
-			updatedOptionsHTML += '<option value=' + value + '>' + value + '</option>';
-		});
-				
-		$(this).parent().find(".filterValues").empty();
-		$(this).parent().find(".filterValues").append(updatedOptionsHTML);
-	});
+	
 	
 	//manager.publisher.filters.add();
 };
@@ -401,7 +356,7 @@ manager.publisher.filters.remove = function(filter) {
 	
 	manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
 	
-	var luceneFilter = manager.publisher.buildFilter2();
+	var luceneFilter = manager.publisher.buildFilter();
 	if (manager.publisher.filters.added == 0) {
 		
 		$("#errorBox").text("").hide();
@@ -417,20 +372,11 @@ manager.publisher.filters.remove = function(filter) {
 	
 };
 
-manager.publisher.filters.add = function() {
-		
+manager.publisher.filters.add = function() {		
 	var filterNameOptionsHTML = "";
 	var filterOperatorOptionsHTML = ""; 
 	var filterValueOptionsHTML = "";
-	/*
-	for (var i=0; i<manager.publisher.filters.names.length; i++) {
-		filterNameOptionsHTML += '<option value="' + manager.publisher.filters.names[i] + '">' + manager.publisher.filters.names[i] + '</option>';
-	}
-	
-	for (var i=0; i<manager.publisher.filters.operators.length; i++) {
-		filterOperatorOptionsHTML += '<option value="' + manager.publisher.filters.operators[i] + '">' + manager.publisher.filters.operators[i] + '</option>';
-	}
-	 */
+
 	var populateOptions = true;
 	var filterName = "";
 	
@@ -467,13 +413,6 @@ manager.publisher.filters.add = function() {
 		manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
 	});
 	
-/*
-	$.each(manager.publisher.filters.countries, function(index, value){
-		filterValueOptionsHTML += '<option value=' + value + '>' + value + '</option>';
-	});
-*/
-	
-	
 	//populate handlebar template with select options
 	var source = $("#filter-template").html();
 	var template = Handlebars.compile(source);
@@ -487,18 +426,27 @@ manager.publisher.filters.add = function() {
 	//add new filter to DOM
 	$("#dynamicFilters").append(html);
 	
-	
-	//disable any previous filters' 1st drop-down to prevent the possibility of the user selecting the same filter > 1 !
-	//
-	//TODO
-	//
-	//
-	
+	//listen for a change in the .filterList
+	$('#' + filterId).on('change', '.filterList', function(e) {
+		//console.log("change values");
+		var updatedOptionsHTML = "";
+		var newFilterKey = $(this).val();
 		
-	//add to array
-	//manager.publisher.filters.added++;
-	//manager.publisher.filters.added[filterId] = "aaaaa";
-	
+		manager.publisher.filters.options[newFilterKey].inUse = true;
+		
+		var oldFilterKey = $(this).parent().attr("data-name");
+		manager.publisher.filters.options[oldFilterKey].inUse = false;
+		
+		$(this).parent().attr("data-name", newFilterKey);
+		
+		$.each(manager.publisher.filters.options[newFilterKey].values, function(index, value){
+			updatedOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+		});
+				
+		$(this).parent().find(".filterValues").empty();
+		$(this).parent().find(".filterValues").append(updatedOptionsHTML);
+	});
+		
 	//only allow adding as many filters as exist
 	if ( (manager.publisher.filters.added) == Object.keys(manager.publisher.filters.options).length) {
 		$("#filterWrapper .addFilter").addClass("hidden");
