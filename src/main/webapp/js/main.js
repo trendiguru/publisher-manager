@@ -2,8 +2,53 @@ var manager = manager || {
 	ver: "0.2",
 	publisher: {
 		filters : {
+			 options: {
+				"Collection Name" : {
+					indexName: "item_collection_name"
+				},
+				"Country": {
+					indexName: "geoip.country_name"
+				},
+				"Device OS" : {
+					indexName: "ua_os"
+				},
+				"Domain" : {
+					indexName: "publisherDomain"
+				},
+				"Device" : {
+					indexName: "ua_device"
+				},
+				"Event" : {
+					indexName: "event"
+				},
+				"Image Url" : {
+					indexName: "imageURL"
+				},
+				/*
+				"City" : {
+					indexName: "geoip.city_name"
+				},*/
+				"Overlay" : {
+					indexName: "overlay"
+				},
+				"User Agent" : {
+					indexName: "ua_name"
+				},
+				"User ID" : {
+					indexName: "userId"
+				},
+				"Window Height" : {
+					indexName: "winHeight"
+				},
+				"Window Width" : {
+					indexName: "winWidth"
+				}
+			},
+			values : {},
+			
 			//names: ["Country", "Domain"],
-			options: {
+			added: {
+				/*
 				country : {
 					name: "Country",
 					operators : ["==", "!="],
@@ -20,8 +65,9 @@ var manager = manager || {
 					values: null,
 					domId: null
 				}
+				*/
 			},
-			added: 0,
+			addedCount: 0,
 			lastQueryRun: "*"
 			//operators: ["equal to", "not equal to"],
 			//countries: null,

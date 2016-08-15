@@ -111,7 +111,7 @@ public class HttpUtil {
 			post.setEntity(se);
 
 			HttpResponse response = client.execute(post);
-			System.out.println("Response Code : " + response.getStatusLine().getStatusCode());
+			//System.out.println("Response Code : " + response.getStatusLine().getStatusCode());
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 	    	result = new StringBuffer();

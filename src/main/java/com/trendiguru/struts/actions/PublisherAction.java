@@ -2,7 +2,9 @@ package com.trendiguru.struts.actions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,14 +38,33 @@ public class PublisherAction extends SecureAction {
 	
 	String pidOveride;
 	
+	Map<String, List<String>> fieldValuesMap = new HashMap<String, List<String>>(); 
+	//StringBuilder staticData = new StringBuilder();
+	
 	
 	public String dashboardFilterData() {
 		User publisher = getLoggedInUser();
 		if (publisher.getRole().equals(RoleEnum.Admin)) {
 			publisher.setPid(pidOveride);
 		}
-		domainListPerPID = DashboardFilterData.getInstance().getPublisherDomainsPerPID(publisher.getPid());
-		countryListPerPID = DashboardFilterData.getInstance().getPublisherCountriesPerPID(publisher.getPid());
+		
+		
+		DashboardFilterData filterManager = DashboardFilterData.getInstance();
+		// fetch fields per request since there may be some new ones!
+	    Set<String> allowedFieldsSet = filterManager.getAllFilterFieldNamesForOurIndex();
+	    
+	    int NUM_OF_VALUES = 1000;
+	    
+	    for (String field : allowedFieldsSet) {
+	    	String json = filterManager.getFilterFieldValuesPerPIDJSON(publisher.getPid(), field, NUM_OF_VALUES);
+	    	List<String> fieldValues = filterManager.getFieldValues(json);
+	    	//System.out.println(field + " : " + fieldValues);
+	    	field = field.replace(".raw", "");
+	    	fieldValuesMap.put(field, fieldValues);
+	    }
+		
+		//domainListPerPID = DashboardFilterData.getInstance().getPublisherDomainsPerPID(publisher.getPid());
+		//countryListPerPID = DashboardFilterData.getInstance().getPublisherCountriesPerPID(publisher.getPid());
 		return "dashboardFilterData";		
 	}
 	
@@ -377,6 +398,16 @@ public class PublisherAction extends SecureAction {
 
 	public void setPidOveride(String pidOveride) {
 		this.pidOveride = pidOveride;
+	}
+
+
+	public Map<String, List<String>> getFieldValuesMap() {
+		return fieldValuesMap;
+	}
+
+
+	public void setFieldValuesMap(Map<String, List<String>> fieldValuesMap) {
+		this.fieldValuesMap = fieldValuesMap;
 	}
 	
 }

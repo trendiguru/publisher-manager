@@ -61,7 +61,7 @@ manager.publisher.init = function() {
 			manager.publisher.filters.lastQueryRun = luceneFilter;
 		
 		
-			if (manager.publisher.filters.added == 0) {
+			if (manager.publisher.filters.addedCount == 0) {
 				$("#runFilter").addClass("hidden");
 			}
 			
@@ -107,31 +107,12 @@ manager.publisher.populateFilters = function() {
 		//$("#loginForm").serializeArray(), 
 		function(response, status, xhr) { 
 			if (manager.infra.requestIsValid(xhr)) { 
-				console.log(xhr.responseJSON);
-				
-				/* populate countries */
-				/*
-				var countrySelect = $("#countryFilter");
-				var countryitems;
-				$.each(xhr.responseJSON.countries, function(index, value){
-					countryitems += '<option value=' + value + '>' + value + '</option>';
-				});
-				countrySelect.empty().append(countryitems);
-				*/
-				
-				/* populate countries */
-				/*
-				var domainSelect = $("#domainFilter");
-				var domainitems;
-				$.each(xhr.responseJSON.domains, function(index, value){
-					domainitems += '<option value=' + value + '>' + value + '</option>';
-				});
-				domainSelect.empty().append(domainitems);
-				*/
-				
+				//console.log(xhr.responseJSON);
+								
 				// new dynamic filters to replace the filters above
-				manager.publisher.filters.options.country.values = xhr.responseJSON.countries;
-				manager.publisher.filters.options.domain.values = xhr.responseJSON.domains;
+				//manager.publisher.filters.options.country.values = xhr.responseJSON.countries;
+				//manager.publisher.filters.options.domain.values = xhr.responseJSON.domains;
+				manager.publisher.filters.values = xhr.responseJSON;
 				
 				$('#filterWrapper').off('click', '.addFilter');
 				$('#filterWrapper').off('click', '.removeFilter');
@@ -305,22 +286,40 @@ manager.publisher.buildFilter = function() {
 	var luceneSearch = "";
 	
 	var i = 0;
+	
+	$.each($("#dynamicFilters .filter"), function(key, element) {
+		i++;
+		var indexName = $(element).find(".filterList").val();
+		var value = $(element).find(".filterValues").val();
+		
+		if (value != "All") {
+			// must surround each value with double quotes to filter by this specific value, otherwise it becomes 'contains'
+			luceneSearch += indexName + ":\"" + value + "\"";
+		}
+				
+		if (i < manager.publisher.filters.addedCount && value != "All") {
+			luceneSearch += " AND ";
+		}
+	});
+	
+	/*
 	$.each(manager.publisher.filters.options, function(key, filter) {
 		i++;
 		if (filter.inUse) {
 			var value = $("#" + filter.domId + " .filterValues").val();
 			
 			if (value != "All") {
-				luceneSearch += filter.lucenceQuery + ":" + value;
+				luceneSearch += filter.indexName + ":" + value;
 			}
 			
 			
-			if (i < manager.publisher.filters.added && value != "All") {
+			if (i < manager.publisher.filters.addedCount && value != "All") {
 				luceneSearch += " AND ";
 			}
 			
 		}
 	});
+	*/
 	
 	if (luceneSearch.endsWith(" AND ")) {
 		luceneSearch = luceneSearch.substring(0, (luceneSearch.length-5));
@@ -337,15 +336,24 @@ manager.publisher.filters.init = function() {
 	$('#filterWrapper').on('click', '.addFilter', manager.publisher.filters.add);
 	$('#filterWrapper').on('click', '.removeFilter', manager.publisher.filters.remove);
 	
+	//update each filter option with more attributes
+	$.each(manager.publisher.filters.options, function(key, filter) {
+		filter.operators = ["==", "!="];
+		//filter.indexName = "";//"geoip.country_name",
+		filter.inUse = false;
+		filter.domId = null;
+		
+		
+	});
 	
 	//manager.publisher.filters.add();
 };
 manager.publisher.filters.remove = function(filter) {
 	//console.log(filter);
 	var $parent = $(this).parent();
-	manager.publisher.filters.added--;
+	manager.publisher.filters.addedCount--;
 	$parent.remove();
-	if (manager.publisher.filters.added < Object.keys(manager.publisher.filters.options).length) {
+	if (manager.publisher.filters.addedCount < Object.keys(manager.publisher.filters.options).length) {
 		$("#filterWrapper .addFilter").removeClass("hidden");
 	}
 	
@@ -357,7 +365,7 @@ manager.publisher.filters.remove = function(filter) {
 	manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
 	
 	var luceneFilter = manager.publisher.buildFilter();
-	if (manager.publisher.filters.added == 0) {
+	if (manager.publisher.filters.addedCount == 0) {
 		
 		$("#errorBox").text("").hide();
 		
@@ -380,16 +388,16 @@ manager.publisher.filters.add = function() {
 	var populateOptions = true;
 	var filterName = "";
 	
-	manager.publisher.filters.added++;
-	//var existingNumOfFilters = manager.publisher.filters.added;
-	var filterId = "filter_" + manager.publisher.filters.added;
+	manager.publisher.filters.addedCount++;
+	//var existingNumOfFilters = manager.publisher.filters.addedCount;
+	var filterId = "filter_" + manager.publisher.filters.addedCount;
 	
 	$.each(manager.publisher.filters.options, function(key, filter) {
 		//i++;
 	    //alert(key + ' ' + value);
 		if (!filter.inUse) {
 	
-			filterNameOptionsHTML += '<option value="' + key + '">' + filter.name + '</option>';
+			filterNameOptionsHTML += '<option value="' + filter.indexName + '">' + key + '</option>';
 			if (populateOptions) {
 				filterName = key;
 				
@@ -397,8 +405,8 @@ manager.publisher.filters.add = function() {
 					filterOperatorOptionsHTML += '<option value="' + filter.operators[i] + '">' + filter.operators[i] + '</option>';
 				}
 				
-				$.each(filter.values, function(index, value){
-					filterValueOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+				$.each(manager.publisher.filters.values[filter.indexName], function(index, value){
+					filterValueOptionsHTML += '<option value="' + value + '">' + decodeURIComponent(value) + '</option>';
 				});
 				
 				populateOptions = false;
@@ -410,8 +418,10 @@ manager.publisher.filters.add = function() {
 		}
 		
 		//TODO - add operators per filter here
-		manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
+		//manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
 	});
+	
+	manager.infra.showErrorBox("Click 'Run filter' when your filter is ready!");
 	
 	//populate handlebar template with select options
 	var source = $("#filter-template").html();
@@ -419,7 +429,7 @@ manager.publisher.filters.add = function() {
 	var context = {id: filterId, name: filterName, filterNameOptions: filterNameOptionsHTML, filterOperatorOptions: filterOperatorOptionsHTML, filterValueOptions: filterValueOptionsHTML};
 	var html = template(context);
 	
-	if (manager.publisher.filters.added > 0) {
+	if (manager.publisher.filters.addedCount > 0) {
 		$("#filterWrapper .filterList").prop('disabled', true);
 	}
 	
@@ -430,25 +440,27 @@ manager.publisher.filters.add = function() {
 	$('#' + filterId).on('change', '.filterList', function(e) {
 		//console.log("change values");
 		var updatedOptionsHTML = "";
-		var newFilterKey = $(this).val();
+		//var newFilterKey = $(this).val();
+		var newFilterValue = $(this).find(" option:selected" ).text();
+		manager.publisher.filters.options[newFilterValue].inUse = true;
 		
-		manager.publisher.filters.options[newFilterKey].inUse = true;
+		var oldFilterValue = $(this).parent().attr("data-name");
+		manager.publisher.filters.options[oldFilterValue].inUse = false;
 		
-		var oldFilterKey = $(this).parent().attr("data-name");
-		manager.publisher.filters.options[oldFilterKey].inUse = false;
+		$(this).parent().attr("data-name", newFilterValue);
 		
-		$(this).parent().attr("data-name", newFilterKey);
+		var newFilter = manager.publisher.filters.options[newFilterValue];
 		
-		$.each(manager.publisher.filters.options[newFilterKey].values, function(index, value){
-			updatedOptionsHTML += '<option value=' + value + '>' + value + '</option>';
+		$.each(manager.publisher.filters.values[newFilter.indexName], function(index, value){
+			updatedOptionsHTML += '<option value="' + value + '">' + decodeURIComponent(value) + '</option>';
 		});
 				
-		$(this).parent().find(".filterValues").empty();
-		$(this).parent().find(".filterValues").append(updatedOptionsHTML);
+		$(this).parent().find(".filterValues").empty().append(updatedOptionsHTML);
+		//$(this).parent().find(".filterValues").append(updatedOptionsHTML);
 	});
 		
 	//only allow adding as many filters as exist
-	if ( (manager.publisher.filters.added) == Object.keys(manager.publisher.filters.options).length) {
+	if ( (manager.publisher.filters.addedCount) == Object.keys(manager.publisher.filters.options).length) {
 		$("#filterWrapper .addFilter").addClass("hidden");
 	}
 	

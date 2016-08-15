@@ -26,14 +26,6 @@ public class BaseUser {
 	String email;
 	
 	String contactName;
-	 
-	public String getContactName() {
-		return contactName;
-	}
-
-	public void setContactName(String contactName) {
-		this.contactName = contactName;
-	}
 
 	String password;
 	
@@ -45,6 +37,11 @@ public class BaseUser {
 	
 	@Transient
 	String token;
+	
+	@Transient
+	String passwordResetToken;
+	
+	StatusEnum status;
 
 	public ObjectId getId() {
 		return id;
@@ -108,6 +105,30 @@ public class BaseUser {
 
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
+	}
+	
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getPasswordResetToken() {
+		return passwordResetToken;
+	}
+
+	public void setPasswordResetToken(String passwordResetToken) {
+		this.passwordResetToken = passwordResetToken;
+	}
+
+	public StatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusEnum status) {
+		this.status = status;
 	}
 	
 }

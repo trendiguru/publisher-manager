@@ -15,7 +15,7 @@ public class TrendingImagesTableVisual extends Visual {
 	
 	@Override
 	public String getEncodedJSON() {
-		
+				
 		//table json 10th july 2016
 		return "{" +
 				"\"title\":\"" + this.title + "\"," +
@@ -23,21 +23,8 @@ public class TrendingImagesTableVisual extends Visual {
 				"\"description\":\"\"," +
 				"\"version\":1," +
 				"\"kibanaSavedObjectMeta\":{" +
-					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"PID:"+ publisher.getPid() +"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
+					"\"searchSourceJSON\":\"{\\\"index\\\":\\\"" + getIndexName() + "\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"query\\\":\\\"PID:" + publisher.getPid() + " AND event:\\\\\\\"Trendi%20Button%20Clicked\\\\\\\"\\\",\\\"analyze_wildcard\\\":true}},\\\"filter\\\":[]}\"" +
 				"}" +
 			"}";
-		
-		
-		/*
-		return "{" +
-			"\"title\":\"" + this.title + "\"," +
-			"\"visState\":\"{\\\"title\\\":\\\"" + this.title + "\\\",\\\"type\\\":\\\"histogram\\\",\\\"params\\\":{\\\"addLegend\\\":true,\\\"addTimeMarker\\\":false,\\\"addTooltip\\\":true,\\\"defaultYExtents\\\":false,\\\"mode\\\":\\\"stacked\\\",\\\"scale\\\":\\\"linear\\\",\\\"setYExtents\\\":false,\\\"shareYAxis\\\":true,\\\"times\\\":[],\\\"yAxis\\\":{}},\\\"aggs\\\":[{\\\"id\\\":\\\"1\\\",\\\"type\\\":\\\"count\\\",\\\"schema\\\":\\\"metric\\\",\\\"params\\\":{}},{\\\"id\\\":\\\"3\\\",\\\"type\\\":\\\"date_histogram\\\",\\\"schema\\\":\\\"segment\\\",\\\"params\\\":{\\\"field\\\":\\\"@timestamp\\\",\\\"interval\\\":\\\"auto\\\",\\\"customInterval\\\":\\\"2h\\\",\\\"min_doc_count\\\":1,\\\"extended_bounds\\\":{},\\\"customLabel\\\":\\\"Time\\\"}},{\\\"id\\\":\\\"5\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"split\\\",\\\"params\\\":{\\\"field\\\":\\\"PID.raw\\\",\\\"include\\\":{\\\"pattern\\\":\\\""+ publisher.getPid() +"\\\"},\\\"size\\\":20,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"PID\\\",\\\"row\\\":true}},{\\\"id\\\":\\\"4\\\",\\\"type\\\":\\\"terms\\\",\\\"schema\\\":\\\"group\\\",\\\"params\\\":{\\\"field\\\":\\\"imageURL.raw\\\",\\\"size\\\":20,\\\"order\\\":\\\"desc\\\",\\\"orderBy\\\":\\\"1\\\",\\\"customLabel\\\":\\\"Image\\\"}}],\\\"listeners\\\":{}}\",\"uiStateJSON\":\"{\\\"vis\\\":{\\\"legendOpen\\\":false}}\"," +
-			"\"description\":\"\"," +
-			"\"version\":1," +
-			"\"kibanaSavedObjectMeta\":{" +
-				"\"searchSourceJSON\":\"{\\\"index\\\":\\\"logstash-*\\\",\\\"query\\\":{\\\"query_string\\\":{\\\"analyze_wildcard\\\":true,\\\"query\\\":\\\"*\\\"}},\\\"filter\\\":[]}\"" +
-			"}" +
-		"}";
-		*/
 	}
 }
