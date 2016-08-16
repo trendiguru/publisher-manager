@@ -57,7 +57,7 @@
             -->
             <result>/jsp/authentication/signUp.jsp</result>
         </action>
-        	
+                	
 	    
 		<!-- NB global 'input' is used that returns JSON with any errors that are rendered via the jquery javascript -->		
 		<action name="/auth/*" class="com.trendiguru.struts.actions.AuthenticationAction" method="{1}">
@@ -69,6 +69,7 @@
 			<result name="loggedIn">/jsp/authentication/loggedIn.jsp</result>
 			<result name="loggedOut">/jsp/authentication/authMain.jsp</result>
 			<result name="pid">/jsp/authentication/pid.jsp</result>
+			<result name="resetPasswordForm">/jsp/authentication/resetPassword.jsp</result>
 			
 		
 		</action>

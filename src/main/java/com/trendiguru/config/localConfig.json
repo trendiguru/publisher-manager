@@ -8,6 +8,9 @@
 	"sense" : {
 		"domain": "localhost:9200"
 	},
+	"tomcat" : {
+		"domain": "http://localhost:8080"
+	},
 	"emails": [{
 		"name": "Jay",
 		"email": "jay@trendiguru.com"

@@ -61,6 +61,11 @@ public class ConfigManager {
 		JsonNode n =  configJson.get("sense").get("domain");
 		return validateParam(n);
 	}
+	
+	public String getTomcatDomain() {
+		JsonNode n =  configJson.get("tomcat").get("domain");
+		return validateParam(n);
+	}
 
 	public String getEnv() {
 		return env;

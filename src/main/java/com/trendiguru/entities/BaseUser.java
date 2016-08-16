@@ -38,10 +38,9 @@ public class BaseUser {
 	@Transient
 	String token;
 	
-	@Transient
 	String passwordResetToken;
 	
-	StatusEnum status;
+	StatusEnum status = StatusEnum.Active;
 
 	public ObjectId getId() {
 		return id;

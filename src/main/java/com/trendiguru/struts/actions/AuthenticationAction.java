@@ -1,5 +1,6 @@
 package com.trendiguru.struts.actions;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import com.mongodb.DuplicateKeyException;
 import com.trendiguru.elasticsearch.PublisherManager;
 import com.trendiguru.entities.BaseUser;
 import com.trendiguru.entities.RoleEnum;
+import com.trendiguru.entities.StatusEnum;
 import com.trendiguru.entities.User;
 import com.trendiguru.entities.visuals.AverageTimeOnSite;
 import com.trendiguru.entities.visuals.ClickThruRateOnItemVisual;
@@ -25,6 +27,7 @@ import com.trendiguru.entities.visuals.WorldMapVisual;
 import com.trendiguru.infra.Constants;
 import com.trendiguru.infra.PasswordManager;
 import com.trendiguru.infra.SessionCache;
+import com.trendiguru.mongodb.MorphiaManager;
 
 
 
@@ -53,6 +56,7 @@ public class AuthenticationAction extends BaseAction {
 	//private String confirmedPassword;
 	private String jcaptcha;
 	private String token;
+	private String passwordResetToken;
 
 	
 	private BaseUser user;
@@ -67,6 +71,7 @@ public class AuthenticationAction extends BaseAction {
 		String randomId = PasswordManager.getRandomPassword(16);
 		publisher.setPid(randomId);
 		publisher.setRole(RoleEnum.Publisher);
+		publisher.setCreateDate(new Date());
 		
     	PublisherManager publisherManager = PublisherManager.getInstance();
     	Set<Visual> visualSet = new HashSet<Visual>();
@@ -119,35 +124,55 @@ public class AuthenticationAction extends BaseAction {
 			//addActionError(getText("auth.errors.user.does.not.exist"));
 			return INPUT;
 		} else {
-			
-			SessionCache.getInstance().addUser(loggedInUser.getEmail() + loggedInUser.getPassword(), loggedInUser);
-			
-			//TODO - use BaseAction.toJson() to convert BaseUser to json and put string in loggedin.jsp
-			//
-			//
-			//
-			
-			
-			token = getSession().getId();
-			session.put(Constants.LOGGED_IN_USER, loggedInUser);
-			
-			//if (loggedInUser instanceof User) {
-				publisher = loggedInUser;
-				return LOGGED_IN;
-			//} else {
-			//	admin = (Admin)loggedInUser;
-			//	return LOGGED_IN;
-			//}
+			if (loggedInUser.getStatus().equals(StatusEnum.Active)) {
+				SessionCache.getInstance().addUser(loggedInUser.getEmail() + loggedInUser.getPassword(), loggedInUser);
+				
+				//TODO - use BaseAction.toJson() to convert BaseUser to json and put string in loggedin.jsp
+				//
+				//
+				//
+				
+				
+				token = getSession().getId();
+				session.put(Constants.LOGGED_IN_USER, loggedInUser);
+				
+				//if (loggedInUser instanceof User) {
+					publisher = loggedInUser;
+					return LOGGED_IN;
+				//} else {
+				//	admin = (Admin)loggedInUser;
+				//	return LOGGED_IN;
+				//}
+			} else {
+				addActionError("Your account is not active! Contact TrendiGuru!");
+				return INPUT;
+			}
 			
 		}
 	}
-	/*
+	
 	public String forgotPassword() {
-		authenticationServices.forgotPassword(appUser.getEmail());
+		authenticationServices.forgotPassword(user.getEmail());
 		//addActionMessage(getText("auth.reset.password.message"));
 		return EMPTY;
 	}
-	*/
+	
+	public String resetPasswordForm() {
+		publisher = MorphiaManager.getInstance().findUserToResetPassword(passwordResetToken);
+		if (publisher != null && publisher.getStatus().equals(StatusEnum.ForgottenPassword)) {
+			return "resetPasswordForm";
+		} else {
+			addActionError("'No such reset token exists!");
+			return INPUT;
+		}		
+	}
+	
+	public String resetPassword() {
+		authenticationServices.resetPassword(publisher);
+		//addActionMessage(getText("auth.reset.password.message"));
+		return EMPTY;
+	}
+	
 	public String getJcaptcha() {
 		return jcaptcha;
 	}
@@ -182,6 +207,16 @@ public class AuthenticationAction extends BaseAction {
 
 	public void setPublisher(User publisher) {
 		this.publisher = publisher;
+	}
+
+
+	public String getPasswordResetToken() {
+		return passwordResetToken;
+	}
+
+
+	public void setPasswordResetToken(String passwordResetToken) {
+		this.passwordResetToken = passwordResetToken;
 	}
 
 

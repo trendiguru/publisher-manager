@@ -91,14 +91,17 @@ form .right {
 	/*margin: 0 2px 0 0;*/
 }
 
-.signUpLink, .tosPrivacyPolicyLink {
+.signUpLink, .tosPrivacyPolicyLink, .forgottenPasswordLink {
 	font-family: "futura-pt";
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
     font-style: normal;
     color: #fff;
+}
+.forgottenPasswordLink {
+	margin-left:12px;
 }
 .signUpLink {
 	line-height: 55px;

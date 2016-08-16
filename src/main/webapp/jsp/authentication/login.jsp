@@ -36,6 +36,8 @@
 					<div class="right"><input id="password" name="user.password" class="newsletter-form-field-element field-element" name="email" type="password" spellcheck="false" placeholder="Password"></div>
 					
 					<a class="signUpLink" href="signUpForm">Publisher Sign Up</a>
+					<a class="forgottenPasswordLink" href="">Forgotten Password</a>
+					
 				   	<button type="button" id="login" class="newsletter-form-button">Login</button>
 				   	
 				   	

@@ -112,7 +112,7 @@ manager.auth.init = function() {
 		$("#errorBox").text("").hide();
 		
 		$.post(
-			"auth/login", 
+			"/publisher-manager/auth/login", 
 			$("#loginForm").serializeArray(), 
 			function(response, status, xhr) { 
 				if (manager.infra.requestIsValid(xhr)) { 
@@ -149,7 +149,7 @@ manager.auth.init = function() {
 				$("#errorBox").text("").hide();
 				
 				$.post(
-					"auth/signUp", 
+					"/publisher-manager/auth/signUp", 
 					$("#signUpForm").serializeArray(), 
 					function(response, status, xhr) { 
 						if (manager.infra.requestIsValid(xhr)) { 
@@ -174,6 +174,83 @@ manager.auth.init = function() {
 				manager.infra.showErrorBox("Please confirm that you agree to our Terms Of Service and Privacy Policy");
 	        }
 			
+		}
+	});
+	
+	$(".forgottenPasswordLink").click(function(e) {
+		//console.log("hiiii");
+		var email = $("#email").val();
+		if (email == "") {
+			manager.infra.showErrorBox("Please enter your email and then click the 'Forgotten Password' link");
+			$("#email").focus();
+		} else {
+			
+			
+			$.post(
+				"/publisher-manager/auth/forgotPassword", 
+				$("#loginForm").serializeArray(), 
+				function(response, status, xhr) { 
+					if (manager.infra.requestIsValid(xhr)) { 
+						console.log("now tell me what to do...");
+						//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
+						
+						$("#email").val("");
+						//$("#congratulations").show();
+						manager.infra.showErrorBox("We have emailed you a reset password link");
+						//$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
+					}
+				
+				})
+				//})
+				.error(function(qXHR, textStatus, errorThrown) {
+					console.log("error: " + errorThrown);
+					alert("error: " + errorThrown);
+				}
+			);
+		}
+		return false;	//prevent href from firing
+	});
+	
+	$("#resetPassword").click(function(e) {
+		var formValid = false;
+		
+		//console.log("validating form...");
+		//manager.infra.validate($('#signUpForm').toJSO());
+		
+		var formValid = manager.infra.validate();
+		
+		//console.log(formValid);
+		
+		if (formValid) {
+						
+			console.log("submitting form...");
+			$("#errorBox").text("").hide();
+			
+			$("#passwordResetToken").val(passwordResetToken);
+			
+			$.post(
+				"/publisher-manager/auth/resetPassword", 
+				$("#signUpForm").serializeArray(), 
+				function(response, status, xhr) { 
+					if (manager.infra.requestIsValid(xhr)) { 
+						console.log("now tell me what to do...");
+						//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
+						
+						$("#signUpForm").hide();
+						$("#congratulations").show();
+						
+						
+						//$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
+					}
+				
+				})
+				//})
+				.error(function(qXHR, textStatus, errorThrown) {
+					console.log("error: " + errorThrown);
+					alert("error: " + errorThrown);
+				}
+			);
+				
 		}
 	});
 	
@@ -234,7 +311,12 @@ manager.infra.validate = function() {
 						//submit form
 						return true;
 					} else{
-						manager.infra.showErrorBox("You can't leave Captcha Code empty");
+						if (window.location.hostname.indexOf("localhost") > -1) {
+							console.log("in dev so allow missing captcha");
+							return true;
+						} else {
+							manager.infra.showErrorBox("You can't leave Captcha Code empty");
+						}
 						//$("#rcaptcha").addClass("invalid");
 					}
 				//}

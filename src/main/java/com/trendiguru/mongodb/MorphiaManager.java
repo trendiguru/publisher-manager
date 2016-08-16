@@ -49,6 +49,17 @@ public class MorphiaManager {
 		//}
 	}
 	
+	/**
+	 * {@link http://mongodb.github.io/morphia/1.2/getting-started/quick-tour/}
+	 * 
+	 * @param publisher
+	 * @throws DuplicateKeyException
+	 */
+	public void updatePublisher(User publisher) throws DuplicateKeyException {
+		/* just call .save() with the updated object */
+		addPublisher(publisher);
+	}
+	
 	public User findUser(String email) {
 		try {
 			List<User> publisherList = datastore.createQuery(User.class)
@@ -61,6 +72,26 @@ public class MorphiaManager {
 				return null;
 			} else {
 				log.fatal("There is > 1 user with the email: " + email + " in the DB!");
+				return null;
+			}
+		} catch (Throwable t) {
+			log.fatal(t);
+			return null;
+		}
+	}
+	
+	public User findUserToResetPassword(String resetToken) {
+		try {
+			List<User> publisherList = datastore.createQuery(User.class)
+	                .field("passwordResetToken").equal(resetToken)
+	                .asList();
+			
+			if (publisherList.size() == 1) {
+				return publisherList.get(0);
+			} else if (publisherList.isEmpty()) {
+				return null;
+			} else {
+				log.fatal("There is > 1 user with the passwordResetToken: " + resetToken + " in the DB!");
 				return null;
 			}
 		} catch (Throwable t) {

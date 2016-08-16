@@ -23,7 +23,32 @@ import com.trendiguru.entities.User;
 public class EmailManager {
 
 	private static Logger log = Logger.getLogger(EmailManager.class); 
+	
+	private static ConfigManager configManager = ConfigManager.getInstance();
 
+	public static void forgottenPassword(User publisher) {
+		String resetLink = configManager.getTomcatDomain() + "/publisher-manager/auth/resetPasswordForm?passwordResetToken=" + publisher.getPasswordResetToken();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Hi " + publisher.getContactName() + ",").append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+		sb.append("You requested to have your password reset for your Trendi Guru Analytics account.  So please click on this reset link:").append(System.getProperty("line.separator"));
+		sb.append(resetLink);
+		
+		send(publisher.getEmail(), publisher.getName(), "TrendiGuru password reset request for " + publisher.getName(), sb.toString());
+		//send("jscolton@gmail.com", "Jeremy Colton", "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
+	}
+	
+	public static void passwordReset(User publisher, String newUnhashedPassword) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Hi " + publisher.getContactName() + ",").append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+		sb.append("You password was successfully reset!").append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+		sb.append("Login address: http://publisher.trendi.guru").append(System.getProperty("line.separator"));
+		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));
+		sb.append("Password: " + newUnhashedPassword).append(System.getProperty("line.separator"));
+		
+		send(publisher.getEmail(), publisher.getName(), "TrendiGuru password reset successful for " + publisher.getName(), sb.toString());
+		//send("jscolton@gmail.com", "Jeremy Colton", "New Publisher SignUp - " + publisher.getDomain(), sb.toString());
+	}
+	
 	public static void newSignUpNotifyTrendiGuru(User publisher) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Publisher Name: " + publisher.getName()).append(System.getProperty("line.separator"));
@@ -71,7 +96,7 @@ public class EmailManager {
 			session = Session.getInstance(props,
 					  new javax.mail.Authenticator() {
 						protected PasswordAuthentication getPasswordAuthentication() {
-							return new PasswordAuthentication("jay@trendiguru.com", "XXXXXX");
+							return new PasswordAuthentication("jay@trendiguru.com", "xxx");
 						}
 					  });
 			
