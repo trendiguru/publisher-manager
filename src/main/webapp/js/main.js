@@ -44,7 +44,7 @@ var manager = manager || {
 					indexName: "winWidth"
 				}
 			},
-			values : {},
+			values : {},	//static data is loaded here as a map where key = indexName, value = array of escaped values
 			
 			//names: ["Country", "Domain"],
 			added: {
@@ -68,24 +68,39 @@ var manager = manager || {
 				*/
 			},
 			addedCount: 0,
-			lastQueryRun: "*"
-			//operators: ["equal to", "not equal to"],
-			//countries: null,
-			//domains: null
+			lastQueryRun: "*",
+			operators: {
+				"equals" : {
+					name: "equals",
+					keyword: "",
+					quotes: true,
+					asterisk: false
+				},
+				"does not equal" : {
+					name: "does not equal",
+					keyword: "NOT",
+					quotes: true,
+					asterisk: false
+				},
+				"contains" : {
+					name: "contains",
+					keyword: "",
+					quotes: false,
+					asterisk: true
+				},
+				"does not contain" : {
+					name: "does not contain",
+					keyword: "NOT",
+					quotes: false,
+					asterisk: true
+				}
+			}
 		}
 	},
 	auth: {},
 	infra: {},
 	error: {}
 };
-
-/*
-manager.auth = {};
-manager.infra = {};
-manager.error = {};
-*/
-//manager.publisher = {};
-//manager.admin = {};
 
 manager.auth.init = function() {
 	console.log("ready!");

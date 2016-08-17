@@ -35,28 +35,10 @@
 				</div>
 								
 				<div id="filterWrapper">
-					<div id="dynamicFilters"></div>
+					<div id="dynamicFilters"><!-- filters added dynamically here --></div>
 					<button type="button" class="addFilter">Add filter</button>
 					<button type="button" id="runFilter" class="hidden">Run filter</button>
 				</div>
-				
-				<!-- 
-				<div class="filters">
-					<div>Filters 2</div>
-					<div>
-						Country:
-						<select id="countryFilter">
-						</select>
-						
-						Domain:
-						<select id="domainFilter">
-						</select>
-						
-						<button type="button" id="runFilter">Run Filter</button>
-					</div>
-				</div>
-				-->
-				
 			</div>
 						
 		</header>
@@ -65,7 +47,7 @@
   			<div class="filter" id="{{id}}" data-name="{{name}}">
 				<span>By</span>
 				<select class="filterList">{{{filterNameOptions}}}</select>
-				<!--<select class="filterOperators">{{{filterOperatorOptions}}}</select>-->
+				<select class="filterOperators">{{{filterOperatorOptions}}}</select>
 				<select class="filterValues">{{{filterValueOptions}}}</select>
 				<span class="removeFilter">X</span>
   			</div>

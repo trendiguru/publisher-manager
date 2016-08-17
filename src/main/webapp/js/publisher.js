@@ -65,6 +65,8 @@ manager.publisher.init = function() {
 				$("#runFilter").addClass("hidden");
 			}
 			
+			//places our lucene search query into the hidden Kibana seach bar and click the hidden 'search'
+			
 			var iframeDOM = $('#kibanaDashboard').contents();
 			iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form input.form-control").val(luceneFilter);
 			iframeDOM.find("#kibana-body .dashboard-container navbar form.inline-form button[type=submit]").click();
@@ -108,21 +110,12 @@ manager.publisher.populateFilters = function() {
 		function(response, status, xhr) { 
 			if (manager.infra.requestIsValid(xhr)) { 
 				//console.log(xhr.responseJSON);
-								
-				// new dynamic filters to replace the filters above
-				//manager.publisher.filters.options.country.values = xhr.responseJSON.countries;
-				//manager.publisher.filters.options.domain.values = xhr.responseJSON.domains;
-				manager.publisher.filters.values = xhr.responseJSON;
-				
+				manager.publisher.filters.values = xhr.responseJSON;	
 				$('#filterWrapper').off('click', '.addFilter');
 				$('#filterWrapper').off('click', '.removeFilter');
-				$('#filterWrapper').off('change', '.filterList');
-				
+				$('#filterWrapper').off('change', '.filterList');				
 				manager.publisher.filters.init();
-				
-				//TODO - remove the old static filters
 			}
-		
 		})
 		.error(function(qXHR, textStatus, errorThrown) {
 			console.log("error: " + errorThrown);
@@ -292,34 +285,35 @@ manager.publisher.buildFilter = function() {
 		var indexName = $(element).find(".filterList").val();
 		var value = $(element).find(".filterValues").val();
 		
-		if (value != "All") {
-			// must surround each value with double quotes to filter by this specific value, otherwise it becomes 'contains'
-			luceneSearch += indexName + ":\"" + value + "\"";
-		}
+		var operatorKey = $(element).find(".filterOperators").val();
+		var operator = manager.publisher.filters.operators[operatorKey];
+		
+		// must surround each value with double quotes to filter by this specific value, otherwise it becomes 'contains'
+		//luceneSearch += (operator.keyword + " " + indexName + ":\"" + value + "\"").trim();
+		//luceneSearch += operator.keyword + " " + indexName + ":";
 				
-		if (i < manager.publisher.filters.addedCount && value != "All") {
+		if (operator.keyword != "") {
+			luceneSearch += operator.keyword + " ";
+		}
+		
+		luceneSearch += indexName + ":";
+		
+		if (operator.quotes) {
+			luceneSearch += "\"" + value + "\"";
+		} else {
+			luceneSearch += value;
+		}
+		
+		if (operator.asterisk) {
+			luceneSearch += "*";
+		}
+		
+		luceneSearch = luceneSearch.trim();
+				
+		if (i < manager.publisher.filters.addedCount) {
 			luceneSearch += " AND ";
 		}
 	});
-	
-	/*
-	$.each(manager.publisher.filters.options, function(key, filter) {
-		i++;
-		if (filter.inUse) {
-			var value = $("#" + filter.domId + " .filterValues").val();
-			
-			if (value != "All") {
-				luceneSearch += filter.indexName + ":" + value;
-			}
-			
-			
-			if (i < manager.publisher.filters.addedCount && value != "All") {
-				luceneSearch += " AND ";
-			}
-			
-		}
-	});
-	*/
 	
 	if (luceneSearch.endsWith(" AND ")) {
 		luceneSearch = luceneSearch.substring(0, (luceneSearch.length-5));
@@ -401,11 +395,12 @@ manager.publisher.filters.add = function() {
 			if (populateOptions) {
 				filterName = key;
 				
-				for (var i=0; i< filter.operators.length; i++) {
-					filterOperatorOptionsHTML += '<option value="' + filter.operators[i] + '">' + filter.operators[i] + '</option>';
-				}
+				$.each(manager.publisher.filters.operators, function(key, value) {
+				//for (var i=0; i< filter.operators.length; i++) {
+					filterOperatorOptionsHTML += '<option value="' + key + '">' + value.name + '</option>';
+				});
 				
-				$.each(manager.publisher.filters.values[filter.indexName], function(index, value){
+				$.each(manager.publisher.filters.values[filter.indexName], function(index, value) {
 					filterValueOptionsHTML += '<option value="' + value + '">' + decodeURIComponent(value) + '</option>';
 				});
 				
