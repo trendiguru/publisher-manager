@@ -5,7 +5,10 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.trendiguru.elasticsearch.DashboardManager;
+import com.trendiguru.entities.User;
 import com.trendiguru.entities.dashboard.DashboardFilterData;
+import com.trendiguru.mongodb.MorphiaManager;
 
 //TODO - delete, replaced by AdminAction.addPublisher()
 
@@ -19,6 +22,19 @@ public class Tester
 	
     public static void main( String[] args )
     {	    	
+    	//getAllowedFields();
+    	getShortenUrl();
+	    
+	    
+    }
+    
+    public static void getShortenUrl() {
+    	User publisher = MorphiaManager.getInstance().findUser("happykorea.andy@gmail.com ");
+    	DashboardManager dm = new DashboardManager(publisher);
+    	dm.addDashBoard(null);
+    }
+    
+    public static void getAllowedFields() {
     	DashboardFilterData filterManager = DashboardFilterData.getInstance();
 	    Set<String> allowedFieldsSet = filterManager.getAllFilterFieldNamesForOurIndex();
 	    

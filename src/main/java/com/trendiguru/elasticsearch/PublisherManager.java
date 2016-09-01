@@ -37,7 +37,9 @@ public class PublisherManager {
 				publisher.setPassword(hashedSaltedPasswordAsString);
 						
 				//1. add user to Mongo
+				//comment this line when updating dashboards!
 				morphiaManager.addPublisher(publisher);
+				
 				log.info("1. Added to mongodb, publisher: " + publisher.getEmail());
 				
 		    	VisualizationManager manager = new VisualizationManager();

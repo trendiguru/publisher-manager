@@ -35,36 +35,29 @@ public class App
     {
     	
     	Map<String, User> userMap = new HashMap<String, User>();
-    	userMap.put("fashionseoul", new User("FashionSeoul","Support", "support@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher));
+    	
+    	//userMap.put("fashionseoul", new User("FashionSeoul","Support", "support@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher));
     	userMap.put("robsdemartino@yahoo.it", new User("Rob Shelter","Rob", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher));
     	userMap.put("xuSiNIs695acaHPE", new User("Venus Imaging Education LLC","connect", "connect@viethrive.com", "Robsdemartino465", RoleEnum.Publisher));
     	userMap.put("R8t1x8iJ3BB6UM69", new User("couponroller","Shaun", "shaun@couponroller.com", "Robsdemartino465", RoleEnum.Publisher));
     	userMap.put("wKFr87LG47Flqq45", new User("sharonel","Sharon", "sharonel22@yahoo.com", "XXX", RoleEnum.Publisher));
     	userMap.put("6t50LSJxeNEkQ42p", new User("recruit","Shirai Yusuke", "yusuke_shirai@r.recruit.co.jp", "XXX", RoleEnum.Publisher));
-    	//userMap.put("5767jA8THOn2J0DD", new User("fashionseoul","ethankim", "ethankim@fashionseoul.com", "XXX", RoleEnum.Publisher));
+    	userMap.put("5767jA8THOn2J0DD", new User("fashionseoul","ethankim", "ethankim@fashionseoul.com", "XXX", RoleEnum.Publisher));
     	userMap.put("FCZEUP7IjVXV2s23", new User("Jeremy Test", "fashioncelebstyle", "jscolton@gmail.com", "123456", RoleEnum.Publisher));
     	userMap.put("*", new User("Trendi Guru Admin", "Admin", "support@trendiguru.com", "jacksnack", RoleEnum.Admin));
     	
     	//chrome plugin distributor
     	userMap.put("mz1_ND", new User("Monetizus","Monetizus", "reborn@monetizus.com", "changetheworld", RoleEnum.Publisher));
-
     	userMap.put("iko5kmX5jkVy2053", new User("TG Website","Kyle", "test1@trendiguru.com", "xxx", RoleEnum.Publisher));
     	
+    	userMap.put("sg3SH5yif242E5jL", new User("Happy Korea INC","Andy Lee", "happykorea.andy@gmail.com", "xxx", RoleEnum.Publisher));
+    	userMap.put("7l97u782MbgyO8XB", new User("Spotlights on the Redhead","Anna Keni", "theredhead@windowslive.com", "xxx", RoleEnum.Publisher));
+    	userMap.put("iXfbMpej4fn3E66R", new User("zamcorgroup","Steven", "steve@zamcorgroup.com", "xxx", RoleEnum.Publisher));
+    	userMap.put("2DqGp6fum7jiv2B6", new User("Happy Korea","Andy Lee", "happykorea.andy@gmail.com ", "xxx", RoleEnum.Publisher));
     	
-    	//User user = new User("FashionSeoul","Support", "support@fashionseoul.com", "luoesnoihsaf", RoleEnum.Publisher);
-    	//User user = new User("Rob Shelter","Rob", "robsdemartino@yahoo.it", "Robsdemartino465", RoleEnum.Publisher);
-    	//User user = new User("Venus Imaging Education LLC","connect", "connect@viethrive.com", "Robsdemartino465", RoleEnum.Publisher);
-    	//User user = new User("couponroller","Shaun", "shaun@couponroller.com", "Robsdemartino465", RoleEnum.Publisher);
-    	//User user = new User("sharonel","Sharon", "sharonel22@yahoo.com", "XXX", RoleEnum.Publisher);
-    	//User user = new User("recruit","Shirai Yusuke", "yusuke_shirai@r.recruit.co.jp", "XXX", RoleEnum.Publisher);
-    	//User user = new User("fashionseoul","ethankim", "ethankim@fashionseoul.com", "XXX", RoleEnum.Publisher);
     	
-    	//User user = new User("Jeremy Test", "fashioncelebstyle", "jscolton@gmail.com", "123456", RoleEnum.Publisher);
-    	//User user = new User("Trendi Guru Admin", "", "support@trendiguru.com", "jacksnack");
+    	//userMap.put("FCZEUP7IjVXV2s23", new User("Jeremy Test", "fashioncelebstyle", "jscolton@gmail.com", "123456", RoleEnum.Publisher));
     	
-    	//Admin
-    	//User user = new User("Trendi Guru Admin", "abc", "support@trendiguru.com", "jacksnack", RoleEnum.Admin);
-    	    	
     	
     	for (Map.Entry<String, User> entry : userMap.entrySet()) {
     		System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());

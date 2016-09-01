@@ -22,6 +22,12 @@ public class User extends BaseUser {
 	String pid;	//data-pid value in web form
 	RoleEnum role;
 	
+	//Each dashboard has a bitly equivalent url, this value identifies the dashboard in ES and is used in the dashboard's iframe src
+	String dashboardId;
+	
+	//Used in the jsp in the iframe src
+	String dashboardVisualsLayout;
+	
 	public User() {
 	}
 	
@@ -83,7 +89,24 @@ public class User extends BaseUser {
 	public void setRole(RoleEnum role) {
 		this.role = role;
 	}
-/*
+	
+	public String getDashboardId() {
+		return dashboardId;
+	}
+
+	public void setDashboardId(String dashboardId) {
+		this.dashboardId = dashboardId;
+	}
+
+	public String getDashboardVisualsLayout() {
+		return dashboardVisualsLayout;
+	}
+
+	public void setDashboardVisualsLayout(String dashboardVisualsLayout) {
+		this.dashboardVisualsLayout = dashboardVisualsLayout;
+	}
+
+	/*
 	public String getDomain() {
 		return domain;
 	}
