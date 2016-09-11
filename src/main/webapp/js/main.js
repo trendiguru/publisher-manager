@@ -174,7 +174,7 @@ manager.auth.init = function() {
 							$("#signUpForm").hide();
 							$("#congratulations").show();
 							
-							$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js" async="" defer=""\>\</script\>');
+							$("#integrate").val('\<script type="text/javascript" id="fzz-script" data-pid="' + xhr.responseJSON.pid + '" src="https://fzz.storage.googleapis.com/fzz.min.js"\>\</script\>');
 						}
 					
 					}, "json")
