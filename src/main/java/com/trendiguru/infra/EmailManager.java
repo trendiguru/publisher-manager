@@ -71,7 +71,7 @@ public class EmailManager {
 		sb.append("Username: " + publisher.getEmail()).append(System.getProperty("line.separator"));
 		sb.append("Password: " + publisher.getRepeatPassword()).append(System.getProperty("line.separator"));
 		sb.append("Company Name: " + publisher.getName()).append(System.getProperty("line.separator"));
-		sb.append("Integration code (place in <head> of your site): <script type='text/javascript' id='fzz-script' data-pid='" + publisher.getPid() + "' src='https://fzz.storage.googleapis.com/fzz.min.js'></script>");
+		sb.append("Integration code (place this snippet in the <head> of your site): \n<script type=\"text/javascript\" id=\"fzz-script\" data-pid=\"" + publisher.getPid() + "\" src=\"https://fzz.storage.googleapis.com/fzz.min.js\"></script>");
 			
 		
 		send(publisher.getEmail(), publisher.getName(), "Trendi Guru SignUp - Dashboard Login Info for '" + publisher.getName() + "'", sb.toString());
