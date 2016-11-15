@@ -168,7 +168,7 @@ manager.auth.init = function() {
 					$("#signUpForm").serializeArray(), 
 					function(response, status, xhr) { 
 						if (manager.infra.requestIsValid(xhr)) { 
-							console.log("now tell me what to do...");
+							console.log("Now tell me what to do...");
 							//alert("Sign Up Success - You will be redirected to our Publisher Login page...");
 							
 							$("#signUpForm").hide();
